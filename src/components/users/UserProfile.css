@@ -1,0 +1,18 @@
+#user-profile-holder {
+  height: 100vh;
+  background-image: url(https://cdn.pixabay.com/photo/2016/11/23/15/31/man-1853545_1280.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  backdrop-filter: blur(6px);
+}
+
+#user-basic-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: rgb(255, 255, 255);
+  position: relative;
+}

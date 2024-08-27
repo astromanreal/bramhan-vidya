@@ -1,0 +1,269 @@
+/* index page */
+
+/* detail page */
+.event-detail-container {
+  max-width: 900px;
+  margin: 4px auto;
+  padding: 20px;
+}
+.event-detail-container .event-heading {
+  font-size: 2.2rem;
+}
+.event-detail-container .event-desc {
+  margin: 1rem 0;
+  font-size: 17px;
+}
+.event-detail-list p {
+  margin: 12px 0;
+  font-size: 16px;
+  color: #beb5b5;
+  line-height: 1.5;
+}
+.event-info {
+  font-size: 16px;
+  color: #bbacac;
+  margin: 20px 0;
+}
+.event-update-delete-btn {
+  padding: 1rem 0;
+}
+.event-update-delete-btn button {
+  padding: 5px 10px;
+  margin-right: 14px;
+  background-color: #beb5b5;
+  border-radius: 12px;
+  border: none;
+}
+.event-notes-container {
+  margin: 2rem 1rem;
+}
+.event-notes-list h2 {
+  margin: 1rem 0;
+  color: rgb(94, 94, 206);
+}
+.event-notes-list h2:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.event-notes-list p {
+  margin: 1rem 0;
+}
+/* detail page */
+
+/* card of event */
+.event-card-container {
+  text-align: center;
+  padding: 40px 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.event-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  width: 260px;
+  height: 380px;
+  box-shadow: 20px 10px 20px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.event-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.event-card:hover img {
+  transform: scale(1.2);
+}
+.event-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  text-align: left;
+  transition: background 0.3s ease;
+}
+.event-card:hover .event-card-content {
+  background: rgba(0, 0, 0, 0.7);
+}
+.event-card h2 {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+.event-card p {
+  font-size: 0.7em;
+  margin-bottom: 20px;
+}
+.event-card-content button {
+  padding: 8px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 10px;
+}
+.event-card-content button:hover {
+  transform: scale(1.05);
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.event-card {
+  animation: fadeInUp 0.8s ease-in-out;
+}
+/* card of event */
+/* index page */
+
+/* add event form */
+.add-event-form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.add-event-form h1 {
+  text-align: center;
+  color: #000000;
+  margin-bottom: 20px;
+}
+.add-event-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+.add-event-form input,
+.add-event-form textarea,
+.add-event-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.add-event-form .random-key-details {
+  margin-bottom: 20px;
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 16px;
+}
+.add-event-form .random-key-details div {
+  margin-bottom: 10px;
+}
+.add-event-form .random-key-details button {
+  margin-left: 10px;
+}
+.add-event-form .add-more-button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.add-event-form .add-more-button:hover {
+  background-color: #3e8e41;
+}
+.add-event-form button[type="submit"] {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.add-event-form button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+/* add event form */
+
+/*event note detail page */
+
+.event-note {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.event-note-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.event-note-content {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.event-note-like-dislike-btn-holder {
+  margin-bottom: 10px;
+}
+
+.event-note-info {
+  font-size: 14px;
+  color: #666;
+}
+.event-note-action-btns {
+  margin: 20px;
+}
+.event-note-action-btns button {
+  padding: 5px 10px;
+  border: none;
+  margin-right: 1rem;
+  background-color: bisque;
+  border-radius: 12px;
+}
+.event-note-description {
+  font-size: 17px;
+  margin: 20px;
+}
+
+.event-note-comments-section {
+  margin-top: 40px;
+}
+
+.event-note-comment {
+  margin-bottom: 20px;
+}
+
+.event-note-delete-comment-btn {
+  font-size: 12px;
+  border: none;
+  border-radius: 12px;
+  padding: 2px 4px;
+  color: #000000;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.event-note-add-comment-container {
+  margin-top: 20px;
+}
+
+.event-note-add-comment-container input {
+  padding: 10px;
+  width: 260px;
+  border: none;
+  font-size: 14px;
+  border-radius: 5px 0 0 5px;
+}
+
+.event-note-add-comment-container button {
+  font-size: 14px;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+/*event note detail page */

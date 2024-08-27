@@ -1,0 +1,144 @@
+.forget-password {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 80vh;
+}
+.forget-password .heading {
+  font-size: 2rem;
+  margin: 2rem;
+  background: linear-gradient(to right, #f00, #0f0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.forget-password input {
+  padding: 8px;
+  border: none;
+  width: 300px;
+  background-color: #ccc;
+  border-radius: 8px 0 0 8px;
+}
+.forget-password button {
+  padding: 8px;
+  border: none;
+  background-color: #74c174;
+  border-radius: 0 8px 8px 0;
+}
+
+/* user index page */
+#user-index {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#user-index .button-container {
+  display: flex;
+  justify-content: space-between;
+}
+#user-index button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.user-login,
+.user-signup {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-login form button,
+.user-signup form button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.user-login form button:hover,
+.user-signup form button:hover {
+  background-color: #379937;
+}
+
+.user-login form input,
+.user-signup form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+/* user index page */
+
+/* user profile */
+#user-profile-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-profile-info {
+  margin-bottom: 20px;
+}
+
+.logout-btn {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin: 0 2rem;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #3e8e41;
+}
+
+/* user profile */
+
+/* prfile documents */
+#profile-docs-container {
+  max-width: 800px;
+  padding: 40px;
+}
+
+#profile-docs-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#profile-docs-container .profile-doc {
+  margin-bottom: 20px;
+  border: 1px solid #2f2b2b;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#profile-docs-container .profile-doc .profile-link {
+  text-decoration: none;
+  color: #c8c8c8;
+}
+
+#profile-docs-container .profile-doc .profile-link:hover {
+  color: #3f97ef;
+}
+/* prfile documents */

@@ -1,0 +1,9 @@
+{
+  "short_name": "Bramhan Vidya",
+  "name": "A portal for all of the knowledge of Sanatan Dharma.",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

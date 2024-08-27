@@ -1,0 +1,240 @@
+/* Index page of book (book card) */
+.book-card-holder {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px;
+}
+
+.book-card {
+  width: 300px;
+  background-color: rgb(45, 44, 44);
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 82px rgba(0, 0, 0, 0.2);
+}
+.book-card-image img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+.book-card-content {
+  padding: 16px;
+}
+.book-card-meta {
+  display: flex;
+  font-size: 12px;
+  text-transform: uppercase;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  color: #ff4b5c;
+  font-weight: bold;
+}
+.book-card-content h3 {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #ffffff;
+}
+.book-card-content p {
+  font-size: 14px;
+  color: #bcb2b2;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.book-card-btn {
+  display: inline-flex;
+  align-items: center;
+  color: #ff4b5c;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 14px;
+}
+.book-card-btn svg {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+.book-card-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* Index page of book (book card) */
+
+/* Book detail page */
+
+.google-books-iframe {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  height: 100vh;
+  margin: 20px auto;
+  border-radius: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.books-detail-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+.books-detail-container h1 {
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+.books-detail-container .books-info {
+  color: #908585;
+  margin-bottom: 20px;
+}
+.books-detail-container hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+.books-detail-container p {
+  margin: 10px;
+  letter-spacing: 1.3px;
+  font-size: 16px;
+}
+.books-detail-container strong {
+  color: #aae3ea;
+  font-size: 1.1rem;
+  letter-spacing: 1.4px;
+}
+.books-detail-container .no-data {
+  color: #999;
+}
+.books-detail-container button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+}
+.books-detail-container button:hover {
+  background-color: #3e8e41;
+}
+
+/* book-notes-container */
+.book-notes-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+.book-notes-container .heading {
+  color: #ffffff;
+  font-size: 1.9rem;
+  margin-bottom: 20px;
+}
+.book-notes-list {
+  margin: 12px;
+}
+.book-notes-container a {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.book-notes-container a:hover {
+  text-decoration: underline;
+}
+.book-notes-list p {
+  color: #a39a9a;
+}
+/* book-notes-container */
+/* Book detail page */
+
+/* Note detail page */
+.book-note {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+.book-note-title {
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+.book-note-content {
+  margin-bottom: 20px;
+}
+.book-note-info {
+  color: #666;
+  margin-bottom: 10px;
+}
+.book-note-action-btns {
+  margin: 20px;
+}
+.book-note-action-btns button {
+  background-color: #4caf50;
+  color: #fff;
+  margin-right: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+}
+.book-note-action-btns button:hover {
+  background-color: #3e8e41;
+}
+.book-note-description {
+  margin: 10px 0;
+  font-size: 18px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.book-note-comments-title {
+  color: #ffffff;
+  margin: 10px 0;
+}
+.book-note-comment {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.book-note-comment p {
+  margin-bottom: 5px;
+}
+
+.book-note-comment small {
+  color: #999;
+  margin-left: 1rem;
+}
+.book-note-delete-comment-btn {
+  border-radius: 12px;
+  border: none;
+  background-color: #ff4b5c;
+  color: rgb(0, 0, 0);
+  padding: 3px 6px;
+}
+.book-note-comment-input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  width: 260px;
+  border-radius: 5px 0 0 5px;
+}
+.book-note-add-comment-btn {
+  background-color: #4caf50;
+  color: #fff;
+
+  padding: 10px 20px;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.book-note-add-comment-btn:hover {
+  background-color: #3e8e41;
+}
+
+.no-book-note-comments {
+  color: #999;
+  margin-bottom: 20px;
+}
+/* Note detail page */

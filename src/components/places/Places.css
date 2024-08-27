@@ -1,0 +1,136 @@
+/* index place header overlay image */
+
+#places-img-header {
+  position: relative;
+  background-image: url("https://images.pexels.com/photos/161293/prambanan-temple-java-hinduism-161293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 40px;
+}
+
+#places-img-header .places-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 12px 32px rgba(0, 0, 0, 0.15),
+    0 16px 48px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  text-align: left;
+}
+
+#places-img-header h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+/* index place header overlay image */
+
+/* place index page card */
+#places-page-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px;
+}
+#places-page-card {
+  max-width: 270px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  height: fit-content;
+}
+
+#places-page-card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+}
+
+#places-page-card a h2 {
+  font-size: 2rem;
+  margin: 1rem;
+  display: flex;
+  color: whitesmoke;
+  justify-content: center;
+}
+/* place index page card */
+
+/* place card */
+.place-card-holder {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px;
+}
+#place-card {
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+#place-card a {
+  color: #e8e8e5;
+}
+
+#place-card img {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+#place-card h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#place-card .place-card-description {
+  font-size: 16px;
+  color: #666;
+  font-weight: 700;
+}
+
+#place-card p {
+  font-size: 14px;
+  color: #999;
+}
+/* place card */
+
+/* profile header */
+
+#place-page-header-holder {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+#place-page-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+#place-page-header h1 {
+  font-size: 2.5em;
+  color: #eb6666;
+  margin-bottom: 10px;
+}
+
+#place-page-header p {
+  font-size: 1.2em;
+  color: #666;
+  line-height: 1.5;
+  margin: 0 20px;
+}
+
+/* place header */

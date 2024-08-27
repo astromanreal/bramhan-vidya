@@ -1,0 +1,121 @@
+.hero {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.hero h1 {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+}
+/* .hero-text {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+} */
+
+.introduction {
+  padding: 50px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.how-we-help {
+  background-color: #004c3f;
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.how-we-help h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.help-cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.help-card {
+  flex: 1;
+  min-width: 200px;
+  background-color: #fff;
+  color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.help-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.help-icon {
+  height: 200px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.quote-section {
+  /* background-color: #e2f3e9; */
+  padding: 50px 20px;
+  text-align: center;
+  font-style: italic;
+}
+
+.quote-background {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.values-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.values-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.values-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.value-item {
+  flex: 1;
+  min-width: 200px;
+  background-color: #fff;
+  color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,25 @@
+/*
+input::placeholder {
+  color: #838383;
+  font-style: italic;
+}
+textarea::placeholder {
+  color: #777575;
+  font-style: italic;
+} */
+
+/* add data in place topic and profile */
+.missing-link {
+  text-align: center;
+  margin: 3em 0;
+  font-size: 1.4em;
+  color: #15d735;
+}
+.missing-link a {
+  text-decoration: underline;
+}
+.missing-link a:hover {
+  color: aliceblue;
+}
+
+/* add data in place topic and profile */
