@@ -352,7 +352,7 @@ export function MyBookDocuments() {
         );
         setDocuments(response.data.data);
       } catch (error) {
-        toast.error(error.message);
+        toast.error("Book error " || error.message);
       }
     })();
   }, [userId]);
