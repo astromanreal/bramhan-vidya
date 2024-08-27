@@ -11,7 +11,7 @@ export default function GetRedirectLink({ path, text }) {
     if (token) {
       const userId = GetUserId();
       axios
-        .get(`http://localhost:4000/users/user/${userId}`)
+        .get(`https://bramhan-vidya-api.vercel.app/users/user/${userId}`)
         .then((response) => {
           setUserRole(response.data.role);
         })
