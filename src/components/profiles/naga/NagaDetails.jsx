@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function NagaDetails() {
   const navigate = useNavigate();
@@ -13,9 +14,7 @@ export default function NagaDetails() {
   useEffect(() => {
     const fetchNagaDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/naga/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/naga/${id}`);
         if (data?.success) {
           setNaga(data.data);
           document.title = `Naga - ${data.data.name}`;
@@ -35,9 +34,7 @@ export default function NagaDetails() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this Naga?")) {
       try {
-        const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/naga/${id}`
-        );
+        const { data } = await axios.delete(`${apiUrl}/profiles/naga/${id}`);
         if (data?.success) {
           toast.success("Naga deleted successfully");
           navigate("/profile/naga");

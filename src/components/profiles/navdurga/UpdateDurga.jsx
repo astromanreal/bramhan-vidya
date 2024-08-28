@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateDurga() {
   const { id } = useParams();
@@ -28,9 +29,7 @@ export default function UpdateDurga() {
   useEffect(() => {
     const fetchDurga = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/navdurga/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/navdurga/${id}`);
         if (data?.success) {
           setFormData(data.data);
         } else {
@@ -74,7 +73,7 @@ export default function UpdateDurga() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/navdurga/${id}`,
+        `${apiUrl}/profiles/navdurga/${id}`,
         filteredFormData
       );
       if (data?.success) {

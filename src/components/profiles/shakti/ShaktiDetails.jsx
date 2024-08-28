@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function ShaktiDetails() {
   const { id } = useParams();
@@ -13,9 +14,7 @@ export default function ShaktiDetails() {
   useEffect(() => {
     const fetchShakti = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/shakti/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/shakti/${id}`);
         if (data?.success) {
           setShakti(data.data);
           document.title = `Shakti - ${data.data.name}`;
@@ -35,9 +34,7 @@ export default function ShaktiDetails() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this Shakti?")) {
       try {
-        const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/shakti/${id}`
-        );
+        const { data } = await axios.delete(`${apiUrl}/profiles/shakti/${id}`);
         if (data?.success) {
           toast.success("Shakti deleted successfully");
           navigate("/profile/shakti");

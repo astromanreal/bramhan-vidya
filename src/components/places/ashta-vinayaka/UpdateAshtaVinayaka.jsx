@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function UpdateAshtaVinayaka() {
   const { id } = useParams();
@@ -30,7 +31,7 @@ export default function UpdateAshtaVinayaka() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/Ashtavinayaka/${id}`
+          `${apiUrl}/places/Ashtavinayaka/${id}`
         );
         setFormData(response.data.data);
       } catch (err) {
@@ -65,10 +66,7 @@ export default function UpdateAshtaVinayaka() {
       notes: formData.notes.filter((note) => note.key && note.value),
     };
     try {
-      await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/Ashtavinayaka/${id}`,
-        filteredFormData
-      );
+      await axios.put(`${apiUrl}/places/Ashtavinayaka/${id}`, filteredFormData);
       alert("Data updated successfully");
       navigate(`/place/ashta-vinayaka/${id}`);
     } catch (err) {

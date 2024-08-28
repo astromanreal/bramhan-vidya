@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateNoteBooks() {
   const navigate = useNavigate();
@@ -20,9 +21,7 @@ export default function UpdateNoteBooks() {
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/books/note/${noteId}`
-        );
+        const { data } = await axios.get(`${apiUrl}/books/note/${noteId}`);
         setFormData(data.notes);
       } catch (error) {
         toast.error(error.message || "Error while getting the Note info");
@@ -77,10 +76,7 @@ export default function UpdateNoteBooks() {
         },
       };
       try {
-        await axios.put(
-          `https://bramhan-vidya-api.vercel.app/books/note/${noteId}`,
-          data
-        );
+        await axios.put(`${apiUrl}/books/note/${noteId}`, data);
         toast.success("Data updated");
         navigate(`/book/note/${noteId}`);
       } catch (error) {

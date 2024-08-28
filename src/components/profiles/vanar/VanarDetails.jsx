@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function VanarDetails() {
   const [vanar, setVanar] = useState(null);
@@ -12,9 +13,7 @@ export default function VanarDetails() {
   useEffect(() => {
     const fetchVanar = async () => {
       try {
-        const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/vanara/${id}`
-        );
+        const response = await axios.get(`${apiUrl}/profiles/vanara/${id}`);
         if (response.data?.success) {
           setVanar(response.data.data);
         } else {
@@ -32,9 +31,7 @@ export default function VanarDetails() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this Vanara?")) {
       try {
-        const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/vanara/${id}`
-        );
+        const { data } = await axios.delete(`${apiUrl}/profiles/vanara/${id}`);
         if (data?.success) {
           toast.success("Vanara deleted successfully");
           navigate("/profile/vanara");

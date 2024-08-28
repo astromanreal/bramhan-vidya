@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import PostsCommunity from "./PostsCommunity";
 import GetUserId from "../utils/GetUserId";
 import JoinCommunity from "./JoinCommunity";
 import CreatePost from "./CreatePost";
 import toast from "react-hot-toast";
+import apiUrl from "../utils/GetApiUrl";
+import axios from "axios";
 
 export default function DetailsCommunity() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function DetailsCommunity() {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`https://bramhan-vidya-api.vercel.app/community/community/${id}`)
+      .get(`${apiUrl}/community/community/${id}`)
       .then((response) => {
         setCommunity(response.data);
       })
@@ -25,9 +26,7 @@ export default function DetailsCommunity() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this community?")) {
       try {
-        await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/community/community/${id}`
-        );
+        await axios.delete(`${apiUrl}/community/community/${id}`);
         toast.success("Community deleted successfully");
         navigate("/community");
       } catch (err) {

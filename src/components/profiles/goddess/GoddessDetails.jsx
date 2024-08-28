@@ -1,8 +1,9 @@
-import axios from "axios";
-import toast from "react-hot-toast";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function GoddessDetails() {
   const { id } = useParams();
@@ -13,9 +14,7 @@ export default function GoddessDetails() {
   useEffect(() => {
     const fetchGoddessDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/goddess/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/goddess/${id}`);
         if (data?.success) {
           setGoddess(data.data);
           document.title = `Goddess - ${data.data.name}`;
@@ -35,9 +34,7 @@ export default function GoddessDetails() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this Goddess?")) {
       try {
-        const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/goddess/${id}`
-        );
+        const { data } = await axios.delete(`${apiUrl}/profiles/goddess/${id}`);
         if (data?.success) {
           toast.success("Goddess deleted successfully");
           navigate("/profile/goddess");

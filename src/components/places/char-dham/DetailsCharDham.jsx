@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function DetailsCharDham() {
   const { id } = useParams();
@@ -12,9 +13,7 @@ export default function DetailsCharDham() {
   useEffect(() => {
     const fetchCharDhamDetails = async () => {
       try {
-        const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/charDham/${id}`
-        );
+        const response = await axios.get(`${apiUrl}/places/charDham/${id}`);
         setCharDham(response.data.data);
       } catch (err) {
         setError(err.message || "Failed to fetch Char Dham details");
@@ -31,9 +30,7 @@ export default function DetailsCharDham() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete Char Dham?")) {
       try {
-        const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/CharDham/${id}`
-        );
+        const { data } = await axios.delete(`${apiUrl}/places/CharDham/${id}`);
         if (data?.success) {
           alert("Char Dham deleted successfully");
           navigate("/place/char-dham");

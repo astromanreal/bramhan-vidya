@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddShaktiPeeth() {
   const navigate = useNavigate();
@@ -80,17 +82,17 @@ export default function AddShaktiPeeth() {
     };
     try {
       const { data } = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/places/addShaktiPeeth",
+        `${apiUrl}/places/addShaktiPeeth`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Shakti Peeth added!");
+        toast.success("Shakti Peeth added!");
         navigate("/place/shakti-peeth");
       } else {
         throw new Error("Failed to add Shakti Peeth");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while adding Shakti Peeth");
+      toast.error(err.message || "An error occurred while adding Shakti Peeth");
     } finally {
       setLoading(false);
     }

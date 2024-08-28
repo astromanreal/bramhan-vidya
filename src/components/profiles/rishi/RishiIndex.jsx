@@ -1,8 +1,9 @@
+import GetRedirectLink from "../../utils/GetRedirectLink";
+import ProfileHeader from "../ProfileHeader";
+import apiUrl from "../../utils/GetApiUrl";
+import ProfileCard from "../ProfileCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ProfileCard from "../ProfileCard";
-import ProfileHeader from "../ProfileHeader";
-import GetRedirectLink from "../../utils/GetRedirectLink";
 
 export default function RishiIndex() {
   return (
@@ -24,9 +25,7 @@ export function Allrishi() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allrishi"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allrishi`);
         if (data?.success) {
           setRishis(data.data);
           document.title = "All Rishis";

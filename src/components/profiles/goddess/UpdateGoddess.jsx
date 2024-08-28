@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateGoddess() {
   const { id } = useParams();
@@ -26,9 +27,7 @@ export default function UpdateGoddess() {
   useEffect(() => {
     const fetchGoddessDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/goddess/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/goddess/${id}`);
         if (data?.success) {
           setFormData(data.data);
           document.title = `Update - ${data.data.name}`;
@@ -75,7 +74,7 @@ export default function UpdateGoddess() {
 
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/goddess/${id}`,
+        `${apiUrl}/profiles/goddess/${id}`,
         filteredFormData
       );
       if (data?.success) {

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function DetailsChotaCharDham() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function DetailsChotaCharDham() {
     const fetchChotaCharDham = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/ChotaCharDham/${id}`
+          `${apiUrl}/places/ChotaCharDham/${id}`
         );
         if (data?.success) {
           setData(data.data);
@@ -35,7 +36,7 @@ export default function DetailsChotaCharDham() {
     ) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/ChotaCharDham/${id}`
+          `${apiUrl}/places/ChotaCharDham/${id}`
         );
         if (data?.success) {
           alert("chota Char Dham deleted successfully");

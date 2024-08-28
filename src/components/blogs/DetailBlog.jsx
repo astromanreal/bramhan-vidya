@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import GetUserId from "../utils/GetUserId";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import apiUrl from "../utils/GetApiUrl";
+import axios from "axios";
 
 export default function DetailBlog() {
   const { id } = useParams();
@@ -11,9 +12,7 @@ export default function DetailBlog() {
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
-        const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/blogs/blog/${id}`
-        );
+        const response = await axios.get(`${apiUrl}/blogs/blog/${id}`);
         setBlogData(response.data);
       } catch (error) {
         toast.error(error);

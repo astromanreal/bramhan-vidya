@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateModern() {
   const { id } = useParams();
@@ -23,9 +24,7 @@ export default function UpdateModern() {
   useEffect(() => {
     const fetchModern = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/modern/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/modern/${id}`);
         if (data?.success) {
           setFormData(data.data);
         } else {
@@ -65,7 +64,7 @@ export default function UpdateModern() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/modern/${id}`,
+        `${apiUrl}/profiles/modern/${id}`,
         filteredFormData
       );
       if (data?.success) {

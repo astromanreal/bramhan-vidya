@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdatePanchBhutaSthalam() {
   const navigate = useNavigate();
@@ -36,7 +38,7 @@ export default function UpdatePanchBhutaSthalam() {
     const fetchPanchBhutaSthalam = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/PanchaBhutaSthalam/${id}`
+          `${apiUrl}/places/PanchaBhutaSthalam/${id}`
         );
         if (data?.success) {
           setFormData(data.data);
@@ -44,7 +46,7 @@ export default function UpdatePanchBhutaSthalam() {
           throw new Error("Failed to fetch Pancha Bhuta Sthalam details");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message ||
             "An error occurred while fetching Pancha Bhuta Sthalam details"
         );
@@ -89,17 +91,17 @@ export default function UpdatePanchBhutaSthalam() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/PanchaBhutaSthalam/${id}`,
+        `${apiUrl}/places/PanchaBhutaSthalam/${id}`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Pancha Bhuta Sthalam updated!");
+        toast.success("Pancha Bhuta Sthalam updated!");
         navigate(`/place/panch-bhuta-sthalam/${id}`);
       } else {
         throw new Error("Failed to update Pancha Bhuta Sthalam");
       }
     } catch (err) {
-      alert(
+      toast.error(
         err.message || "An error occurred while updating Pancha Bhuta Sthalam"
       );
     }

@@ -1,10 +1,11 @@
-import axios from "axios";
-import "./Books.css";
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import GetRedirectLink from "./../utils/GetRedirectLink";
 import ProfileHeader from "./../profiles/ProfileHeader";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import apiUrl from "../utils/GetApiUrl";
+import axios from "axios";
+import "./Books.css";
 
 export default function IndexBook() {
   return (
@@ -25,9 +26,7 @@ export function AllBooks() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/books/allbooks"
-        );
+        const { data } = await axios.get(`${apiUrl}/books/allbooks`);
         if (data?.status === "success") {
           setBooks(data.data);
           document.title = "All sanatan books";

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import apiUrl from "../utils/GetApiUrl";
+import axios from "axios";
 
 export default function UpdatePost() {
   const navigate = useNavigate();
@@ -13,9 +14,7 @@ export default function UpdatePost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/community/post/${id}`
-        );
+        const response = await axios.get(`${apiUrl}/community/post/${id}`);
         setTitle(response.data.title);
         setContent(response.data.content);
       } catch (error) {
@@ -28,13 +27,10 @@ export default function UpdatePost() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
-        `https://bramhan-vidya-api.vercel.app/community/post/${id}`,
-        {
-          title,
-          content,
-        }
-      );
+      await axios.put(`${apiUrl}/community/post/${id}`, {
+        title,
+        content,
+      });
       toast.success("Post updated successfully!");
       navigate(`/community/post/${id}`);
     } catch (error) {

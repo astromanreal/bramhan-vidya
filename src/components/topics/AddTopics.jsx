@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import GetUserId from "../utils/GetUserId";
+import apiUrl from "../utils/GetApiUrl";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import axios from "axios";
@@ -34,10 +35,7 @@ export default function AddTopics() {
       };
 
       try {
-        await axios.post(
-          "https://bramhan-vidya-api.vercel.app/topics/addtopics",
-          filteredTopic
-        );
+        await axios.post(`${apiUrl}/topics/addtopics`, filteredTopic);
         toast.success("Data added successfully!");
         navigate("/topic");
       } catch (error) {

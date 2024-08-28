@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateSaptPuri() {
   const navigate = useNavigate();
@@ -37,16 +39,14 @@ export default function UpdateSaptPuri() {
   useEffect(() => {
     const fetchSaptPuri = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/SaptPuri/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/places/SaptPuri/${id}`);
         if (data?.success) {
           setFormData(data.data);
         } else {
           throw new Error("Failed to fetch Sapt Puri details");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message || "An error occurred while fetching Sapt Puri details"
         );
       }
@@ -90,17 +90,17 @@ export default function UpdateSaptPuri() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/SaptPuri/${id}`,
+        `${apiUrl}/places/SaptPuri/${id}`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Sapt Puri updated!");
+        toast.success("Sapt Puri updated!");
         navigate(`/place/sapt-puri/${id}`);
       } else {
         throw new Error("Failed to update Sapt Puri");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while updating Sapt Puri");
+      toast.error(err.message || "An error occurred while updating Sapt Puri");
     } finally {
       setLoading(false);
     }

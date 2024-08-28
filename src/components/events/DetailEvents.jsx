@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import toast from "react-hot-toast";
-import GetUserId from "../utils/GetUserId";
 import GetRedirectLink from "../utils/GetRedirectLink";
+import { useState, useEffect } from "react";
+import GetUserId from "../utils/GetUserId";
+import toast from "react-hot-toast";
+import apiUrl from "../utils/GetApiUrl";
+import axios from "axios";
 
 export default function DetailEvents() {
   const [event, setEvent] = useState({});
@@ -12,7 +13,7 @@ export default function DetailEvents() {
 
   useEffect(() => {
     axios
-      .get(`https://bramhan-vidya-api.vercel.app/event/event/${id}`)
+      .get(`${apiUrl}/event/event/${id}`)
       .then((response) => {
         setEvent(response.data);
       })
@@ -24,9 +25,7 @@ export default function DetailEvents() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this Event?")) {
       try {
-        const response = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/event/event/${id}`
-        );
+        const response = await axios.delete(`${apiUrl}/event/event/${id}`);
         if (response.status === 204) {
           toast.success("Event deleted successfully");
           navigate("/event");
@@ -102,9 +101,7 @@ export function GetAllEventNotes() {
   useEffect(() => {
     const fetchEventNotes = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/event/${id}/allnotes`
-        );
+        const { data } = await axios.get(`${apiUrl}/event/${id}/allnotes`);
         setEventNotes(data);
       } catch (error) {
         toast.error(error);

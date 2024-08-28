@@ -1,9 +1,10 @@
+import GetRedirectLink from "../../utils/GetRedirectLink";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
-import GetRedirectLink from "../../utils/GetRedirectLink";
 import { toast } from "react-hot-toast";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function ChiranjiviIndex() {
   return (
@@ -25,9 +26,7 @@ export function AllChiranjivis() {
   useEffect(() => {
     const fetchChiranjivis = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allchiranjivi"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allchiranjivi`);
         if (data?.success) {
           setChiranjivis(data.data);
           document.title = "List of Chiranjivis";

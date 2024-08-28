@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function ModernDetails() {
   const { id } = useParams();
@@ -13,9 +14,7 @@ export default function ModernDetails() {
   useEffect(() => {
     const fetchModern = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/modern/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/modern/${id}`);
         if (data?.success) {
           setModern(data.data);
         } else {
@@ -35,9 +34,7 @@ export default function ModernDetails() {
 
   const handleDelete = async () => {
     try {
-      const { data } = await axios.delete(
-        `https://bramhan-vidya-api.vercel.app/profiles/modern/${id}`
-      );
+      const { data } = await axios.delete(`${apiUrl}/profiles/modern/${id}`);
       if (data?.success) {
         toast.success("Modern character deleted successfully!");
         navigate("/profile/modern");

@@ -1,7 +1,8 @@
-import axios from "axios";
-import toast from "react-hot-toast";
-import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateDemon() {
   const { id } = useParams();
@@ -25,9 +26,7 @@ export default function UpdateDemon() {
   useEffect(() => {
     const fetchDemon = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/demon/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/demon/${id}`);
         if (data?.success) {
           setFormData(data.data);
         } else {
@@ -52,7 +51,7 @@ export default function UpdateDemon() {
   const handleNotesChange = (index, noteType, value) => {
     const updatedFormData = { ...formData };
     if (!updatedFormData.notes[index]) {
-      updatedFormData.notes[index] = {}; // Initialize note object if it doesn't exist
+      updatedFormData.notes[index] = {};
     }
     updatedFormData.notes[index][noteType] = value;
     setFormData(updatedFormData);
@@ -66,7 +65,7 @@ export default function UpdateDemon() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/demon/${id}`,
+        `${apiUrl}/profiles/demon/${id}`,
         filteredFormData
       );
       if (data?.success) {

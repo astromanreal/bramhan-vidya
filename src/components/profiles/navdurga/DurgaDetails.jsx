@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function DurgaDetails() {
   const { id } = useParams();
@@ -13,9 +14,7 @@ export default function DurgaDetails() {
   useEffect(() => {
     const fetchDurga = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/navdurga/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/navdurga/${id}`);
         if (data?.success) {
           setDurga(data.data);
           document.title = `Durga - ${data.data.name}`;
@@ -36,7 +35,7 @@ export default function DurgaDetails() {
     if (window.confirm("Are you sure you want to delete this Durga?")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/navdurga/${id}`
+          `${apiUrl}/profiles/navdurga/${id}`
         );
         if (data?.success) {
           toast.success("Durga deleted successfully");

@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import ProfileCard from "../ProfileCard";
-import ProfileHeader from "../ProfileHeader";
 import GetRedirectLink from "../../utils/GetRedirectLink";
+import { useEffect, useState } from "react";
+import ProfileHeader from "../ProfileHeader";
+import apiUrl from "../../utils/GetApiUrl";
+import ProfileCard from "../ProfileCard";
+import axios from "axios";
 
 export default function VishnuIndex() {
   return (
@@ -24,9 +25,7 @@ export function AllVishnu() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allvishnu"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allvishnu`);
         if (data?.success) {
           setVishnus(data.data);
           document.title = "All Vishnu Avatars";

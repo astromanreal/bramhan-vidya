@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddAshtaVinayaka() {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ export default function AddAshtaVinayaka() {
     };
     try {
       const response = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/places/addAshtaVinayaka",
+        `${apiUrl}/places/addAshtaVinayaka`,
         filteredFormData
       );
       if (response.data.success) {

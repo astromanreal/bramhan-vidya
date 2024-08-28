@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function DetailsAshtaVeerattaSthalams() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function DetailsAshtaVeerattaSthalams() {
     const fetchAshtaVeerattaSthalams = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/AshtaVeerattaSthalam/${id}`
+          `${apiUrl}/places/AshtaVeerattaSthalam/${id}`
         );
         if (data?.success) {
           setAshtaVeerattaSthalams(data.data);
@@ -37,7 +38,7 @@ export default function DetailsAshtaVeerattaSthalams() {
     ) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/AshtaVeerattaSthalam/${id}`
+          `${apiUrl}/places/AshtaVeerattaSthalam/${id}`
         );
         if (data?.success) {
           alert("Ashta Veeratta Sthalams deleted successfully");

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddCharDham() {
   const navigate = useNavigate();
@@ -71,10 +72,7 @@ export default function AddCharDham() {
       notes: formData.notes.filter((note) => note.key && note.value),
     };
     try {
-      await axios.post(
-        "https://bramhan-vidya-api.vercel.app/places/addCharDham",
-        filteredFormData
-      );
+      await axios.post(`${apiUrl}/places/addCharDham`, filteredFormData);
       alert("data addedd!");
       navigate("/place/char-dham");
     } catch (err) {

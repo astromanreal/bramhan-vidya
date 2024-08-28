@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function DetailsParasuramaShiva() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function DetailsParasuramaShiva() {
     const fetchParasuramaShivaDetails = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/ParasuramaShiva/${id}`
+          `${apiUrl}/places/ParasuramaShiva/${id}`
         );
         if (data?.success) {
           setParasuramaShiva(data.data);
@@ -39,7 +40,7 @@ export default function DetailsParasuramaShiva() {
     ) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/ParasuramaShiva/${id}`
+          `${apiUrl}/places/ParasuramaShiva/${id}`
         );
         if (data?.success) {
           alert("Parasurama Shiva temple deleted successfully");

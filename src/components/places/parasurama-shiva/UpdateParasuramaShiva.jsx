@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateParasuramaShiva() {
   const navigate = useNavigate();
@@ -38,7 +40,7 @@ export default function UpdateParasuramaShiva() {
     const fetchParasuramaShiva = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/ParasuramaShiva/${id}`
+          `${apiUrl}/places/ParasuramaShiva/${id}`
         );
         if (data?.success) {
           setFormData(data.data);
@@ -46,7 +48,7 @@ export default function UpdateParasuramaShiva() {
           throw new Error("Failed to fetch Parasurama Shiva details");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message ||
             "An error occurred while fetching Parasurama Shiva details"
         );
@@ -92,17 +94,19 @@ export default function UpdateParasuramaShiva() {
 
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/ParasuramaShiva/${id}`,
+        `${apiUrl}/places/ParasuramaShiva/${id}`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Parasurama Shiva updated!");
+        toast.success("Parasurama Shiva updated!");
         navigate(`/place/parasurama-shiva/${id}`);
       } else {
         throw new Error("Failed to update Parasurama Shiva");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while updating Parasurama Shiva");
+      toast.error(
+        err.message || "An error occurred while updating Parasurama Shiva"
+      );
     } finally {
       setLoading(false);
     }

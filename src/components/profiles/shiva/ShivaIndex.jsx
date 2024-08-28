@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import GetRedirectLink from "../../utils/GetRedirectLink";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
-import GetRedirectLink from "../../utils/GetRedirectLink";
+import { useEffect, useState } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function ShivaIndex() {
   return (
@@ -24,9 +25,7 @@ export function AllShiva() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allshiva"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allshiva`);
         if (data?.success) {
           setShivas(data.data);
           document.title = "All Shiva Profiles";

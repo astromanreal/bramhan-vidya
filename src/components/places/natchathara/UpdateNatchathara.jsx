@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function UpdateNatchathara() {
   const { id } = useParams();
@@ -37,11 +39,11 @@ export default function UpdateNatchathara() {
     const fetchNatchatharaTemple = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/NatchatharaTemple/${id}`
+          `${apiUrl}/places/NatchatharaTemple/${id}`
         );
         setFormData(data.data);
       } catch (err) {
-        alert(
+        toast.error(
           err.message ||
             "An error occurred while fetching Natchathara Temple details"
         );
@@ -87,13 +89,13 @@ export default function UpdateNatchathara() {
     };
     try {
       await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/NatchatharaTemple/${id}`,
+        `${apiUrl}/places/NatchatharaTemple/${id}`,
         filteredFormData
       );
-      alert("Natchathara Temple updated successfully");
+      toast.success("Natchathara Temple updated successfully");
       navigate(`/place/natchathara/${id}`);
     } catch (err) {
-      alert(
+      toast.error(
         err.message || "An error occurred while updating Natchathara Temple"
       );
     }

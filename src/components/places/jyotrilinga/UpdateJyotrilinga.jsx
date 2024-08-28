@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function UpdateJyotrilinga() {
   const { id } = useParams();
@@ -39,9 +40,7 @@ export default function UpdateJyotrilinga() {
   useEffect(() => {
     const fetchJyotirlinga = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/jyotirlinga/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/places/jyotirlinga/${id}`);
         setFormData(data.data);
       } catch (err) {
         alert(
@@ -90,7 +89,7 @@ export default function UpdateJyotrilinga() {
 
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/jyotirlinga/${id}`,
+        `${apiUrl}/places/jyotirlinga/${id}`,
         filteredFormData
       );
       if (data?.success) {

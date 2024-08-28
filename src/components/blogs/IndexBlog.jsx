@@ -1,6 +1,7 @@
 import GetRedirectLink from "./../utils/GetRedirectLink";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import apiUrl from "../utils/GetApiUrl";
 import toast from "react-hot-toast";
 import axios from "axios";
 import "./Blog.css";
@@ -19,7 +20,7 @@ export function AllBlogs() {
 
   useEffect(() => {
     axios
-      .get("https://bramhan-vidya-api.vercel.app/blogs/allblogs")
+      .get(`${apiUrl}/blogs/allblogs`)
       .then((response) => {
         setBlogs(response.data);
       })

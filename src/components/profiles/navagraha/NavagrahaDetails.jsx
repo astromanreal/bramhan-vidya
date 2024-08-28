@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function NavagrahaDetails() {
   const { id } = useParams();
@@ -13,9 +14,7 @@ export default function NavagrahaDetails() {
   useEffect(() => {
     const fetchNavagraha = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/navagraha/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/navagraha/${id}`);
         if (data?.success) {
           setNavagraha(data.data);
           document.title = `Navagraha - ${data.data.name}`;
@@ -36,7 +35,7 @@ export default function NavagrahaDetails() {
     if (window.confirm("Are you sure you want to delete this Navagraha?")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/navagraha/${id}`
+          `${apiUrl}/profiles/navagraha/${id}`
         );
         if (data?.success) {
           toast.success("Navagraha deleted successfully");

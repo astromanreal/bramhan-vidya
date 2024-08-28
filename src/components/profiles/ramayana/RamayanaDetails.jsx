@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function RamayanaDetails() {
   const navigate = useNavigate();
@@ -13,9 +14,7 @@ export default function RamayanaDetails() {
   useEffect(() => {
     const fetchRamayanaDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/ramayana/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/ramayana/${id}`);
         if (data?.success) {
           setRamayana(data.data);
           document.title = `Ramayana - ${data.data.name}`;
@@ -36,7 +35,7 @@ export default function RamayanaDetails() {
     if (window.confirm("Are you sure you want to delete this Ramayana?")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/ramayana/${id}`
+          `${apiUrl}/profiles/ramayana/${id}`
         );
         if (data?.success) {
           toast.success("Ramayana deleted successfully");

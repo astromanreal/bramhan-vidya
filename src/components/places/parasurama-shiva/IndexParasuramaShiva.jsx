@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import PlaceCard from "../PlaceCard";
-import PlaceHeader from "../PlaceHeader";
 import GetRedirectLink from "../../utils/GetRedirectLink";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import PlaceHeader from "../PlaceHeader";
+import PlaceCard from "../PlaceCard";
+import axios from "axios";
 
 export default function IndexParasuramaShiva() {
   return (
@@ -20,14 +21,11 @@ export default function IndexParasuramaShiva() {
 export function AllParasuramaShivaTemples() {
   const [temples, setTemples] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchTemples = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/places/allParasuramaShiva"
-        );
+        const { data } = await axios.get(`${apiUrl}/places/allParasuramaShiva`);
         if (data?.success) {
           setTemples(data.data);
           document.title = "List of Parasurama Shiva Temples";
@@ -35,7 +33,7 @@ export function AllParasuramaShivaTemples() {
           throw new Error("Failed to fetch temples data");
         }
       } catch (err) {
-        setError(err);
+        alert(err.message);
       } finally {
         setLoading(false);
       }
@@ -46,10 +44,6 @@ export function AllParasuramaShivaTemples() {
 
   if (loading) {
     return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error fetching data: {error.message}</p>;
   }
 
   if (temples.length === 0) {

@@ -1,8 +1,9 @@
-import axios from "axios";
+import GetRedirectLink from "../../utils/GetRedirectLink";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
 import { useState, useEffect } from "react";
-import GetRedirectLink from "../../utils/GetRedirectLink";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function GaneshaIndex() {
   return (
@@ -24,9 +25,7 @@ export function AllGaneshaAvatars() {
   useEffect(() => {
     const fetchGaneshaAvatars = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allganesha"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allganesha`);
         if (data?.success) {
           setGaneshaAvatars(data.data);
           document.title = "List of Ganesha Avatars";

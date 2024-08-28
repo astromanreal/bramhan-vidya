@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateCreature() {
   const { id } = useParams();
@@ -23,9 +24,7 @@ export default function UpdateCreature() {
   useEffect(() => {
     const fetchCreatureDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/creature/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/creature/${id}`);
         if (data?.success) {
           setFormData(data.data);
           document.title = `Update Creature - ${data.data.name}`;
@@ -72,7 +71,7 @@ export default function UpdateCreature() {
 
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/creature/${id}`,
+        `${apiUrl}/profiles/creature/${id}`,
         filteredFormData
       );
       if (data?.success) {

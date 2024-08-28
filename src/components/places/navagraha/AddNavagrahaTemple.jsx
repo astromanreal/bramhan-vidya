@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
 import GetUserId from "../../utils/GetUserId";
 import { useNavigate } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddNavagrahaTemple() {
   const navigate = useNavigate();
@@ -76,17 +78,19 @@ export default function AddNavagrahaTemple() {
     };
     try {
       const { data } = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/places/addNavagrahaTemple",
+        `${apiUrl}/places/addNavagrahaTemple`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Navagraha Temple added!");
+        toast.success("Navagraha Temple added!");
         navigate("/place/navagraha");
       } else {
         throw new Error("Failed to add Navagraha Temple");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while adding Navagraha Temple");
+      toast.error(
+        err.message || "An error occurred while adding Navagraha Temple"
+      );
     }
   };
 

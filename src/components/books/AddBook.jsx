@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import GetUserId from "../utils/GetUserId";
+import apiUrl from "../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddBook() {
   const navigate = useNavigate();
@@ -29,17 +30,11 @@ export default function AddBook() {
         (keyDetail) => keyDetail.key && keyDetail.value
       ),
     };
-    toast.promise(
-      axios.post(
-        "https://bramhan-vidya-api.vercel.app/books/addbook",
-        filteredFormData
-      ),
-      {
-        loading: "Saving book...",
-        success: <b>Book added successfully!</b>,
-        error: <b>Could not add book.</b>,
-      }
-    );
+    toast.promise(axios.post(`${apiUrl}/books/addbook`, filteredFormData), {
+      loading: "Saving book...",
+      success: <b>Book added successfully!</b>,
+      error: <b>Could not add book.</b>,
+    });
     navigate("/book");
   };
 

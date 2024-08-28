@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import GetUserId from "../utils/GetUserId";
 import { useNavigate } from "react-router-dom";
+import apiUrl from "../utils/GetApiUrl";
+import axios from "axios";
 
 export default function MyCommunity() {
   const navigate = useNavigate();
@@ -10,14 +11,11 @@ export default function MyCommunity() {
   useEffect(() => {
     const fetchCommunities = async () => {
       try {
-        const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/community/my-communities`,
-          {
-            params: {
-              userId: GetUserId(),
-            },
-          }
-        );
+        const response = await axios.get(`${apiUrl}/community/my-communities`, {
+          params: {
+            userId: GetUserId(),
+          },
+        });
         setCommunities(response.data);
       } catch (err) {
         alert(err.message);

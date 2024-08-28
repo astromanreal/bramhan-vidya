@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function UpdateCharDham() {
-  const { id } = useParams(); // Get the ID from URL parameters
+  const { id } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
@@ -31,9 +32,7 @@ export default function UpdateCharDham() {
   useEffect(() => {
     const fetchCharDhamDetails = async () => {
       try {
-        const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/CharDham/${id}`
-        );
+        const response = await axios.get(`${apiUrl}/places/CharDham/${id}`);
         setFormData(response.data.data);
       } catch (err) {
         alert(err.message || "Failed to fetch Char Dham details");
@@ -77,10 +76,7 @@ export default function UpdateCharDham() {
       notes: formData.notes.filter((note) => note.key && note.value),
     };
     try {
-      await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/CharDham/${id}`,
-        filteredFormData
-      );
+      await axios.put(`${apiUrl}/places/CharDham/${id}`, filteredFormData);
       alert("Data updated successfully!");
       navigate(`/place/char-dham/${id}`);
     } catch (err) {

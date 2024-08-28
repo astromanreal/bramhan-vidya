@@ -1,7 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import apiUrl from "../utils/GetApiUrl";
 import GetUserId from "../utils/GetUserId";
 import toast from "react-hot-toast";
-import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function UpdateTech() {
@@ -28,9 +29,7 @@ export default function UpdateTech() {
   useEffect(() => {
     const fetchTechnology = async () => {
       try {
-        const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/tech/tech/${id}`
-        );
+        const response = await axios.get(`${apiUrl}/tech/tech/${id}`);
         setTechnology(response.data);
       } catch (error) {
         toast.error(error.message);
@@ -55,7 +54,7 @@ export default function UpdateTech() {
     };
     try {
       const response = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/tech/tech/${id}`,
+        `${apiUrl}/tech/tech/${id}`,
         filteredTech
       );
       if (response.status === 200) {

@@ -1,8 +1,9 @@
+import GetRedirectLink from "../../utils/GetRedirectLink";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
-import GetRedirectLink from "../../utils/GetRedirectLink";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function NavagrahaIndex() {
   return (
@@ -24,9 +25,7 @@ export function AllNavagrahas() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allnavagraha"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allnavagraha`);
         if (data?.success) {
           setNavagrahas(data.data);
           document.title = "All Navagrahas";

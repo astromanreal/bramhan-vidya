@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function DetailsMahaShaktiPitha() {
   const [data, setData] = useState({});
@@ -12,7 +14,7 @@ export default function DetailsMahaShaktiPitha() {
     const fetchMahaShaktiPitha = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/MahaShaktiPitha/${id}`
+          `${apiUrl}/places/MahaShaktiPitha/${id}`
         );
         if (data?.success) {
           setData(data.data);
@@ -20,7 +22,7 @@ export default function DetailsMahaShaktiPitha() {
           throw new Error("Failed to fetch Maha Shakti Pitha details");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message ||
             "An error occurred while fetching Maha Shakti Pitha details"
         );
@@ -33,16 +35,16 @@ export default function DetailsMahaShaktiPitha() {
     if (window.confirm("Are you sure you want to delete this Data?")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/MahaShaktiPitha/${id}`
+          `${apiUrl}/places/MahaShaktiPitha/${id}`
         );
         if (data?.success) {
-          alert("Deleted successfully");
+          toast.success("Deleted successfully");
           navigate("/place/maha-shakti-pitha");
         } else {
           throw new Error("Failed to delete Data");
         }
       } catch (err) {
-        alert(err.message || "An error occurred while deleting the Data");
+        toast.error(err.message || "An error occurred while deleting the Data");
       }
     }
   };

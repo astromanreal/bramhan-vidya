@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function UpdatePanchaSabhi() {
   const navigate = useNavigate();
@@ -36,9 +37,7 @@ export default function UpdatePanchaSabhi() {
   useEffect(() => {
     const fetchPanchaSabhi = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/PanchaSabhai/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/places/PanchaSabhai/${id}`);
         if (data?.success) {
           setFormData(data.data);
         } else {
@@ -91,7 +90,7 @@ export default function UpdatePanchaSabhi() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/PanchaSabhai/${id}`,
+        `${apiUrl}/places/PanchaSabhai/${id}`,
         filteredFormData
       );
       if (data?.success) {

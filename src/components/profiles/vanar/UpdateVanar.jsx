@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateVanar() {
   const { id } = useParams();
@@ -24,9 +25,7 @@ export default function UpdateVanar() {
   useEffect(() => {
     const fetchVanar = async () => {
       try {
-        const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/vanara/${id}`
-        );
+        const response = await axios.get(`${apiUrl}/profiles/vanara/${id}`);
         if (response.data?.success) {
           setFormData(response.data.data);
         } else {
@@ -61,7 +60,7 @@ export default function UpdateVanar() {
     };
     try {
       const response = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/vanara/${id}`,
+        `${apiUrl}/profiles/vanara/${id}`,
         filteredFormData
       );
       if (response.data?.success) {

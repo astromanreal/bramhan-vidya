@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import toast from "react-hot-toast";
 import GetUserId from "./../../utils/GetUserId";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateCelestial() {
   const { id } = useParams();
@@ -25,9 +26,7 @@ export default function UpdateCelestial() {
   useEffect(() => {
     const fetchCelestial = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/celestial/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/celestial/${id}`);
         if (data?.success) {
           setFormData(data.data);
         } else {
@@ -73,7 +72,7 @@ export default function UpdateCelestial() {
 
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/celestial/${id}`,
+        `${apiUrl}/profiles/celestial/${id}`,
         filteredFormData
       );
       if (data?.success) {

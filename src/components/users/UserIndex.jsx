@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import apiUrl from "../utils/GetApiUrl";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function UserIndex() {
@@ -35,10 +36,10 @@ export function UserLogin() {
     }
 
     try {
-      const response = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/users/loginuser",
-        { email, password }
-      );
+      const response = await axios.post(`${apiUrl}/users/loginuser`, {
+        email,
+        password,
+      });
       if (response.data.token) {
         localStorage.setItem("Token", response.data.token);
         navigate("/myprofile");
@@ -100,7 +101,7 @@ export function UserSignUp() {
     }
     setLoading(true);
     try {
-      await axios.post("https://bramhan-vidya-api.vercel.app/users/adduser", {
+      await axios.post(`${apiUrl}/users/adduser`, {
         name,
         email,
         password,
@@ -131,13 +132,10 @@ export function UserSignUp() {
     }
     setLoading(true);
     try {
-      await axios.post(
-        "https://bramhan-vidya-api.vercel.app/users/verify-otp",
-        {
-          email,
-          otp,
-        }
-      );
+      await axios.post(`${apiUrl}/users/verify-otp`, {
+        email,
+        otp,
+      });
       toast.success("OTP verified successfully!");
       setOtpVerified(true);
       setTimeout(() => navigate("/user/login"), 2000);
@@ -221,28 +219,24 @@ export function ForgetPassword() {
 
     try {
       if (!otpSent) {
-        const response = await axios.post(
-          "https://bramhan-vidya-api.vercel.app/users/forget-password",
-          { email }
-        );
+        const response = await axios.post(`${apiUrl}/users/forget-password`, {
+          email,
+        });
         toast.success(response.data.message);
         setOtpSent(true);
       } else if (otpSent && !otpVerified) {
         const response = await axios.post(
-          "https://bramhan-vidya-api.vercel.app/users/reset-password-otp",
+          `${apiUrl}/users/reset-password-otp`,
           { email, otp }
         );
         toast.success(response.data.message);
         setOtpVerified(true);
       } else if (otpVerified) {
-        const response = await axios.post(
-          "https://bramhan-vidya-api.vercel.app/users/reset-password",
-          {
-            email,
-            otp,
-            newPassword,
-          }
-        );
+        const response = await axios.post(`${apiUrl}/users/reset-password`, {
+          email,
+          otp,
+          newPassword,
+        });
         toast.success(response.data.message);
         navigate("/user/login");
       }

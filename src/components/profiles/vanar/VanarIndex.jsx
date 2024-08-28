@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import GetRedirectLink from "../../utils/GetRedirectLink";
+import { useState, useEffect } from "react";
 import ProfileHeader from "../ProfileHeader";
 import ProfileCard from "../ProfileCard";
-import GetRedirectLink from "../../utils/GetRedirectLink";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function VanarIndex() {
   return (
@@ -27,9 +28,7 @@ export function AllVanaras() {
   useEffect(() => {
     const fetchVanaras = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allvanara"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allvanara`);
         if (data?.success) {
           setVanaras(data.data);
           document.title = "List of Vanaras";

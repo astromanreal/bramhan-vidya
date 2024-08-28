@@ -1,8 +1,9 @@
 import GetRedirectLink from "../utils/GetRedirectLink";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import apiUrl from "../utils/GetApiUrl";
 import axios from "axios";
 import "./Event.css";
-import { useNavigate } from "react-router-dom";
 
 export default function IndexEvent() {
   return (
@@ -18,7 +19,7 @@ export function AllEvents() {
 
   useEffect(() => {
     axios
-      .get("https://bramhan-vidya-api.vercel.app/event/allevents")
+      .get(`${apiUrl}/event/allevents`)
       .then((response) => {
         setEvents(response.data);
       })

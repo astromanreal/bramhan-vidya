@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function UpdateMahaShaktiPitha() {
   const { id } = useParams();
@@ -38,7 +40,7 @@ export default function UpdateMahaShaktiPitha() {
     const fetchMahaShaktiPitha = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/MahaShaktiPitha/${id}`
+          `${apiUrl}/places/MahaShaktiPitha/${id}`
         );
         if (data?.success) {
           setFormData(data.data);
@@ -46,7 +48,7 @@ export default function UpdateMahaShaktiPitha() {
           throw new Error("Failed to fetch Maha Shakti Pitha details");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message ||
             "An error occurred while fetching Maha Shakti Pitha details"
         );
@@ -90,17 +92,17 @@ export default function UpdateMahaShaktiPitha() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/MahaShaktiPitha/${id}`,
+        `${apiUrl}/places/MahaShaktiPitha/${id}`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Maha Shakti Pitha updated!");
+        toast.success("Maha Shakti Pitha updated!");
         navigate(`/place/maha-shakti-pitha/${id}`);
       } else {
         throw new Error("Failed to update Maha Shakti Pitha");
       }
     } catch (err) {
-      alert(
+      toast.error(
         err.message || "An error occurred while updating Maha Shakti Pitha"
       );
     }

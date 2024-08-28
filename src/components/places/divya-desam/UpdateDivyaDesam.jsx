@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function UpdateDivyaDesam() {
   const { id } = useParams();
@@ -36,9 +37,7 @@ export default function UpdateDivyaDesam() {
   useEffect(() => {
     const fetchDivyaDesam = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/DivyaDesam/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/places/DivyaDesam/${id}`);
         setFormData(data.data);
       } catch (err) {
         alert(err.message || "Failed to fetch Divya Desam details");
@@ -81,10 +80,7 @@ export default function UpdateDivyaDesam() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/DivyaDesam/${id}`,
-        formData
-      );
+      await axios.put(`${apiUrl}/places/DivyaDesam/${id}`, formData);
       alert("Data updated successfully");
       navigate(`/place/divya-desam/${id}`);
     } catch (err) {

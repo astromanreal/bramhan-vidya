@@ -1,7 +1,8 @@
-import axios from "axios";
-import toast from "react-hot-toast";
-import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateMahavidya() {
   const { id } = useParams();
@@ -25,9 +26,7 @@ export default function UpdateMahavidya() {
   useEffect(() => {
     const fetchMahavidya = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/mahavidya/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/mahavidya/${id}`);
         if (data?.success) {
           setFormData(data.data);
         } else {
@@ -71,7 +70,7 @@ export default function UpdateMahavidya() {
 
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/mahavidya/${id}`,
+        `${apiUrl}/profiles/mahavidya/${id}`,
         filteredFormData
       );
       if (data?.success) {

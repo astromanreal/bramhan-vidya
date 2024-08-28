@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdatePanchKedar() {
   const navigate = useNavigate();
@@ -35,12 +37,12 @@ export default function UpdatePanchKedar() {
   useEffect(() => {
     const fetchPanchKedar = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/panchKedar/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/places/panchKedar/${id}`);
         setFormData(data.data);
       } catch (err) {
-        alert(err.message || "An error occurred while fetching Panch Kedar");
+        toast.error(
+          err.message || "An error occurred while fetching Panch Kedar"
+        );
       }
     };
     fetchPanchKedar();
@@ -83,17 +85,19 @@ export default function UpdatePanchKedar() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/panchKedar/${id}`,
+        `${apiUrl}/places/panchKedar/${id}`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Panch Kedar updated!");
+        toast.success("Panch Kedar updated!");
         navigate(`/place/panch-kedar/${id}`);
       } else {
         throw new Error("Failed to update Panch Kedar");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while updating Panch Kedar");
+      toast.error(
+        err.message || "An error occurred while updating Panch Kedar"
+      );
     } finally {
       setLoading(false);
     }

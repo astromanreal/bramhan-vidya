@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddPancharamaKshetra() {
   const navigate = useNavigate();
@@ -79,17 +81,19 @@ export default function AddPancharamaKshetra() {
     };
     try {
       const { data } = await axios.post(
-        `https://bramhan-vidya-api.vercel.app/places/addPancharamaKshetra`,
+        `${apiUrl}/places/addPancharamaKshetra`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Pancharama Kshetra added!");
+        toast.success("Pancharama Kshetra added!");
         navigate("/place/pancharama-kshetra");
       } else {
         throw new Error("Failed to add Pancharama Kshetra");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while adding Pancharama Kshetra");
+      toast.error(
+        err.message || "An error occurred while adding Pancharama Kshetra"
+      );
     } finally {
       setLoading(false);
     }

@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateRamayana() {
   const { id } = useParams();
@@ -28,9 +29,7 @@ export default function UpdateRamayana() {
   useEffect(() => {
     const fetchRamayana = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/ramayana/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/ramayana/${id}`);
         if (data?.success) {
           setFormData(data.data);
           document.title = `Update Ramayana - ${data.data.name}`;
@@ -76,7 +75,7 @@ export default function UpdateRamayana() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/ramayana/${id}`,
+        `${apiUrl}/profiles/ramayana/${id}`,
         filteredFormData
       );
       if (data?.success) {

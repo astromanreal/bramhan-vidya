@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateShaktiPeeth() {
   const navigate = useNavigate();
@@ -38,16 +40,14 @@ export default function UpdateShaktiPeeth() {
   useEffect(() => {
     const fetchShaktiPeeth = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/ShaktiPeeth/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/places/ShaktiPeeth/${id}`);
         if (data?.success) {
           setFormData(data.data);
         } else {
           throw new Error("Failed to fetch Shakti Peeth details");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message || "An error occurred while fetching Shakti Peeth details"
         );
       }
@@ -91,17 +91,19 @@ export default function UpdateShaktiPeeth() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/ShaktiPeeth/${id}`,
+        `${apiUrl}/places/ShaktiPeeth/${id}`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Shakti Peeth updated!");
+        toast.success("Shakti Peeth updated!");
         navigate(`/place/shakti-peeth/${id}`);
       } else {
         throw new Error("Failed to update Shakti Peeth");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while updating Shakti Peeth");
+      toast.error(
+        err.message || "An error occurred while updating Shakti Peeth"
+      );
     } finally {
       setLoading(false);
     }

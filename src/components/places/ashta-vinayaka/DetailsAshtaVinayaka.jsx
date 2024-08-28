@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function DetailsAshtaVinayaka() {
   const { id } = useParams();
@@ -12,7 +13,7 @@ export default function DetailsAshtaVinayaka() {
     const fetchDetails = async () => {
       try {
         const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/Ashtavinayaka/${id}`
+          `${apiUrl}/places/Ashtavinayaka/${id}`
         );
 
         if (response.data.success) {
@@ -32,7 +33,7 @@ export default function DetailsAshtaVinayaka() {
     if (window.confirm("Are you sure you want to delete this Data?")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/Ashtavinayaka/${id}`
+          `${apiUrl}/places/Ashtavinayaka/${id}`
         );
         if (data?.success) {
           alert("Ashta vinayaka deleted successfully");

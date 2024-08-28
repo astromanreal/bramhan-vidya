@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import ProfileCard from "../ProfileCard";
-import ProfileHeader from "../ProfileHeader";
 import GetRedirectLink from "../../utils/GetRedirectLink";
+import { useState, useEffect } from "react";
+import ProfileHeader from "../ProfileHeader";
+import apiUrl from "../../utils/GetApiUrl";
+import ProfileCard from "../ProfileCard";
+import axios from "axios";
 
 export default function MahabharataIndex() {
   return (
@@ -24,9 +25,7 @@ export function AllMahabharataCharacters() {
   useEffect(() => {
     const fetchMahabharataCharacters = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allmahabharat"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allmahabharat`);
         if (data?.success) {
           setMahabharataCharacters(data.data);
           document.title = "List of Mahabharata Characters";

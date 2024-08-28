@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { toast } from "react-hot-toast";
+import apiUrl from "../utils/GetApiUrl";
+import axios from "axios";
 
 export default function UpdateEvent() {
   const navigate = useNavigate();
@@ -56,10 +57,7 @@ export default function UpdateEvent() {
       ),
     };
     try {
-      await axios.put(
-        `https://bramhan-vidya-api.vercel.app/event/event/${id}`,
-        updatedEvent
-      );
+      await axios.put(`${apiUrl}/event/event/${id}`, updatedEvent);
       toast.success("Event updated successfully");
       navigate(`/event/${id}`);
     } catch (error) {
@@ -74,7 +72,7 @@ export default function UpdateEvent() {
 
   useEffect(() => {
     axios
-      .get(`https://bramhan-vidya-api.vercel.app/event/event/${id}`)
+      .get(`${apiUrl}/event/event/${id}`)
       .then((response) => {
         setEvent(response.data);
         setRandomKeyDetails(response.data.randomKeyDetails);

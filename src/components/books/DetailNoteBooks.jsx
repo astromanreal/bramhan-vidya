@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import toast from "react-hot-toast";
+import { useState, useEffect } from "react";
 import GetUserId from "../utils/GetUserId";
+import apiUrl from "../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function DetailNoteBooks() {
   const { noteId } = useParams();
@@ -13,9 +14,7 @@ export default function DetailNoteBooks() {
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/books/note/${noteId}`
-        );
+        const response = await axios.get(`${apiUrl}/books/note/${noteId}`);
         setNote(response.data);
       } catch (error) {
         toast.error(error.message);
@@ -31,7 +30,7 @@ export default function DetailNoteBooks() {
     }
     try {
       const response = await axios.post(
-        `https://bramhan-vidya-api.vercel.app/books/note/${noteId}/comment`,
+        `${apiUrl}/books/note/${noteId}/comment`,
         { comment, userId: GetUserId() }
       );
       setNote((prevNote) => ({ ...prevNote, ...response.data }));
@@ -44,14 +43,10 @@ export default function DetailNoteBooks() {
 
   const handleDeleteComment = async (commentId) => {
     try {
-      await axios.delete(
-        `https://bramhan-vidya-api.vercel.app/books/note/${noteId}/comment/${commentId}`
-      );
+      await axios.delete(`${apiUrl}/books/note/${noteId}/comment/${commentId}`);
       toast.success("Comment deleted successfully!");
       // Update the notes to remove the deleted comment from view
-      const response = await axios.get(
-        `https://bramhan-vidya-api.vercel.app/books/note/${noteId}`
-      );
+      const response = await axios.get(`${apiUrl}/books/note/${noteId}`);
       setNote(response.data);
     } catch (error) {
       toast.error(error.message);
@@ -60,9 +55,7 @@ export default function DetailNoteBooks() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(
-        `https://bramhan-vidya-api.vercel.app/books/note/${noteId}`
-      );
+      await axios.delete(`${apiUrl}/books/note/${noteId}`);
       toast.success("Note deleted successfully");
       navigate(`/book/${note.bookId}`);
     } catch (error) {
@@ -74,7 +67,7 @@ export default function DetailNoteBooks() {
     if (!note.notes.likes.users.includes(GetUserId())) {
       try {
         const response = await axios.put(
-          `https://bramhan-vidya-api.vercel.app/books/note/${noteId}/like`,
+          `${apiUrl}/books/note/${noteId}/like`,
           { userId: GetUserId() }
         );
         toast("Liked!", {
@@ -91,7 +84,7 @@ export default function DetailNoteBooks() {
     if (note.notes.likes.users.includes(GetUserId())) {
       try {
         const response = await axios.put(
-          `https://bramhan-vidya-api.vercel.app/books/note/${noteId}/unlike`,
+          `${apiUrl}/books/note/${noteId}/unlike`,
           { userId: GetUserId() }
         );
         toast("Disliked!", {

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import axios from "axios";
 import GetUserId from "./../../utils/GetUserId";
 import { useNavigate } from "react-router-dom";
+import apiUrl from "./../../utils/GetApiUrl";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddAshtaVeerattaSthalams() {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ export default function AddAshtaVeerattaSthalams() {
     };
     try {
       const response = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/places/addAshtaVeerattaSthalam",
+        `${apiUrl}/places/addAshtaVeerattaSthalam`,
         filteredFormData
       );
       if (response.data.success) {

@@ -1,8 +1,9 @@
-import axios from "axios";
+import GetRedirectLink from "../../utils/GetRedirectLink";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
 import { useState, useEffect } from "react";
-import GetRedirectLink from "../../utils/GetRedirectLink";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function GodIndex() {
   return (
@@ -28,9 +29,7 @@ export function Allgods() {
   useEffect(() => {
     const fetchGods = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allgods"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allgods`);
         if (data?.success) {
           setGods(data.data);
           document.title = "List of Gods";

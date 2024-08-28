@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddSwayambhuVishnu() {
   const navigate = useNavigate();
@@ -80,17 +82,19 @@ export default function AddSwayambhuVishnu() {
     };
     try {
       const { data } = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/places/addSwayambhuVishnu",
+        `${apiUrl}/places/addSwayambhuVishnu`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Swayambhu Vishnu added!");
+        toast.success("Swayambhu Vishnu added!");
         navigate("/place/swayambhu-vishnu");
       } else {
         throw new Error("Failed to add Swayambhu Vishnu");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while adding Swayambhu Vishnu");
+      toast.error(
+        err.message || "An error occurred while adding Swayambhu Vishnu"
+      );
     } finally {
       setLoading(false);
     }

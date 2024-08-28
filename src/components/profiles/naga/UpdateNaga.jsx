@@ -1,6 +1,8 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function UpdateNaga() {
   const { id } = useParams();
@@ -25,9 +27,7 @@ export default function UpdateNaga() {
   useEffect(() => {
     const fetchNagaDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/naga/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/naga/${id}`);
         if (data?.success) {
           setFormData(data.data);
           document.title = `Update - ${data.data.name} Naga`;
@@ -35,7 +35,9 @@ export default function UpdateNaga() {
           throw new Error("Failed to fetch Naga details");
         }
       } catch (err) {
-        alert(err.message || "An error occurred while fetching Naga details");
+        toast.error(
+          err.message || "An error occurred while fetching Naga details"
+        );
       } finally {
         setLoading(false);
       }
@@ -72,17 +74,17 @@ export default function UpdateNaga() {
 
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/naga/${id}`,
+        `${apiUrl}/profiles/naga/${id}`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Naga updated successfully!");
+        toast.success("Naga updated successfully!");
         navigate(`/profile/naga/${id}`);
       } else {
         throw new Error("Failed to update Naga");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while updating the Naga");
+      toast.error(err.message || "An error occurred while updating the Naga");
     } finally {
       setLoading(false);
     }

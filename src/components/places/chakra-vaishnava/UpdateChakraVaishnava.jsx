@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function UpdateChakraVaishnava() {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ export default function UpdateChakraVaishnava() {
     const fetchChakraVaishnava = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/ChakraVaishnava/${id}`
+          `${apiUrl}/places/ChakraVaishnava/${id}`
         );
         if (data?.success) {
           setData(data.data);
@@ -89,7 +90,7 @@ export default function UpdateChakraVaishnava() {
     };
     try {
       const response = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/ChakraVaishnava/${id}`,
+        `${apiUrl}/places/ChakraVaishnava/${id}`,
         filteredFormData
       );
       if (response.data.success) {

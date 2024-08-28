@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import PlaceCard from "../PlaceCard";
-import PlaceHeader from "../PlaceHeader";
 import GetRedirectLink from "../../utils/GetRedirectLink";
+import { useState, useEffect } from "react";
+import PlaceHeader from "../PlaceHeader";
+import apiUrl from "../../utils/GetApiUrl";
+import PlaceCard from "../PlaceCard";
+import axios from "axios";
 
 export default function IndexChakraVaishnava() {
   return (
@@ -25,9 +26,7 @@ export function AllChakraVaishnavaTemples() {
   useEffect(() => {
     const fetchTemples = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/places/allChakraVaishnava"
-        );
+        const { data } = await axios.get(`${apiUrl}/places/allChakraVaishnava`);
         if (data?.success) {
           setTemples(data.data);
           document.title = "List of Chakra Vaishnava Temples";

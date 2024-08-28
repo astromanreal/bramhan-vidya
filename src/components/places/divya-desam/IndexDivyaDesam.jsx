@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import PlaceCard from "../PlaceCard";
-import PlaceHeader from "../PlaceHeader";
 import GetRedirectLink from "../../utils/GetRedirectLink";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import PlaceHeader from "../PlaceHeader";
+import PlaceCard from "../PlaceCard";
+import axios from "axios";
 
 export default function IndexDivyaDesam() {
   return (
@@ -25,9 +26,7 @@ export function AllDivyaDesamTemples() {
   useEffect(() => {
     const fetchTemples = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/places/allDivyaDesam"
-        );
+        const { data } = await axios.get(`${apiUrl}/places/allDivyaDesam`);
         if (data?.success) {
           setTemples(data.data);
           document.title = "List of Divya Desam Temples";

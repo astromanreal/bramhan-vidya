@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import axios from "axios";
 import GetUserId from "../../utils/GetUserId";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function DetailsShaktiPeeth() {
   const navigate = useNavigate();
@@ -12,9 +13,7 @@ export default function DetailsShaktiPeeth() {
   useEffect(() => {
     const fetchShaktiPeethDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/ShaktiPeeth/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/places/ShaktiPeeth/${id}`);
         if (data?.success) {
           setShaktiPeeth(data.data);
           document.title = `Shakti Peeth - ${data.data.name}`;
@@ -39,7 +38,7 @@ export default function DetailsShaktiPeeth() {
     ) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/ShaktiPeeth/${id}`
+          `${apiUrl}/places/ShaktiPeeth/${id}`
         );
         if (data?.success) {
           alert("Shakti Peeth temple deleted successfully");

@@ -1,8 +1,9 @@
-import axios from "axios";
+import GetRedirectLink from "../../utils/GetRedirectLink";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
 import { useState, useEffect } from "react";
-import GetRedirectLink from "../../utils/GetRedirectLink";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function GoddessIndex() {
   return (
@@ -25,9 +26,7 @@ export function Allgoddess() {
   useEffect(() => {
     const fetchGoddesses = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allgoddess"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allgoddess`);
         if (data?.success) {
           setGoddesses(data.data);
         } else {

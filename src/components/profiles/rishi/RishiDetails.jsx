@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function RishiDetails() {
   const { id } = useParams();
@@ -13,9 +14,7 @@ export default function RishiDetails() {
   useEffect(() => {
     const fetchRishi = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/rishi/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/rishi/${id}`);
         if (data?.success) {
           setRishi(data.data);
           document.title = `Rishi - ${data.data.name}`;
@@ -35,9 +34,7 @@ export default function RishiDetails() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this Rishi?")) {
       try {
-        const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/rishi/${id}`
-        );
+        const { data } = await axios.delete(`${apiUrl}/profiles/rishi/${id}`);
         if (data?.success) {
           toast.success("Rishi deleted successfully");
           navigate("/profile/rishi");

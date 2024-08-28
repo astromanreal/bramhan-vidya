@@ -1,8 +1,9 @@
-import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddRamayana() {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ export default function AddRamayana() {
     };
     try {
       const { data } = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/profiles/addramayana",
+        `${apiUrl}/profiles/addramayana`,
         filteredFormData
       );
       if (data?.success) {

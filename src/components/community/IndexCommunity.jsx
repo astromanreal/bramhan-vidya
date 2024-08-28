@@ -1,8 +1,9 @@
+import GetRedirectLink from "./../utils/GetRedirectLink";
+import apiUrl from "../utils/GetApiUrl";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Community.css";
-import GetRedirectLink from "./../utils/GetRedirectLink";
 
 export default function IndexCommunity() {
   return (
@@ -19,7 +20,7 @@ export function ListCommunity() {
 
   useEffect(() => {
     axios
-      .get("https://bramhan-vidya-api.vercel.app/community/Allcommunities")
+      .get(`${apiUrl}/community/Allcommunities`)
       .then((response) => {
         setCommunities(response.data);
       })

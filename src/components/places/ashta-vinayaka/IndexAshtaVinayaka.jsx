@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import GetRedirectLink from "../../utils/GetRedirectLink";
+import { useState, useEffect } from "react";
 import PlaceCard from "../PlaceCard";
 import PlaceHeader from "../PlaceHeader";
-import GetRedirectLink from "../../utils/GetRedirectLink";
+import axios from "axios";
+
+import apiUrl from "../../utils/GetApiUrl";
 
 export default function IndexAshtaVinayaka() {
   return (
@@ -25,9 +27,7 @@ export function AllAshtaVinayakaTemples() {
   useEffect(() => {
     const fetchTemples = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/places/allAshtaVinayaka"
-        );
+        const { data } = await axios.get(`${apiUrl}/places/allAshtaVinayaka`);
         if (data?.success) {
           setTemples(data.data);
           document.title = "List of Ashta Vinayaka Temples";

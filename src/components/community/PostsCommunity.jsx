@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, Link } from "react-router-dom";
+import apiUrl from "../utils/GetApiUrl";
+import axios from "axios";
 
 export default function PostsCommunity() {
   const { id } = useParams();
@@ -8,7 +9,7 @@ export default function PostsCommunity() {
 
   useEffect(() => {
     axios
-      .get(`https://bramhan-vidya-api.vercel.app/community/Allposts/${id}`)
+      .get(`${apiUrl}/community/Allposts/${id}`)
       .then((response) => {
         setPosts(response.data);
       })

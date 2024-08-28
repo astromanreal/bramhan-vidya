@@ -1,7 +1,8 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import GetUserId from "./GetUserId";
+import apiUrl from "./GetApiUrl";
+import axios from "axios";
 
 export default function GetRedirectLink({ path, text }) {
   const [userRole, setUserRole] = useState(null);
@@ -11,7 +12,7 @@ export default function GetRedirectLink({ path, text }) {
     if (token) {
       const userId = GetUserId();
       axios
-        .get(`https://bramhan-vidya-api.vercel.app/users/user/${userId}`)
+        .get(`${apiUrl}/users/user/${userId}`)
         .then((response) => {
           setUserRole(response.data.role);
         })

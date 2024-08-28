@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
 import GetUserId from "./../../utils/GetUserId";
 import { useNavigate } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState } from "react";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 export default function AddMahaShaktiPitha() {
   const navigate = useNavigate();
@@ -78,17 +80,19 @@ export default function AddMahaShaktiPitha() {
     };
     try {
       const { data } = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/places/addMahaShaktiPitha",
+        `${apiUrl}/places/addMahaShaktiPitha`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Maha Shakti Pitha added!");
+        toast.success("Maha Shakti Pitha added!");
         navigate("/place/maha-shakti-pitha");
       } else {
         throw new Error("Failed to add Maha Shakti Pitha");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while adding Maha Shakti Pitha");
+      toast.error(
+        err.message || "An error occurred while adding Maha Shakti Pitha"
+      );
     }
   };
 

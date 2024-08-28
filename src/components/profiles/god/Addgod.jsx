@@ -1,8 +1,9 @@
-import axios from "axios";
-import { useState } from "react";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddGod() {
   const navigate = useNavigate();
@@ -61,7 +62,7 @@ export default function AddGod() {
     };
     try {
       const { data } = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/profiles/addgod",
+        `${apiUrl}/profiles/addgod`,
         filteredFormData
       );
       if (data?.success) {

@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function DetailsNatchathara() {
   const navigate = useNavigate();
@@ -12,11 +14,11 @@ export default function DetailsNatchathara() {
     const fetchNatchatharaTemple = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/NatchatharaTemple/${id}`
+          `${apiUrl}/places/NatchatharaTemple/${id}`
         );
         setNatchatharaTemple(data.data);
       } catch (err) {
-        alert(
+        toast.error(
           err.message ||
             "An error occurred while fetching Natchathara Temple details"
         );
@@ -33,16 +35,16 @@ export default function DetailsNatchathara() {
     if (window.confirm("Are you sure you want to delete this Data?")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/NatchatharaTemple/${id}`
+          `${apiUrl}/places/NatchatharaTemple/${id}`
         );
         if (data?.success) {
-          alert("Deleted successfully");
+          toast.success("Deleted successfully");
           navigate("/place/natchathara");
         } else {
           throw new Error("Failed to delete Data");
         }
       } catch (err) {
-        alert(err.message || "An error occurred while deleting the Data");
+        toast.error(err.message || "An error occurred while deleting the Data");
       }
     }
   };

@@ -1,8 +1,9 @@
-import { useState } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import GetUserId from "./../utils/GetUserId";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import apiUrl from "../utils/GetApiUrl";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddEvent() {
   const navigate = useNavigate();
@@ -57,10 +58,7 @@ export default function AddEvent() {
       ),
     };
     try {
-      await axios.post(
-        "https://bramhan-vidya-api.vercel.app/event/addevent",
-        updatedEvent
-      );
+      await axios.post(`${apiUrl}/event/addevent`, updatedEvent);
       toast.success("Event added successfully");
       navigate("/event");
     } catch (error) {

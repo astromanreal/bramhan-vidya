@@ -1,8 +1,9 @@
+import GetRedirectLink from "../../utils/GetRedirectLink";
+import ProfileHeader from "../ProfileHeader";
+import ProfileCard from "../ProfileCard";
+import apiUrl from "../../utils/GetApiUrl";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import ProfileCard from "../ProfileCard";
-import ProfileHeader from "../ProfileHeader";
-import GetRedirectLink from "../../utils/GetRedirectLink";
 
 export default function RamayanaIndex() {
   return (
@@ -24,9 +25,7 @@ export function AllRamayanaCharacters() {
   useEffect(() => {
     const fetchRamayanaCharacters = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allramayana"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allramayana`);
         if (data?.success) {
           setRamayanaCharacters(data.data);
           document.title = "All Ramayana Characters";

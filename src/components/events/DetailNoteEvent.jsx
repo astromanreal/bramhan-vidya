@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import toast from "react-hot-toast";
+import { useState, useEffect } from "react";
 import GetUserId from "../utils/GetUserId";
+import apiUrl from "../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function DetailNoteEvent() {
   const { noteId } = useParams();
@@ -13,9 +14,7 @@ export default function DetailNoteEvent() {
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/event/note/${noteId}`
-        );
+        const response = await axios.get(`${apiUrl}/event/note/${noteId}`);
         setNote(response.data);
       } catch (error) {
         alert(noteId);
@@ -32,7 +31,7 @@ export default function DetailNoteEvent() {
     }
     try {
       const response = await axios.post(
-        `https://bramhan-vidya-api.vercel.app/event/note/${noteId}/comment`,
+        `${apiUrl}/event/note/${noteId}/comment`,
         { comment, userId: GetUserId() }
       );
       setNote((prevNote) => ({ ...prevNote, ...response.data }));
@@ -45,13 +44,9 @@ export default function DetailNoteEvent() {
 
   const handleDeleteComment = async (commentId) => {
     try {
-      await axios.delete(
-        `https://bramhan-vidya-api.vercel.app/event/note/${noteId}/comment/${commentId}`
-      );
+      await axios.delete(`${apiUrl}/event/note/${noteId}/comment/${commentId}`);
       toast.success("Comment deleted successfully!");
-      const response = await axios.get(
-        `https://bramhan-vidya-api.vercel.app/event/note/${noteId}`
-      );
+      const response = await axios.get(`${apiUrl}/event/note/${noteId}`);
       setNote(response.data);
     } catch (error) {
       toast.error(error.message);
@@ -60,9 +55,7 @@ export default function DetailNoteEvent() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(
-        `https://bramhan-vidya-api.vercel.app/event/note/${noteId}`
-      );
+      await axios.delete(`${apiUrl}/event/note/${noteId}`);
       toast.success("Note deleted successfully");
       navigate(`/event/${note.eventId}`);
     } catch (error) {
@@ -74,7 +67,7 @@ export default function DetailNoteEvent() {
     if (!note.notes.likes.users.includes(GetUserId())) {
       try {
         const response = await axios.put(
-          `https://bramhan-vidya-api.vercel.app/event/note/${noteId}/like`,
+          `${apiUrl}/event/note/${noteId}/like`,
           { userId: GetUserId() }
         );
         toast("Liked!", { icon: "👍" });
@@ -89,7 +82,7 @@ export default function DetailNoteEvent() {
     if (note.notes.likes.users.includes(GetUserId())) {
       try {
         const response = await axios.put(
-          `https://bramhan-vidya-api.vercel.app/event/note/${noteId}/unlike`,
+          `${apiUrl}/event/note/${noteId}/unlike`,
           { userId: GetUserId() }
         );
         toast("Disliked!", { icon: "👎" });

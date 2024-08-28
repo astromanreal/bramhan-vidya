@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateCommunity() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function UpdateCommunity() {
 
   useEffect(() => {
     axios
-      .get(`https://bramhan-vidya-api.vercel.app/community/community/${id}`)
+      .get(`${apiUrl}/community/community/${id}`)
       .then((response) => {
         setName(response.data.name);
         setDescription(response.data.description);
@@ -24,13 +25,10 @@ export default function UpdateCommunity() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.put(
-        `https://bramhan-vidya-api.vercel.app/community/community/${id}`,
-        {
-          name,
-          description,
-        }
-      );
+      await axios.put(`${apiUrl}/community/community/${id}`, {
+        name,
+        description,
+      });
       navigate(`/community/${id}`);
       toast.success("Updated!");
     } catch (error) {

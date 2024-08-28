@@ -1,8 +1,9 @@
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import GetUserId from "./../utils/GetUserId";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import apiUrl from "../utils/GetApiUrl";
+import axios from "axios";
 
 export default function JoinCommunity() {
   const { id } = useParams();
@@ -12,7 +13,7 @@ export default function JoinCommunity() {
     const checkMembership = async () => {
       try {
         const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/community/community/${id}/check-membership`,
+          `${apiUrl}/community/community/${id}/check-membership`,
           {
             params: {
               userId: GetUserId(),
@@ -30,7 +31,7 @@ export default function JoinCommunity() {
   const handleJoin = async () => {
     try {
       const response = await axios.post(
-        `https://bramhan-vidya-api.vercel.app/community/community/${id}/join`,
+        `${apiUrl}/community/community/${id}/join`,
         {
           userId: GetUserId(),
         }

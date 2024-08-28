@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function DetailsPanchaSabhi() {
   const [data, setData] = useState({});
@@ -12,16 +14,14 @@ export default function DetailsPanchaSabhi() {
   useEffect(() => {
     const fetchPanchaSabhi = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/PanchaSabhai/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/places/PanchaSabhai/${id}`);
         if (data?.success) {
           setData(data.data);
         } else {
           throw new Error("Failed to fetch Pancha Sabhai details");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message ||
             "An error occurred while fetching Pancha Sabhai details"
         );
@@ -40,16 +40,16 @@ export default function DetailsPanchaSabhi() {
     if (window.confirm("Are you sure you want to delete this Data")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/PanchaSabhai/${id}`
+          `${apiUrl}/places/PanchaSabhai/${id}`
         );
         if (data?.success) {
-          alert("Panch Sabhi temple deleted successfully");
+          toast.success("Panch Sabhi temple deleted successfully");
           navigate("/place/pancha-sabhi");
         } else {
           throw new Error("Failed to delete Data");
         }
       } catch (err) {
-        alert(err.message || "An error occurred while deleting the data");
+        toast.error(err.message || "An error occurred while deleting the data");
       }
     }
   };

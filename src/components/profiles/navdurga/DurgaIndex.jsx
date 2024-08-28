@@ -1,8 +1,9 @@
+import GetRedirectLink from "../../utils/GetRedirectLink";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
-import GetRedirectLink from "../../utils/GetRedirectLink";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function DurgaIndex() {
   return (
@@ -24,9 +25,7 @@ export function AllDurga() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allnavdurga"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allnavdurga`);
         if (data?.success) {
           setDurgas(data.data);
           document.title = "All Durga Forms";

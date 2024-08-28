@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateShiva() {
   const { id } = useParams();
@@ -25,9 +26,7 @@ export default function UpdateShiva() {
   useEffect(() => {
     const fetchShiva = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/shiva/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/shiva/${id}`);
         if (data?.success) {
           setFormData(data.data);
         } else {
@@ -71,7 +70,7 @@ export default function UpdateShiva() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/shiva/${id}`,
+        `${apiUrl}/profiles/shiva/${id}`,
         filteredFormData
       );
       if (data?.success) {

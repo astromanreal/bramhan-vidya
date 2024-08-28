@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import GetUserId from "./../utils/GetUserId";
 import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
+import apiUrl from "../utils/GetApiUrl";
 import toast from "react-hot-toast";
 import axios from "axios";
 import "./Users.css";
@@ -17,9 +18,7 @@ export default function MyProfile() {
         try {
           const decodedToken = jwtDecode(token);
           const userId = decodedToken.userId;
-          const response = await axios.get(
-            `https://bramhan-vidya-api.vercel.app/users/user/${userId}`
-          );
+          const response = await axios.get(`${apiUrl}/users/user/${userId}`);
           setUserProfile(response.data);
         } catch (error) {
           toast.error("Failed to fetch user profile:", error);
@@ -39,12 +38,9 @@ export default function MyProfile() {
     try {
       const decodedToken = jwtDecode(token);
       const userId = decodedToken.userId;
-      const response = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/users/updateuser/${userId}`,
-        {
-          role: "admin",
-        }
-      );
+      const response = await axios.put(`${apiUrl}/users/updateuser/${userId}`, {
+        role: "admin",
+      });
       setUserProfile(response.data);
       toast.success("You are now an admin!");
     } catch (error) {
@@ -112,7 +108,7 @@ export function MyProfileDocuments() {
     const fetchDocuments = async () => {
       try {
         const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/users/allprofiledoc/${userId}`
+          `${apiUrl}/users/allprofiledoc/${userId}`
         );
         setDocuments(response.data.data);
       } catch (error) {
@@ -155,7 +151,7 @@ export function MyPlaceDocuments() {
     (async () => {
       try {
         const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/users/allplacedoc/${userId}`
+          `${apiUrl}/users/allplacedoc/${userId}`
         );
         setDocuments(response.data.data);
       } catch (error) {
@@ -196,7 +192,7 @@ export function MyTopicDocuments() {
     (async () => {
       try {
         const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/users/alltopicdoc/${userId}`
+          `${apiUrl}/users/alltopicdoc/${userId}`
         );
         setDocuments(response.data.data);
       } catch (error) {
@@ -234,7 +230,7 @@ export function MyBlogDocuments() {
     (async () => {
       try {
         const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/users/allblogdoc/${userId}`
+          `${apiUrl}/users/allblogdoc/${userId}`
         );
         setDocuments(response.data.data);
       } catch (error) {
@@ -272,7 +268,7 @@ export function MyEventDocuments() {
     (async () => {
       try {
         const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/users/alleventdoc/${userId}`
+          `${apiUrl}/users/alleventdoc/${userId}`
         );
         setDocuments(response.data.data);
       } catch (error) {
@@ -310,7 +306,7 @@ export function MyTechDocuments() {
     (async () => {
       try {
         const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/users/alltechdoc/${userId}`
+          `${apiUrl}/users/alltechdoc/${userId}`
         );
         setDocuments(response.data.data);
       } catch (error) {
@@ -348,7 +344,7 @@ export function MyBookDocuments() {
     (async () => {
       try {
         const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/users/allbookdoc/${userId}`
+          `${apiUrl}/users/allbookdoc/${userId}`
         );
         setDocuments(response.data.data);
       } catch (error) {

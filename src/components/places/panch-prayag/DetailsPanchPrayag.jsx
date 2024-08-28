@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function DetailsPanchPrayag() {
   const [data, setData] = useState({});
@@ -11,16 +13,14 @@ export default function DetailsPanchPrayag() {
   useEffect(() => {
     const fetchPanchPrayag = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/PanchPrayag/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/places/PanchPrayag/${id}`);
         if (data?.success) {
           setData(data.data);
         } else {
           throw new Error("Failed to fetch Panch Prayag details");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message || "An error occurred while fetching Panch Prayag details"
         );
       }
@@ -34,16 +34,16 @@ export default function DetailsPanchPrayag() {
     ) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/PanchPrayag/${id}`
+          `${apiUrl}/places/PanchPrayag/${id}`
         );
         if (data?.success) {
-          alert("Panch Kedar temple deleted successfully");
+          toast.success("Panch Kedar temple deleted successfully");
           navigate("/place/panch-prayag");
         } else {
           throw new Error("Failed to delete Panch Kedar temple");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message ||
             "An error occurred while deleting the Panch Kedar temple"
         );

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
 import GetUserId from "../../utils/GetUserId";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import apiUrl from "./../../utils/GetApiUrl";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddChotaCharDham() {
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ export default function AddChotaCharDham() {
     };
     try {
       const response = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/places/addChotaCharDham",
+        `${apiUrl}/places/addChotaCharDham`,
         filteredFormData
       );
       if (response.data.data) {

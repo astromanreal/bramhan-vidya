@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function DetailsPancharamaKshetra() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function DetailsPancharamaKshetra() {
     const fetchPancharamaKshetra = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/PancharamaKshetra/${id}`
+          `${apiUrl}/places/PancharamaKshetra/${id}`
         );
         if (data?.success) {
           setData(data.data);
@@ -40,7 +41,7 @@ export default function DetailsPancharamaKshetra() {
     if (window.confirm("Are you sure you want to delete this Data")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/PancharamaKshetra/${id}`
+          `${apiUrl}/places/PancharamaKshetra/${id}`
         );
         if (data?.success) {
           alert("Data deleted successfully");

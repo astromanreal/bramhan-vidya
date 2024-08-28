@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import GetUserId from "../../utils/GetUserId";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function ShivaDetails() {
   const { id } = useParams();
@@ -13,9 +14,7 @@ export default function ShivaDetails() {
   useEffect(() => {
     const fetchShiva = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/shiva/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/shiva/${id}`);
         if (data?.success) {
           setShiva(data.data);
           document.title = `Shiva Avatar - ${data.data.name}`;
@@ -35,9 +34,7 @@ export default function ShivaDetails() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this Shiva profile?")) {
       try {
-        const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/shiva/${id}`
-        );
+        const { data } = await axios.delete(`${apiUrl}/profiles/shiva/${id}`);
         if (data?.success) {
           toast.success("Shiva profile deleted successfully");
           navigate("/profile/shiva");

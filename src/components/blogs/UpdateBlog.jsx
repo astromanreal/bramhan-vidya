@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import GetUserId from "../utils/GetUserId";
+import { toast } from "react-hot-toast";
+import apiUrl from "../utils/GetApiUrl";
+import axios from "axios";
 
 export default function UpdateBlog() {
   const navigate = useNavigate();
@@ -20,9 +21,7 @@ export default function UpdateBlog() {
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
-        const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/blogs/blog/${id}`
-        );
+        const response = await axios.get(`${apiUrl}/blogs/blog/${id}`);
         setBlogData(response.data);
       } catch (error) {
         toast.error(error.message);
@@ -44,10 +43,7 @@ export default function UpdateBlog() {
       ),
     };
     try {
-      await axios.put(
-        `https://bramhan-vidya-api.vercel.app/blogs/blog/${id}`,
-        filteredBlogData
-      );
+      await axios.put(`${apiUrl}/blogs/blog/${id}`, filteredBlogData);
       toast.success("Data updated successfully");
       navigate(`/blog/${id}`);
     } catch (error) {

@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import GetUserId from "./../../utils/GetUserId";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function VishnuDetails() {
   const { id } = useParams();
@@ -13,9 +14,7 @@ export default function VishnuDetails() {
   useEffect(() => {
     const fetchVishnu = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/vishnu/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/vishnu/${id}`);
         if (data?.success) {
           setVishnu(data.data);
           document.title = `Vishnu Avatar - ${data.data.name}`;
@@ -35,9 +34,7 @@ export default function VishnuDetails() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this Vishnu Avatar?")) {
       try {
-        const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/vishnu/${id}`
-        );
+        const { data } = await axios.delete(`${apiUrl}/profiles/vishnu/${id}`);
         if (data?.success) {
           toast.success("Vishnu Avatar deleted successfully");
           navigate("/profile/vishnu");

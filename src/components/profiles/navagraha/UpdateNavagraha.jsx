@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateNavagraha() {
   const { id } = useParams();
@@ -30,9 +31,7 @@ export default function UpdateNavagraha() {
   useEffect(() => {
     const fetchNavagraha = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/navagraha/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/navagraha/${id}`);
         if (data?.success) {
           setFormData(data.data);
         } else {
@@ -76,7 +75,7 @@ export default function UpdateNavagraha() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/navagraha/${id}`,
+        `${apiUrl}/profiles/navagraha/${id}`,
         filteredFormData
       );
       if (data?.success) {

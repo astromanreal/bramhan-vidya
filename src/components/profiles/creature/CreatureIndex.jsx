@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import GetRedirectLink from "../../utils/GetRedirectLink";
+import { useState, useEffect } from "react";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
-import GetRedirectLink from "../../utils/GetRedirectLink";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function CreatureIndex() {
   return (
@@ -24,9 +25,7 @@ export function Allcreature() {
   useEffect(() => {
     const fetchCreatures = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allcreatures"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allcreatures`);
         if (data?.success) {
           setCreatures(data.data);
         } else {

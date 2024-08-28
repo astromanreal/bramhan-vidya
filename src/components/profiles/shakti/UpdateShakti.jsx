@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateShakti() {
   const { id } = useParams();
@@ -26,9 +27,7 @@ export default function UpdateShakti() {
   useEffect(() => {
     const fetchShakti = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/shakti/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/shakti/${id}`);
         if (data?.success) {
           setFormData(data.data);
         } else {
@@ -71,7 +70,7 @@ export default function UpdateShakti() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/shakti/${id}`,
+        `${apiUrl}/profiles/shakti/${id}`,
         filteredFormData
       );
       if (data?.success) {

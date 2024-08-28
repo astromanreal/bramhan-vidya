@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import GetUserId from "../utils/GetUserId";
 import toast from "react-hot-toast";
+import apiUrl from "../utils/GetApiUrl";
+import axios from "axios";
 
 export default function DetailPost() {
   const navigate = useNavigate();
@@ -13,9 +14,7 @@ export default function DetailPost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/community/post/${id}`
-        );
+        const response = await axios.get(`${apiUrl}/community/post/${id}`);
         setPost(response.data);
       } catch (error) {
         alert(error.message);
@@ -33,9 +32,7 @@ export default function DetailPost() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this post?")) {
       try {
-        await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/community/post/${post._id}`
-        );
+        await axios.delete(`${apiUrl}/community/post/${post._id}`);
         toast.success("Post deleted successfully");
         navigate(`/community/${post.communityId}`);
         window.location.reload();

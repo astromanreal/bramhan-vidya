@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import GetUserId from "../utils/GetUserId";
+import apiUrl from "../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function CreatePost() {
   const { id } = useParams();
@@ -12,14 +13,11 @@ export default function CreatePost() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post(
-        `https://bramhan-vidya-api.vercel.app/community/Addpost/${id}`,
-        {
-          title,
-          content,
-          userId: GetUserId(),
-        }
-      );
+      await axios.post(`${apiUrl}/community/Addpost/${id}`, {
+        title,
+        content,
+        userId: GetUserId(),
+      });
       toast.success("Post created");
       setTitle("");
       setContent("");

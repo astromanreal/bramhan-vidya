@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import axios from "axios";
 import GetUserId from "../../utils/GetUserId";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function GaneshDetails() {
   const navigate = useNavigate();
@@ -13,9 +14,7 @@ export default function GaneshDetails() {
   useEffect(() => {
     const fetchGaneshDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/ganesha/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/ganesha/${id}`);
         if (data?.success) {
           setGanesh(data.data);
           document.title = `Ganesh - ${data.data.name}`;
@@ -35,9 +34,7 @@ export default function GaneshDetails() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this Ganesh?")) {
       try {
-        const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/ganesha/${id}`
-        );
+        const { data } = await axios.delete(`${apiUrl}/profiles/ganesha/${id}`);
         if (data?.success) {
           toast.success("Ganesh deleted successfully");
           navigate("/profile/ganesha");

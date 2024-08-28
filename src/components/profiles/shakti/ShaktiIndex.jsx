@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import GetRedirectLink from "../../utils/GetRedirectLink";
+import apiUrl from "../../utils/GetApiUrl";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
-import GetRedirectLink from "../../utils/GetRedirectLink";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function ShaktiIndex() {
   return (
@@ -24,9 +25,7 @@ export function AllShakti() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allshakti"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allshakti`);
         if (data?.success) {
           setShaktis(data.data);
           document.title = "All Shaktis";

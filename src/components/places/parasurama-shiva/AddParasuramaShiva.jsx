@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddParasuramaShiva() {
   const navigate = useNavigate();
@@ -79,17 +81,19 @@ export default function AddParasuramaShiva() {
     };
     try {
       const { data } = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/places/addParasuramaShiva",
+        `${apiUrl}/places/addParasuramaShiva`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Parasurama Shiva added!");
+        toast.success("Parasurama Shiva added!");
         navigate("/place/parasurama-shiva");
       } else {
         throw new Error("Failed to add Parasurama Shiva");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while adding Parasurama Shiva");
+      toast.error(
+        err.message || "An error occurred while adding Parasurama Shiva"
+      );
     } finally {
       setLoading(false);
     }

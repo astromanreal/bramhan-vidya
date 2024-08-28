@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function DetailsSwayambhuVishnu() {
   const navigate = useNavigate();
@@ -13,7 +15,7 @@ export default function DetailsSwayambhuVishnu() {
     const fetchSwayambhuVishnuDetails = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/swayambhuVishnu/${id}`
+          `${apiUrl}/places/swayambhuVishnu/${id}`
         );
         if (data?.success) {
           setSwayambhuVishnu(data.data);
@@ -22,7 +24,7 @@ export default function DetailsSwayambhuVishnu() {
           throw new Error("Failed to fetch Swayambhu Vishnu details");
         }
       } catch (err) {
-        alert(err.message || "Error while fetching the data!");
+        toast.error(err.message || "Error while fetching the data!");
       } finally {
         setLoading(false);
       }
@@ -39,16 +41,16 @@ export default function DetailsSwayambhuVishnu() {
     ) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/SwayambhuVishnu/${id}`
+          `${apiUrl}/places/SwayambhuVishnu/${id}`
         );
         if (data?.success) {
-          alert("Swayambhu Vishnu temple deleted successfully");
+          toast.success("Swayambhu Vishnu temple deleted successfully");
           navigate("/place/swayambhu-vishnu");
         } else {
           throw new Error("Failed to delete Swayambhu Vishnu temple");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message ||
             "An error occurred while deleting the Swayambhu Vishnu temple"
         );

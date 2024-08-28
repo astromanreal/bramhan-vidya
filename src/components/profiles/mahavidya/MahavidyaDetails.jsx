@@ -1,8 +1,9 @@
-import axios from "axios";
-import toast from "react-hot-toast";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
 import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function MahavidyaDetails() {
   const { id } = useParams();
@@ -13,9 +14,7 @@ export default function MahavidyaDetails() {
   useEffect(() => {
     const fetchMahavidya = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/mahavidya/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/mahavidya/${id}`);
         if (data?.success) {
           setMahavidya(data.data);
           document.title = `Mahavidya - ${data.data.name}`;
@@ -36,7 +35,7 @@ export default function MahavidyaDetails() {
     if (window.confirm("Are you sure you want to delete this Mahavidya?")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/mahavidya/${id}`
+          `${apiUrl}/profiles/mahavidya/${id}`
         );
         if (data?.success) {
           toast.success("Mahavidya deleted successfully");

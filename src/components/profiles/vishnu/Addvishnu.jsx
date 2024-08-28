@@ -1,8 +1,9 @@
-import axios from "axios";
 import GetUserId from "../../utils/GetUserId";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function Addvishnu() {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ export default function Addvishnu() {
     };
     try {
       const { data } = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/profiles/addvishnu",
+        `${apiUrl}/profiles/addvishnu`,
         filteredFormData
       );
       if (data.success) {

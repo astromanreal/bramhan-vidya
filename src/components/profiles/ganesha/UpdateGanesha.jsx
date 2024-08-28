@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateGanesha() {
   const { id } = useParams();
@@ -25,9 +26,7 @@ export default function UpdateGanesha() {
   useEffect(() => {
     const fetchGanesha = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/ganesha/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/ganesha/${id}`);
         if (data?.success) {
           setFormData(data.data);
           document.title = `Update - ${data.data.name}`;
@@ -73,7 +72,7 @@ export default function UpdateGanesha() {
 
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/ganesha/${id}`,
+        `${apiUrl}/profiles/ganesha/${id}`,
         filteredFormData
       );
       if (data?.success) {

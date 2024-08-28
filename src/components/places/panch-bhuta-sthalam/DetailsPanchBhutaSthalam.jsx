@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function DetailsPanchBhutaSthalam() {
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ export default function DetailsPanchBhutaSthalam() {
     const fetchPanchBhutaSthalam = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/PanchaBhutaSthalam/${id}`
+          `${apiUrl}/places/PanchaBhutaSthalam/${id}`
         );
         if (data?.success) {
           setData(data.data);
@@ -20,7 +22,7 @@ export default function DetailsPanchBhutaSthalam() {
           throw new Error("Failed to fetch Pancha Bhuta Sthalam details");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message ||
             "An error occurred while fetching Pancha Bhuta Sthalam details"
         );
@@ -33,16 +35,16 @@ export default function DetailsPanchBhutaSthalam() {
     if (window.confirm("Are you sure you want to delete this Data?")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/PanchaBhutaSthalam/${id}`
+          `${apiUrl}/places/PanchaBhutaSthalam/${id}`
         );
         if (data?.success) {
-          alert("Deleted successfully");
+          toast.success("Deleted successfully");
           navigate("/place/panch-bhuta-sthalam");
         } else {
           throw new Error("Failed to delete Data");
         }
       } catch (err) {
-        alert(err.message || "An error occurred while deleting the Data");
+        toast.error(err.message || "An error occurred while deleting the Data");
       }
     }
   };

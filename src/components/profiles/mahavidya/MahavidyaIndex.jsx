@@ -1,8 +1,9 @@
-import axios from "axios";
+import GetRedirectLink from "../../utils/GetRedirectLink";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
 import { useEffect, useState } from "react";
-import GetRedirectLink from "../../utils/GetRedirectLink";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function MahavidyaIndex() {
   return (
@@ -24,9 +25,7 @@ export function AllMahavidya() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allmahavidya"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allmahavidya`);
         if (data?.success) {
           setMahavidyas(data.data);
           document.title = "All Mahavidyas";

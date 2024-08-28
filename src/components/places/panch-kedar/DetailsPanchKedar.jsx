@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function DetailsPanchKedar() {
   const navigate = useNavigate();
@@ -12,9 +13,7 @@ export default function DetailsPanchKedar() {
   useEffect(() => {
     const fetchPanchKedarDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/panchKedar/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/places/panchKedar/${id}`);
         if (data?.success) {
           setPanchKedar(data.data);
           document.title = `Panch Kedar - ${data.data.name}`;
@@ -37,7 +36,7 @@ export default function DetailsPanchKedar() {
     ) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/panchKedar/${id}`
+          `${apiUrl}/places/panchKedar/${id}`
         );
         if (data?.success) {
           alert("Panch Kedar temple deleted successfully");

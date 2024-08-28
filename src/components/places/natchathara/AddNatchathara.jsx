@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
 import GetUserId from "../../utils/GetUserId";
 import { useNavigate } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function AddNatchathara() {
   const navigate = useNavigate();
@@ -78,17 +80,19 @@ export default function AddNatchathara() {
     };
     try {
       const { data } = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/places/addNatchatharaTemple",
+        `${apiUrl}/places/addNatchatharaTemple`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Natchathara temple added successfully!");
+        toast.success("Natchathara temple added successfully!");
         navigate("/place/natchathara");
       } else {
         throw new Error("Failed to add Natchathara temple");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while adding Natchathara temple");
+      toast.error(
+        err.message || "An error occurred while adding Natchathara temple"
+      );
     }
   };
 

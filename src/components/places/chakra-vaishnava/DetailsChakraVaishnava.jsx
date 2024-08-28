@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function DetailsChakraVaishnava() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function DetailsChakraVaishnava() {
     const fetchChakraVaishnava = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/ChakraVaishnava/${id}`
+          `${apiUrl}/places/ChakraVaishnava/${id}`
         );
         if (data?.success) {
           setData(data.data);
@@ -33,7 +34,7 @@ export default function DetailsChakraVaishnava() {
     if (window.confirm("Are you sure you want to delete chakra-vaishnava?")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/ChakraVaishnava/${id}`
+          `${apiUrl}/places/ChakraVaishnava/${id}`
         );
         if (data?.success) {
           alert("chakra-vaishnava deleted successfully");

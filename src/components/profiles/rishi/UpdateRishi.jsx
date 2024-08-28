@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateRishi() {
   const { id } = useParams();
@@ -28,9 +29,7 @@ export default function UpdateRishi() {
   useEffect(() => {
     const fetchRishi = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/rishi/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/rishi/${id}`);
         if (data?.success) {
           setFormData(data.data);
         } else {
@@ -71,7 +70,7 @@ export default function UpdateRishi() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/rishi/${id}`,
+        `${apiUrl}/profiles/rishi/${id}`,
         filteredFormData
       );
       if (data?.success) {

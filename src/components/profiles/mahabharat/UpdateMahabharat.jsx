@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateMahabharat() {
   const { id } = useParams();
@@ -28,9 +29,7 @@ export default function UpdateMahabharat() {
   useEffect(() => {
     const fetchMahabharat = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/mahabharat/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/mahabharat/${id}`);
         if (data?.success) {
           setFormData(data.data);
           document.title = `Update  - ${data.data.name}`;
@@ -77,7 +76,7 @@ export default function UpdateMahabharat() {
 
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/profiles/mahabharat/${id}`,
+        `${apiUrl}/profiles/mahabharat/${id}`,
         filteredFormData
       );
       if (data?.success) {

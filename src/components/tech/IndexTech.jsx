@@ -1,8 +1,9 @@
+import GetRedirectLink from "../utils/GetRedirectLink";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import apiUrl from "../utils/GetApiUrl";
 import axios from "axios";
 import "./Technology.css";
-import { useState, useEffect } from "react";
-import GetRedirectLink from "../utils/GetRedirectLink";
-import { Link } from "react-router-dom";
 
 export default function IndexTech() {
   return (
@@ -19,9 +20,7 @@ export function AllTech() {
   useEffect(() => {
     const fetchAllTech = async () => {
       try {
-        const response = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/tech/alltech"
-        );
+        const response = await axios.get(`${apiUrl}/tech/alltech`);
         if (response.data.success) {
           setTechnologies(response.data.data);
         } else {

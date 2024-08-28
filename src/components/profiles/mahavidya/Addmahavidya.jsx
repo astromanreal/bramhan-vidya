@@ -1,8 +1,9 @@
-import axios from "axios";
-import { useState } from "react";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddMahavidya() {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ export default function AddMahavidya() {
     };
     try {
       const { data } = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/profiles/addmahavidya",
+        `${apiUrl}/profiles/addmahavidya`,
         filteredFormData
       );
       if (data.success) {

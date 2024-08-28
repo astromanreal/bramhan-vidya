@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
 import GetUserId from "../../utils/GetUserId";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function ChiranjiviDetails() {
   const navigate = useNavigate();
@@ -13,9 +14,7 @@ export default function ChiranjiviDetails() {
   useEffect(() => {
     const fetchChiranjiviDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/chiranjivi/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/chiranjivi/${id}`);
         if (data?.success) {
           setChiranjivi(data.data);
           document.title = `Chiranjivi - ${data.data.name}`;
@@ -36,7 +35,7 @@ export default function ChiranjiviDetails() {
     if (window.confirm("Are you sure you want to delete this Chiranjivi?")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/chiranjivi/${id}`
+          `${apiUrl}/profiles/chiranjivi/${id}`
         );
         if (data?.success) {
           toast.success("Chiranjivi deleted successfully");

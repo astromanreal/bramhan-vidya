@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import GetRedirectLink from "../../utils/GetRedirectLink";
+import { useState, useEffect } from "react";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
-import GetRedirectLink from "../../utils/GetRedirectLink";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function ModernIndex() {
   return (
@@ -25,9 +26,7 @@ export function Allmodern() {
   useEffect(() => {
     const fetchModernCharacters = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allmodern"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allmodern`);
         if (data?.success) {
           setModernCharacters(data.data);
         } else {

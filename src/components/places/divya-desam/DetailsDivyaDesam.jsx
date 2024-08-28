@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function DetailsDivyaDesam() {
   const navigate = useNavigate();
@@ -12,9 +13,7 @@ export default function DetailsDivyaDesam() {
   useEffect(() => {
     const fetchDivyaDesam = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/DivyaDesam/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/places/DivyaDesam/${id}`);
         setDivyaDesam(data.data);
       } catch (err) {
         alert(err.message || "Failed to fetch Divya Desam details");
@@ -33,7 +32,7 @@ export default function DetailsDivyaDesam() {
     if (window.confirm("Are you sure you want to delete this Divya Desam?")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/DivyaDesam/${id}`
+          `${apiUrl}/places/DivyaDesam/${id}`
         );
         if (data?.success) {
           alert("Divya Desam deleted successfully");

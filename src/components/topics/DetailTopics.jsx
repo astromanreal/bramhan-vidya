@@ -1,6 +1,7 @@
 import { useNavigate, useParams, Link } from "react-router-dom";
 import GetUserId from "../utils/GetUserId";
 import { useState, useEffect } from "react";
+import apiUrl from "../utils/GetApiUrl";
 import toast from "react-hot-toast";
 import axios from "axios";
 
@@ -13,7 +14,7 @@ export default function DetailTopics() {
 
   useEffect(() => {
     axios
-      .get(`https://bramhan-vidya-api.vercel.app/topics/topic/${id}`)
+      .get(`${apiUrl}/topics/topic/${id}`)
       .then((response) => {
         setTopic(response.data);
       })
@@ -25,9 +26,7 @@ export default function DetailTopics() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this Data?")) {
       try {
-        const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/topics/topic/${id}`
-        );
+        const { data } = await axios.delete(`${apiUrl}/topics/topic/${id}`);
         if (data?.success) {
           toast.success("Deleted successfully");
           navigate("/topic");
@@ -42,12 +41,9 @@ export default function DetailTopics() {
 
   const handleLike = async () => {
     try {
-      const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/topics/like/${id}`,
-        {
-          userId: GetUserId(),
-        }
-      );
+      const { data } = await axios.put(`${apiUrl}/topics/like/${id}`, {
+        userId: GetUserId(),
+      });
       setTopic(data);
       toast.success("Liked!");
     } catch (err) {
@@ -60,12 +56,9 @@ export default function DetailTopics() {
 
   const handleDislike = async () => {
     try {
-      const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/topics/dislike/${id}`,
-        {
-          userId: GetUserId(),
-        }
-      );
+      const { data } = await axios.put(`${apiUrl}/topics/dislike/${id}`, {
+        userId: GetUserId(),
+      });
       setTopic(data);
       toast.success("Disliked!");
     } catch (err) {
@@ -79,13 +72,10 @@ export default function DetailTopics() {
   const handleAddComment = async () => {
     try {
       const topicId = id;
-      const { data } = await axios.post(
-        `https://bramhan-vidya-api.vercel.app/topics/${topicId}/Comment`,
-        {
-          comment,
-          userId: GetUserId(),
-        }
-      );
+      const { data } = await axios.post(`${apiUrl}/topics/${topicId}/Comment`, {
+        comment,
+        userId: GetUserId(),
+      });
       setTopic(data);
       setComment("");
       toast.success("Comment added!");
@@ -97,7 +87,7 @@ export default function DetailTopics() {
   const handleDeleteComment = async (commentId) => {
     try {
       const { data } = await axios.delete(
-        `https://bramhan-vidya-api.vercel.app/topics/${id}/comment/${commentId}`
+        `${apiUrl}/topics/${id}/comment/${commentId}`
       );
       setTopic(data);
       toast.success("Comment deleted!");
@@ -112,9 +102,7 @@ export default function DetailTopics() {
         const usersData = await Promise.all(
           topic.comments.comments.map((comment) =>
             axios
-              .get(
-                `https://bramhan-vidya-api.vercel.app/users/user/${comment.userId}`
-              )
+              .get(`${apiUrl}/users/user/${comment.userId}`)
               .catch((error) => {
                 if (error.response.status === 404) {
                   return null; // or a fallback user object

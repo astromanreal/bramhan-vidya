@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
-import GetUserId from "../utils/GetUserId";
-import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import GetUserId from "../utils/GetUserId";
+import toast from "react-hot-toast";
+import apiUrl from "../utils/GetApiUrl";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddBlogs() {
   const navigate = useNavigate();
@@ -29,10 +30,7 @@ export default function AddBlogs() {
       ),
     };
     try {
-      await axios.post(
-        "https://bramhan-vidya-api.vercel.app/blogs/addblog",
-        filteredBlogData
-      );
+      await axios.post(`${apiUrl}/blogs/addblog`, filteredBlogData);
       toast.success("Data added successfully");
       navigate("/blog");
     } catch (error) {

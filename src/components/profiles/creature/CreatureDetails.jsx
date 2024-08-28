@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import axios from "axios";
 import GetUserId from "../../utils/GetUserId";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function CreatureDetails() {
   const { id } = useParams();
@@ -12,9 +14,7 @@ export default function CreatureDetails() {
   useEffect(() => {
     const fetchCreatureDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/creature/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/creature/${id}`);
         if (data?.success) {
           setCreature(data.data);
           document.title = `Creature - ${data.data.name}`;
@@ -22,7 +22,7 @@ export default function CreatureDetails() {
           throw new Error("Failed to fetch creature details");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message || "An error occurred while fetching the creature details"
         );
       } finally {
@@ -37,16 +37,18 @@ export default function CreatureDetails() {
     if (window.confirm("Are you sure you want to delete this creature?")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/creature/${id}`
+          `${apiUrl}/profiles/creature/${id}`
         );
         if (data?.success) {
-          alert("Creature deleted successfully");
+          toast.success("Creature deleted successfully");
           navigate("/profile/creature");
         } else {
           throw new Error("Failed to delete creature");
         }
       } catch (err) {
-        alert(err.message || "An error occurred while deleting the creature");
+        toast.error(
+          err.message || "An error occurred while deleting the creature"
+        );
       }
     }
   };

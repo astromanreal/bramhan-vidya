@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import GetUserId from "../utils/GetUserId";
+import apiUrl from "../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddBookNotes() {
   const navigate = useNavigate();
@@ -64,10 +65,7 @@ export default function AddBookNotes() {
         userId: GetUserId(),
       };
       try {
-        await axios.post(
-          `https://bramhan-vidya-api.vercel.app/books/${id}/addnotes`,
-          data
-        );
+        await axios.post(`${apiUrl}/books/${id}/addnotes`, data);
         toast.success("Data added");
         navigate(`/book/${id}`);
       } catch (error) {

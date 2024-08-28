@@ -1,8 +1,9 @@
-import axios from "axios";
-import toast from "react-hot-toast";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import GetUserId from "../../utils/GetUserId";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function CelestialDetails() {
   const { id } = useParams();
@@ -13,9 +14,7 @@ export default function CelestialDetails() {
   useEffect(() => {
     const fetchCelestialDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/celestial/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/celestial/${id}`);
         if (data?.success) {
           setCelestial(data.data);
           document.title = `Celestial - ${data.data.name}`;
@@ -40,7 +39,7 @@ export default function CelestialDetails() {
     ) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/celestial/${id}`
+          `${apiUrl}/profiles/celestial/${id}`
         );
         if (data?.success) {
           toast.success("Celestial being deleted successfully");

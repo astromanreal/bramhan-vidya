@@ -1,8 +1,9 @@
-import axios from "axios";
-import toast from "react-hot-toast";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function GodDetails() {
   const navigate = useNavigate();
@@ -13,9 +14,7 @@ export default function GodDetails() {
   useEffect(() => {
     const fetchGodDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/god/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/god/${id}`);
         if (data?.success) {
           setGod(data.data);
           document.title = `God - ${data.data.name}`;
@@ -35,9 +34,7 @@ export default function GodDetails() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this God?")) {
       try {
-        const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/god/${id}`
-        );
+        const { data } = await axios.delete(`${apiUrl}/profiles/god/${id}`);
         if (data?.success) {
           toast.success("God deleted successfully");
           navigate("/profile/god");

@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import GetRedirectLink from "./../utils/GetRedirectLink";
 import GetUserId from "../utils/GetUserId";
 import { useEffect, useState } from "react";
+import apiUrl from "../utils/GetApiUrl";
 import toast from "react-hot-toast";
 import axios from "axios";
 
@@ -13,9 +14,7 @@ export default function DetailsBook() {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/books/book/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/books/book/${id}`);
         setBook(data.data);
       } catch (error) {
         toast.error(error.message || "Error fetching book details");
@@ -29,9 +28,7 @@ export default function DetailsBook() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this Book?")) {
       try {
-        const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/books/book/${id}`
-        );
+        const { data } = await axios.delete(`${apiUrl}/books/book/${id}`);
         if (data?.success) {
           toast.success("Book deleted successfully");
           navigate("/book");
@@ -135,9 +132,7 @@ export function GetAllNotes() {
   useEffect(() => {
     const fetchBookNotes = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/books/${id}/allnotes`
-        );
+        const { data } = await axios.get(`${apiUrl}/books/${id}/allnotes`);
         setBookNotes(data);
       } catch (error) {
         toast.error(error.message);

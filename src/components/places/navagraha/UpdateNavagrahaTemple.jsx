@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateNavagrahaTemple() {
   const navigate = useNavigate();
@@ -36,7 +38,7 @@ export default function UpdateNavagrahaTemple() {
     const fetchNavagrahaTemple = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/NavagrahaTemple/${id}`
+          `${apiUrl}/places/NavagrahaTemple/${id}`
         );
         if (data?.success) {
           setFormData(data.data);
@@ -44,7 +46,7 @@ export default function UpdateNavagrahaTemple() {
           throw new Error("Failed to fetch Navagraha Temple details");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message ||
             "An error occurred while fetching Navagraha Temple details"
         );
@@ -88,17 +90,19 @@ export default function UpdateNavagrahaTemple() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/NavagrahaTemple/${id}`,
+        `${apiUrl}/places/NavagrahaTemple/${id}`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Navagraha Temple updated!");
+        toast.success("Navagraha Temple updated!");
         navigate(`/place/navagraha/${id}`);
       } else {
         throw new Error("Failed to update Navagraha Temple");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while updating Navagraha Temple");
+      toast.error(
+        err.message || "An error occurred while updating Navagraha Temple"
+      );
     }
   };
 

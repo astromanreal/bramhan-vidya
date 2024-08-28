@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function DetailsJyotrilinga() {
   const [details, setDetails] = useState(null);
@@ -11,9 +12,7 @@ export default function DetailsJyotrilinga() {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/jyotirlinga/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/places/jyotirlinga/${id}`);
         setDetails(data.data);
       } catch (err) {
         alert(
@@ -32,7 +31,7 @@ export default function DetailsJyotrilinga() {
     if (window.confirm("Are you sure you want to delete this Data?")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/Jyotirlinga/${id}`
+          `${apiUrl}/places/Jyotirlinga/${id}`
         );
         if (data?.success) {
           alert("Deleted successfully");

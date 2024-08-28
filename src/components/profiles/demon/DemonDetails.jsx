@@ -1,8 +1,9 @@
-import axios from "axios";
-import toast from "react-hot-toast";
-import GetUserId from "../../utils/GetUserId";
-import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import GetUserId from "../../utils/GetUserId";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function DemonDetails() {
   const { id } = useParams();
@@ -13,9 +14,7 @@ export default function DemonDetails() {
   useEffect(() => {
     const fetchDemon = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/demon/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/demon/${id}`);
         if (data?.success) {
           setDemon(data.data);
         } else {
@@ -35,9 +34,7 @@ export default function DemonDetails() {
 
   const handleDelete = async () => {
     try {
-      const { data } = await axios.delete(
-        `https://bramhan-vidya-api.vercel.app/profiles/demon/${id}`
-      );
+      const { data } = await axios.delete(`${apiUrl}/profiles/demon/${id}`);
       if (data?.success) {
         toast.success("Demon deleted successfully!");
         navigate("/profile/demon");

@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import GetUserId from "../utils/GetUserId";
+import apiUrl from "../utils/GetApiUrl";
 import toast from "react-hot-toast";
 import axios from "axios";
 
@@ -16,7 +17,7 @@ export default function UpdateTopics() {
 
   useEffect(() => {
     axios
-      .get(`https://bramhan-vidya-api.vercel.app/topics/topic/${id}`)
+      .get(`${apiUrl}/topics/topic/${id}`)
       .then((response) => {
         setTopic(response.data);
       })
@@ -46,10 +47,7 @@ export default function UpdateTopics() {
       };
 
       axios
-        .put(
-          `https://bramhan-vidya-api.vercel.app/topics/topic/${id}`,
-          filteredTopic
-        )
+        .put(`${apiUrl}/topics/topic/${id}`, filteredTopic)
         .then((response) => {
           toast.success("Data updated successfully!");
           navigate(`/topic/${id}`);

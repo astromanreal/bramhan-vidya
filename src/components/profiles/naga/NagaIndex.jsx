@@ -1,8 +1,9 @@
+import GetRedirectLink from "../../utils/GetRedirectLink";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
-import GetRedirectLink from "../../utils/GetRedirectLink";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function NagaIndex() {
   return (
@@ -24,9 +25,7 @@ export function AllNagas() {
   useEffect(() => {
     const fetchNagas = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/profiles/allnaga"
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/allnaga`);
         if (data?.success) {
           setNagas(data.data);
         } else {

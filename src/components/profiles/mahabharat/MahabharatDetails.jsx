@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function MahabharatDetails() {
   const navigate = useNavigate();
@@ -13,9 +14,7 @@ export default function MahabharatDetails() {
   useEffect(() => {
     const fetchMahabharatDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/profiles/mahabharat/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/profiles/mahabharat/${id}`);
         if (data?.success) {
           setMahabharat(data.data);
           document.title = `Mahabharat - ${data.data.name}`;
@@ -36,7 +35,7 @@ export default function MahabharatDetails() {
     if (window.confirm("Are you sure you want to delete this Mahabharat?")) {
       try {
         const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/profiles/mahabharat/${id}`
+          `${apiUrl}/profiles/mahabharat/${id}`
         );
         if (data?.success) {
           toast.success("Mahabharat deleted successfully");

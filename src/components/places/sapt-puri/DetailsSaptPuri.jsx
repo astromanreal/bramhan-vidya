@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import axios from "axios";
 import GetUserId from "../../utils/GetUserId";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function DetailsSaptPuri() {
   const navigate = useNavigate();
@@ -12,9 +13,7 @@ export default function DetailsSaptPuri() {
   useEffect(() => {
     const fetchSaptPuriDetails = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/SaptPuri/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/places/SaptPuri/${id}`);
         if (data?.success) {
           setSaptPuri(data.data);
           document.title = `Sapt Puri - ${data.data.name}`;
@@ -36,9 +35,7 @@ export default function DetailsSaptPuri() {
       window.confirm("Are you sure you want to delete this Sapt Puri temple?")
     ) {
       try {
-        const { data } = await axios.delete(
-          `https://bramhan-vidya-api.vercel.app/places/SaptPuri/${id}`
-        );
+        const { data } = await axios.delete(`${apiUrl}/places/SaptPuri/${id}`);
         if (data?.success) {
           alert("Sapt Puri temple deleted successfully");
           navigate("/place/sapt-puri");

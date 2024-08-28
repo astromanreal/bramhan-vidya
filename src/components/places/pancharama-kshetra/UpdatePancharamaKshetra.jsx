@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdatePancharamaKshetra() {
   const navigate = useNavigate();
@@ -38,7 +40,7 @@ export default function UpdatePancharamaKshetra() {
     const fetchPancharamaKshetra = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/PancharamaKshetra/${id}`
+          `${apiUrl}/places/PancharamaKshetra/${id}`
         );
         if (data?.success) {
           setFormData(data.data);
@@ -46,7 +48,7 @@ export default function UpdatePancharamaKshetra() {
           throw new Error("Failed to fetch Pancharama Kshetra details");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message ||
             "An error occurred while fetching Pancharama Kshetra details"
         );
@@ -93,17 +95,17 @@ export default function UpdatePancharamaKshetra() {
     };
     try {
       const response = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/PancharamaKshetra/${id}`,
+        `${apiUrl}/places/PancharamaKshetra/${id}`,
         filteredFormData
       );
       if (response.data?.success) {
-        alert("Pancharama Kshetra updated!");
+        toast.success("Pancharama Kshetra updated!");
         navigate(`/place/pancharama-kshetra/${id}`);
       } else {
         throw new Error("Failed to update Pancharama Kshetra");
       }
     } catch (err) {
-      alert(
+      toast.error(
         err.message || "An error occurred while updating Pancharama Kshetra"
       );
     }

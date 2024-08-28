@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import GetUserId from "./../utils/GetUserId";
+import apiUrl from "../utils/GetApiUrl";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddCommunity() {
   const navigate = useNavigate();
@@ -12,15 +13,12 @@ export default function AddCommunity() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post(
-        "https://bramhan-vidya-api.vercel.app/community/Addcommunity",
-        {
-          name,
-          description,
-          createdBy: GetUserId(),
-          userId: GetUserId(),
-        }
-      );
+      await axios.post(`${apiUrl}/community/Addcommunity`, {
+        name,
+        description,
+        createdBy: GetUserId(),
+        userId: GetUserId(),
+      });
       toast.success("Community added successfully");
       navigate("/community");
     } catch (error) {

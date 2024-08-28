@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
 
 export default function UpdateAshtaVeerattaSthalams() {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ export default function UpdateAshtaVeerattaSthalams() {
     const fetchAshtaVeerattaSthalams = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/AshtaVeerattaSthalam/${id}`
+          `${apiUrl}/places/AshtaVeerattaSthalam/${id}`
         );
         if (data?.success) {
           setData(data.data);
@@ -90,7 +91,7 @@ export default function UpdateAshtaVeerattaSthalams() {
     };
     try {
       const response = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/AshtaVeerattaSthalam/${id}`,
+        `${apiUrl}/places/AshtaVeerattaSthalam/${id}`,
         filteredFormData
       );
       if (response.data.success) {

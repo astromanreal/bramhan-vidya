@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import GetUserId from "../utils/GetUserId";
+import toast from "react-hot-toast";
+import apiUrl from "../utils/GetApiUrl";
 import { useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
 
 export default function AddTech() {
   const navigate = useNavigate();
@@ -38,10 +39,7 @@ export default function AddTech() {
       notes: technology.notes.filter((note) => note.key || note.value),
     };
     try {
-      const response = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/tech/addtech",
-        filteredTech
-      );
+      const response = await axios.post(`${apiUrl}/tech/addtech`, filteredTech);
       if (response.status === 200) {
         toast.success("Technology added successfully!");
         navigate("/tech");

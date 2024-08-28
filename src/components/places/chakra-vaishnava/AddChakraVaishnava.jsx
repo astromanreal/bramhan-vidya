@@ -1,7 +1,8 @@
-import axios from "axios";
-import React, { useState } from "react";
 import GetUserId from "../../utils/GetUserId";
 import { useNavigate } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddChakraVaishnava() {
   const navigate = useNavigate();
@@ -78,7 +79,7 @@ export default function AddChakraVaishnava() {
     };
     try {
       const response = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/places/addChakraVaishnava",
+        `${apiUrl}/places/addChakraVaishnava`,
         filteredFormData
       );
       if (response.data.success) {

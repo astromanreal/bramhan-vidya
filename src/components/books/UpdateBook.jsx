@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import toast from "react-hot-toast";
+import { useState, useEffect } from "react";
 import GetUserId from "../utils/GetUserId";
+import apiUrl from "../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateBook() {
   const navigate = useNavigate();
@@ -24,9 +25,7 @@ export default function UpdateBook() {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/books/book/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/books/book/${id}`);
         setBook(data.data);
       } catch (error) {
         toast.error(error.message || "Error fetching book details");
@@ -45,10 +44,7 @@ export default function UpdateBook() {
       ),
     };
     try {
-      await axios.put(
-        `https://bramhan-vidya-api.vercel.app/books/book/${id}`,
-        filteredBook
-      );
+      await axios.put(`${apiUrl}/books/book/${id}`, filteredBook);
       toast.success("Book updated successfully");
       navigate(`/book/${id}`);
     } catch (error) {

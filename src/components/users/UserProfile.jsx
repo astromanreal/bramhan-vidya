@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import apiUrl from "../utils/GetApiUrl";
 import axios from "axios";
 import "./UserProfile.css";
 
@@ -10,9 +11,7 @@ export default function UserProfile() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/users/user/${id}`
-        );
+        const response = await axios.get(`${apiUrl}/users/user/${id}`);
         setUser(response.data);
       } catch (error) {
         alert(error.message);

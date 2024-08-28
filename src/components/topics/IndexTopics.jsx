@@ -1,6 +1,7 @@
 import GetRedirectLink from "../utils/GetRedirectLink";
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import apiUrl from "../utils/GetApiUrl";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Topic.css";
@@ -34,7 +35,7 @@ export function AllTopics() {
 
   useEffect(() => {
     axios
-      .get("https://bramhan-vidya-api.vercel.app/topics/alltopics")
+      .get(`${apiUrl}/topics/alltopics`)
       .then((response) => {
         setTopics(response.data);
       })

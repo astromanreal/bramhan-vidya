@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddPanchKedar() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     path: "panch-kedar",
@@ -33,9 +37,6 @@ export default function AddPanchKedar() {
     festivals: "",
     rituals: "",
   });
-
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -81,17 +82,17 @@ export default function AddPanchKedar() {
     };
     try {
       const { data } = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/places/addPanchKedar",
+        `${apiUrl}/places/addPanchKedar`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Panch Kedar added!");
+        toast.success("Panch Kedar added!");
         navigate("/place/panch-kedar");
       } else {
         throw new Error("Failed to add Panch Kedar");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while adding Panch Kedar");
+      toast.error(err.message || "An error occurred while adding Panch Kedar");
     } finally {
       setLoading(false);
     }

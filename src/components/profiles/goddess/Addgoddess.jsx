@@ -1,7 +1,8 @@
-import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import apiUrl from "../../utils/GetApiUrl";
+import { useState } from "react";
+import axios from "axios";
 
 export default function Addgoddess() {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ export default function Addgoddess() {
     };
     try {
       const { data } = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/profiles/addgoddess",
+        `${apiUrl}/profiles/addgoddess`,
         filteredFormData
       );
       if (data?.success) {

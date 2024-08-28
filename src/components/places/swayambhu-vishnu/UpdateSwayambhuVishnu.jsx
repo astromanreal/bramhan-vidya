@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import GetUserId from "../../utils/GetUserId";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function UpdateSwayambhuVishnu() {
   const navigate = useNavigate();
@@ -41,11 +43,11 @@ export default function UpdateSwayambhuVishnu() {
     const fetchSwayambhuVishnu = async () => {
       try {
         const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/swayambhuVishnu/${id}`
+          `${apiUrl}/places/swayambhuVishnu/${id}`
         );
         setFormData(data.data);
       } catch (err) {
-        alert(
+        toast.error(
           err.message || "An error occurred while fetching Swayambhu Vishnu"
         );
       }
@@ -89,17 +91,19 @@ export default function UpdateSwayambhuVishnu() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/swayambhuVishnu/${id}`,
+        `${apiUrl}/places/swayambhuVishnu/${id}`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Swayambhu Vishnu updated!");
+        toast.success("Swayambhu Vishnu updated!");
         navigate("/place/swayambhu-vishnu");
       } else {
         throw new Error("Failed to update Swayambhu Vishnu");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while updating Swayambhu Vishnu");
+      toast.error(
+        err.message || "An error occurred while updating Swayambhu Vishnu"
+      );
     } finally {
       setLoading(false);
     }

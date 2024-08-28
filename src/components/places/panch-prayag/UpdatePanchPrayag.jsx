@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "../../utils/GetApiUrl";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function UpdatePanchPrayag() {
   const navigate = useNavigate();
@@ -33,16 +35,14 @@ export default function UpdatePanchPrayag() {
   useEffect(() => {
     const fetchPanchPrayag = async () => {
       try {
-        const { data } = await axios.get(
-          `https://bramhan-vidya-api.vercel.app/places/PanchPrayag/${id}`
-        );
+        const { data } = await axios.get(`${apiUrl}/places/PanchPrayag/${id}`);
         if (data?.success) {
           setFormData(data.data);
         } else {
           throw new Error("Failed to fetch Panch Prayag details");
         }
       } catch (err) {
-        alert(
+        toast.error(
           err.message || "An error occurred while fetching Panch Prayag details"
         );
       }
@@ -86,17 +86,19 @@ export default function UpdatePanchPrayag() {
     };
     try {
       const { data } = await axios.put(
-        `https://bramhan-vidya-api.vercel.app/places/PanchPrayag/${id}`,
+        `${apiUrl}/places/PanchPrayag/${id}`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Panch Prayag updated!");
+        toast.success("Panch Prayag updated!");
         navigate(`/place/panch-prayag/${id}`);
       } else {
         throw new Error("Failed to update Panch Prayag");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while updating Panch Prayag");
+      toast.error(
+        err.message || "An error occurred while updating Panch Prayag"
+      );
     }
   };
 

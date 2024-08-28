@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
 import GetUserId from "./../../utils/GetUserId";
 import { useNavigate } from "react-router-dom";
+import apiUrl from "../../utils/GetApiUrl";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddPanchPrayag() {
   const navigate = useNavigate();
@@ -75,17 +77,17 @@ export default function AddPanchPrayag() {
     };
     try {
       const { data } = await axios.post(
-        "https://bramhan-vidya-api.vercel.app/places/addPanchPrayag",
+        `${apiUrl}/places/addPanchPrayag`,
         filteredFormData
       );
       if (data?.success) {
-        alert("Panch Prayag added!");
+        toast.success("Panch Prayag added!");
         navigate("/place/panch-prayag");
       } else {
         throw new Error("Failed to add Panch Prayag");
       }
     } catch (err) {
-      alert(err.message || "An error occurred while adding Panch Prayag");
+      toast.error(err.message || "An error occurred while adding Panch Prayag");
     }
   };
 
