@@ -1,11 +1,9 @@
 import "./Home.css";
 import { Link } from "react-router-dom";
-import Page2 from "./Page2";
 
 export default function Home() {
   return (
     <>
-      <Page2 />
       <HomeHeader />
     </>
   );

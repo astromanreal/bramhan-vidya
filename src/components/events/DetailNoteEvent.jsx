@@ -160,24 +160,24 @@ export default function DetailNoteEvent() {
               No comments to display yet!
             </p>
           )}
-          <div className="event-note-add-comment-container">
-            <span>
-              <input
-                type="text"
-                value={comment}
-                required
-                onChange={(e) => setComment(e.target.value)}
-                placeholder="What are you thinking?"
-                // className="event-note-comment-input"
-              />
-              <button
-                onClick={addComment}
-                // className="event-note-add-comment-btn"
-              >
-                share
-              </button>
-            </span>
-          </div>
+          {GetUserId() !== 0 ? (
+            <div className="event-note-add-comment-container">
+              <span>
+                <input
+                  type="text"
+                  value={comment}
+                  required
+                  onChange={(e) => setComment(e.target.value)}
+                  placeholder="What are you thinking?"
+                />
+                <button onClick={addComment}>share</button>
+              </span>
+            </div>
+          ) : (
+            <h1>
+              Please <Link to="/user/login">log in</Link> to comment
+            </h1>
+          )}
         </div>
       ) : (
         <p>Loading...</p>
