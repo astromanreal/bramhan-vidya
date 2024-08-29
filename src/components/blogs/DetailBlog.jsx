@@ -65,18 +65,7 @@ export function Header({ data }) {
   };
   return (
     <>
-      <div class="blog-overlay-container">
-        <img
-          class="blog-overlay-image"
-          alt=""
-          src={data.image}
-          onError={(e) => {
-            e.target.src =
-              "https://images.unsplash.com/photo-1519388647352-e438c3cdf98f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80";
-          }}
-        />
-        <h2 class="blog-overlay-text">{data.title}</h2>
-      </div>
+      <h2 class="blog-detail-title">{data.title}</h2>
 
       <div class="blog-key-detail">
         <h2>Key details</h2>

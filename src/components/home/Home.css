@@ -1,8 +1,9 @@
 /* for home offer design */
+/* {now in explore page} */
 #home-offer-holder {
   display: flex;
   flex-wrap: wrap;
-  height: 70vh;
+  min-height: 70vh;
   align-items: center;
   margin: 1rem;
 }
@@ -11,14 +12,12 @@
   margin: 1rem;
   cursor: pointer;
 }
-
 .HomeOffer-container {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   -webkit-perspective: 1000px;
   perspective: 1000px;
 }
-
 .HomeOffer-front,
 .HomeOffer-back {
   background-size: cover;
@@ -40,7 +39,6 @@
   color: #fff;
   font-size: 1.5rem;
 }
-
 .HomeOffer-back {
   background: #cedce7;
   color: #000000;
@@ -50,7 +48,6 @@
   background: -o-linear-gradient(45deg, #cedce7 0%, #596a72 100%);
   background: linear-gradient(45deg, #cedce7 0%, #596a72 100%);
 }
-
 .HomeOffer-front:after {
   position: absolute;
   top: 0;
@@ -75,7 +72,6 @@
   transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1),
     -webkit-transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
-
 .HomeOffer-back {
   position: absolute;
   top: 0;
@@ -100,35 +96,30 @@
   perspective: inherit;
   z-index: 2;
 }
-
 .HomeOffer-container .HomeOffer-back {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
-
 .HomeOffer-container .HomeOffer-front {
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
-
 .HomeOffer-container:hover .HomeOffer-back {
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
-
 .HomeOffer-container:hover .HomeOffer-front {
   -webkit-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
-
 .HomeOffer-front .HomeOffer-inner p {
   font-size: 2rem;
   margin-bottom: 2rem;
@@ -137,7 +128,6 @@
 .HomeOffer-front .HomeOffer-inner p::first-letter {
   text-transform: uppercase;
 }
-
 .HomeOffer-front .HomeOffer-inner p:after {
   content: "";
   width: 4rem;
@@ -150,30 +140,121 @@
   margin: 0 auto;
   bottom: -0.75rem;
 }
-
 .HomeOffer-front .HomeOffer-inner span {
   color: rgba(255, 255, 255, 0.7);
   font-family: "Montserrat";
   font-weight: 300;
 }
-
 @media screen and (max-width: 64rem) {
   .HomeOffer-col {
     width: calc(33.333333% - 2rem);
   }
 }
-
 @media screen and (max-width: 48rem) {
   .HomeOffer-col {
     width: calc(50% - 2rem);
   }
 }
-
 @media screen and (max-width: 32rem) {
   .HomeOffer-col {
     width: 100%;
     margin: 0 0 2rem 0;
   }
 }
-
 /* for home offer design */
+
+/* home header start */
+.HomeHeader-hero-image {
+  width: 100%;
+  object-fit: cover;
+  height: 400px;
+}
+.HomeHeader-introduction {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 340px;
+  text-align: center;
+}
+.HomeHeader-introduction p {
+  font-size: 1.24rem;
+  margin: 0 auto;
+  max-width: 800px;
+  margin-bottom: 2rem;
+  background: linear-gradient(to right, #92e549, #6ac6d6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.HomeHeader-how-we-help {
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+}
+.HomeHeader-how-we-help h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+.HomeHeader-help-cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.HomeHeader-help-card {
+  flex: 1;
+  min-width: 220px;
+  max-width: 340px;
+  background-color: #1c1819;
+  color: #f0f0f0;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.HomeHeader-help-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.HomeHeader-help-card p {
+  margin: 1rem 0;
+}
+.HomeHeader-help-icon {
+  height: 250px;
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 20px;
+}
+
+.HomeHeader-redirect {
+  padding: 50px 0;
+  text-align: center;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 20px;
+}
+.HomeHeader-redirect h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+.HomeHeader-redirect p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+.HomeHeader-redirect a {
+  padding: 12px 25px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  color: black;
+}
+.HomeHeader-redirect .arrow {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 15px solid #007bff;
+  margin: 20px auto;
+}
+/* home header end */

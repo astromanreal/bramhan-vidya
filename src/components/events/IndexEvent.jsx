@@ -30,7 +30,6 @@ export function AllEvents() {
 
   return (
     <>
-      <h1>List of all events</h1>
       <div className="event-card-container">
         {events.map((event) => (
           <EventCard data={event} />

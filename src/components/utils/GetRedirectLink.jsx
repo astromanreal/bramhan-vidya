@@ -11,14 +11,16 @@ export default function GetRedirectLink({ path, text }) {
   useEffect(() => {
     if (token) {
       const userId = GetUserId();
-      axios
-        .get(`${apiUrl}/users/user/${userId}`)
-        .then((response) => {
-          setUserRole(response.data.role);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      if (userId !== 0) {
+        axios
+          .get(`${apiUrl}/users/user/${userId}`)
+          .then((response) => {
+            setUserRole(response.data.role);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
     }
   }, [token]);
 

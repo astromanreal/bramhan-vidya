@@ -5,11 +5,19 @@ export default function GetUserId() {
   if (!token) {
     return 0;
   }
+
+  // Validate token format
+  const tokenParts = token.split(".");
+  if (tokenParts.length !== 3) {
+    console.error("Invalid token format");
+    return 0;
+  }
+
   try {
     const decodedToken = jwtDecode(token);
     return decodedToken.userId;
   } catch (error) {
-    alert(error.message || "Error while decoding the Token");
+    console.error("Error decoding token:", error);
     return 0;
   }
 }
