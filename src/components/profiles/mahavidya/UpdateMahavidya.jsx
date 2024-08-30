@@ -20,6 +20,7 @@ export default function UpdateMahavidya() {
     benefit: "",
     festival: "",
     region: "",
+    otherNames: "",
     notes: [{ key: "", value: "" }],
   });
 
@@ -121,7 +122,7 @@ export default function UpdateMahavidya() {
             type="text"
             name="title"
             placeholder="commonly known as"
-            value={formData.image}
+            value={formData.title}
             onChange={handleChange}
           />
         </div>
@@ -131,7 +132,7 @@ export default function UpdateMahavidya() {
             type="text"
             name="description"
             placeholder="Short introduction"
-            value={formData.image}
+            value={formData.description}
             onChange={handleChange}
           />
         </div>
@@ -209,7 +210,7 @@ export default function UpdateMahavidya() {
           <label>Festival:</label>
           <input
             type="text"
-            name="festivals"
+            name="festival"
             placeholder="Festival dedicated to the Mahavidya"
             value={formData.festival}
             onChange={handleChange}
@@ -222,6 +223,16 @@ export default function UpdateMahavidya() {
             name="region"
             placeholder="Region where the Mahavidya is prominently worshipped"
             value={formData.region}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Other Names :</label>
+          <input
+            type="text"
+            name="otherNames"
+            placeholder="Any nick names"
+            value={formData.otherNames}
             onChange={handleChange}
           />
         </div>

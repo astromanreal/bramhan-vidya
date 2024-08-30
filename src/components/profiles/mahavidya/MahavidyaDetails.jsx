@@ -62,7 +62,7 @@ export default function MahavidyaDetails() {
   return (
     <>
       <div id="profile-detail-container">
-        <h1>{mahavidya.name}</h1>
+        <h1> Maa {mahavidya.name}</h1>
         <p className="description">{mahavidya.description}</p>
         <p className="profile-info">
           👁️: {mahavidya.views} | ✎ :{" "}
@@ -81,10 +81,10 @@ export default function MahavidyaDetails() {
         <hr />
         <div>
           <p>
-            <strong>Attribute:</strong> {mahavidya.attribute}
+            <strong>Iconography:</strong> {mahavidya.iconography}
           </p>
           <p>
-            <strong>Iconography:</strong> {mahavidya.iconography}
+            <strong>Attribute:</strong> {mahavidya.attribute}
           </p>
           <p>
             <strong>Symbolism:</strong> {mahavidya.symbolism}
@@ -96,17 +96,21 @@ export default function MahavidyaDetails() {
           <p>
             <strong>Mantra:</strong> {mahavidya.mantra}
           </p>
-          <p>
-            <strong>Worship Practice:</strong> {mahavidya.worshipPractice}
-          </p>
-          <p>
-            <strong>Benefit:</strong> {mahavidya.benefit}
-          </p>
+
           <p>
             <strong>Festival:</strong> {mahavidya.festival}
           </p>
           <p>
             <strong>Region:</strong> {mahavidya.region}
+          </p>
+          <p>
+            <strong>Benefit:</strong> {mahavidya.benefit}
+          </p>
+          <p>
+            <strong>Worship Practice:</strong> {mahavidya.worshipPractice}
+          </p>
+          <p>
+            <strong>Other Names:</strong> {mahavidya.otherNames}
           </p>
         </div>
         <hr />

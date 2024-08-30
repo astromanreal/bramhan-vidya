@@ -17,7 +17,7 @@ export default function ProfileCard({ data }) {
         <div id="profile-contents">
           <h2>{data.name}</h2>
           <h4>{data.title || "No title given"}</h4>
-          <p>Om Namah Shivaya</p>
+          <p>{data.mantra || "not available"}</p>
         </div>
       </div>
     </>
