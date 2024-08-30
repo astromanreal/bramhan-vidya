@@ -1,5 +1,5 @@
 /* profile index page card */
-#profile-page-list {
+.profile-page-list {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -48,7 +48,7 @@
 
 #profile-card img {
   width: 100%;
-  height: 270px;
+  height: 280px;
   border-radius: 10px 10px 0 0;
   object-fit: cover;
   transition: transform 0.3s ease;
@@ -63,6 +63,7 @@
   text-transform: capitalize;
   position: relative;
   z-index: 1;
+  min-height: 150px;
   background-color: rgba(24, 23, 23, 0.7);
   backdrop-filter: blur(2px);
 }

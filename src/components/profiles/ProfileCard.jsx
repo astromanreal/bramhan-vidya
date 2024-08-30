@@ -12,7 +12,6 @@ export default function ProfileCard({ data }) {
               "https://cdn.pixabay.com/photo/2015/12/26/08/14/rishikesh-1108399_640.jpg"
             }
             alt="Lord Shiva"
-            id="clickable-img"
           />
         </Link>
         <div id="profile-contents">

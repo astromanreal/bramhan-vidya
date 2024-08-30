@@ -56,7 +56,10 @@ export default function MyProfile() {
           userProfile ? (
             <div className="user-profile-info">
               <img
-                src={userProfile.avatar}
+                src={
+                  userProfile.avatar ||
+                  "https://i.postimg.cc/3xPxN5WN/user-alt-image.png"
+                }
                 alt="User Avatar"
                 className="user-avatar"
               />

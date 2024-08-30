@@ -181,7 +181,7 @@ export default function Addshakti() {
           <label>Sacred Text:</label>
           <input
             type="text"
-            name="sacredTexts"
+            name="sacredText"
             placeholder="Text or scripture mentioning Shakti."
             value={formData.sacredText}
             onChange={handleChange}

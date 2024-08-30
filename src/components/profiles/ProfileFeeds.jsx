@@ -57,15 +57,18 @@ export default function ProfileFeeds() {
                     }
                     alt={item.title}
                   />
-                  <h2>{item.title}</h2>
-                  <p>{item.desciption || "Description not available!"}</p>
-                  <button
-                    onClick={() => {
-                      navigate(`/profile/${item.path}/${item._id}`);
-                    }}
-                  >
-                    Know more..
-                  </button>
+                  <div className="slider-card-content">
+                    <h2>{item.title}</h2>
+                    <h3>{item.name}</h3>
+                    <p>{item.description || "Description not available!"}</p>
+                    <button
+                      onClick={() => {
+                        navigate(`/profile/${item.path}/${item._id}`);
+                      }}
+                    >
+                      Know more..
+                    </button>
+                  </div>
                 </div>
               ))}
             </Slider>

@@ -116,7 +116,7 @@ export default function Profiles() {
       </header>
       <ProfileFeeds />
       <h1>Explore all Charecters by Categories:</h1>
-      <div id="profile-page-list">
+      <div className="profile-page-list">
         {profileList.map((p) => (
           <div key={p.path} id="profile-page-card">
             <Link to={p.path}>
