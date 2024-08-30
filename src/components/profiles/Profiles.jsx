@@ -2,33 +2,19 @@ import { Link } from "react-router-dom";
 import "./Profile.css";
 import * as img from "./img/exports";
 import ProfileFeeds from "./ProfileFeeds";
+import { Helmet } from "react-helmet";
 
 export default function Profiles() {
   const profileList = [
     {
+      title: "Adi Shakti",
+      path: "shakti",
+      image: img.shaktiImg,
+    },
+    {
       title: "Ganesh",
       path: "ganesha",
       image: img.ganeshImg,
-    },
-    {
-      title: "Chiranjivi",
-      path: "chiranjivi",
-      image: img.chiranjiviImg,
-    },
-    {
-      title: "Ramayana",
-      path: "ramayana",
-      image: img.ramayanaImg,
-    },
-    {
-      title: "Mahabharat",
-      path: "mahabharat",
-      image: img.mahabharatImg,
-    },
-    {
-      title: "Nav Graha",
-      path: "navagraha",
-      image: img.navagrahaImg,
     },
     {
       title: "Nav Durga",
@@ -51,19 +37,9 @@ export default function Profiles() {
       image: img.vishnuImg,
     },
     {
-      title: "Adi Shakti",
-      path: "shakti",
-      image: img.shaktiImg,
-    },
-    {
-      title: "Vanars",
-      path: "vanara",
-      image: img.vanaraImg,
-    },
-    {
-      title: "Rishis",
-      path: "rishi",
-      image: img.rishiImg,
+      title: "Goddess",
+      path: "goddess",
+      image: img.goddessImg,
     },
     {
       title: "Gods",
@@ -71,14 +47,34 @@ export default function Profiles() {
       image: img.godImg,
     },
     {
-      title: "Goddess",
-      path: "goddess",
-      image: img.goddessImg,
+      title: "Ramayana",
+      path: "ramayana",
+      image: img.ramayanaImg,
+    },
+    {
+      title: "Mahabharat",
+      path: "mahabharat",
+      image: img.mahabharatImg,
+    },
+    {
+      title: "Nav Graha",
+      path: "navagraha",
+      image: img.navagrahaImg,
     },
     {
       title: "Nagas",
       path: "naga",
       image: img.nagaImg,
+    },
+    {
+      title: "Rishis",
+      path: "rishi",
+      image: img.rishiImg,
+    },
+    {
+      title: "Vanars",
+      path: "vanara",
+      image: img.vanaraImg,
     },
     {
       title: "Celestial",
@@ -96,6 +92,11 @@ export default function Profiles() {
       image: img.demonImg,
     },
     {
+      title: "Chiranjivi",
+      path: "chiranjivi",
+      image: img.chiranjiviImg,
+    },
+    {
       title: "Modern",
       path: "modern",
       image: img.modernImg,
@@ -103,6 +104,18 @@ export default function Profiles() {
   ];
   return (
     <>
+      <Helmet>
+        <meta property="og:title" content="Characters in Hinduism" />
+        <meta
+          property="og:description"
+          content="Explore the diverse and fascinating characters from Hindu mythology. This collection includes gods, demons, sages, and more, each with unique stories and attributes that enrich the tapestry of Hindu beliefs and traditions."
+        />
+        <meta
+          property="og:image"
+          content="https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
+        />
+        <title>Characters in Hinduism</title>
+      </Helmet>
       <header id="profile-img-header">
         <div className="profile-overlay">
           <h1>Characters in Hinduism</h1>

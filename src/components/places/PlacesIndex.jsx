@@ -6,21 +6,6 @@ import PlaceFeed from "./PlaceFeed";
 export default function PlacesIndex() {
   const placeList = [
     {
-      title: "Ashta Veeratta Sthalams",
-      path: "ashta-veeratta-sthalams",
-      image: img.ashta_veeratta_sthalams_img,
-    },
-    {
-      title: "Ashtavinayaka",
-      path: "ashta-vinayaka",
-      image: img.ashtavinayaka_img,
-    },
-    {
-      title: "chakra Vaishnava temple",
-      path: "chakra-vaishnava",
-      image: img.chakra_vaishnava_img,
-    },
-    {
       title: "Char Dham",
       path: "char-dham",
       image: img.char_dham_img,
@@ -29,6 +14,11 @@ export default function PlacesIndex() {
       title: "Chota Char Dham",
       path: "chota-char-dham",
       image: img.chota_char_dham_img,
+    },
+    {
+      title: "Sapt Puri",
+      path: "sapt-puri",
+      image: img.sapt_puri_img,
     },
     {
       title: "Divya Desam",
@@ -41,19 +31,19 @@ export default function PlacesIndex() {
       image: img.jyotrilinga_img,
     },
     {
-      title: "Maha Shakti Pitha",
-      path: "maha-shakti-pitha",
-      image: img.maha_shakti_peeth_img,
+      title: "Panch Kedar",
+      path: "panch-kedar",
+      image: img.panch_kedar_img,
     },
     {
-      title: "Natchathara",
-      path: "natchathara",
-      image: img.natchathara_temple_img,
+      title: "Ashta Veeratta Sthalams",
+      path: "ashta-veeratta-sthalams",
+      image: img.ashta_veeratta_sthalams_img,
     },
     {
-      title: "Navagraha Temple",
-      path: "navagraha",
-      image: img.navagraha_temple_img,
+      title: "Ashtavinayaka",
+      path: "ashta-vinayaka",
+      image: img.ashtavinayaka_img,
     },
     {
       title: "Pancharama Kshetra",
@@ -61,19 +51,24 @@ export default function PlacesIndex() {
       image: img.pancharama_kshetra_img,
     },
     {
-      title: "Pancha Sabhi",
-      path: "pancha-sabhi",
-      image: img.pancha_sabhi_img,
-    },
-    {
       title: "Panch Bhuta Sthalam",
       path: "panch-bhuta-sthalam",
       image: img.panch_bhuta_sthalam_img,
     },
     {
-      title: "Panch Kedar",
-      path: "panch-kedar",
-      image: img.panch_kedar_img,
+      title: "Maha Shakti Pitha",
+      path: "maha-shakti-pitha",
+      image: img.maha_shakti_peeth_img,
+    },
+    {
+      title: "Shakti Peeth",
+      path: "shakti-peeth",
+      image: img.shakti_peeth_img,
+    },
+    {
+      title: "Navagraha Temple",
+      path: "navagraha",
+      image: img.navagraha_temple_img,
     },
     {
       title: "Panch Prayag",
@@ -86,19 +81,24 @@ export default function PlacesIndex() {
       image: img.parasurama_shiva_img,
     },
     {
-      title: "Sapt Puri",
-      path: "sapt-puri",
-      image: img.sapt_puri_img,
-    },
-    {
-      title: "Shakti Peeth",
-      path: "shakti-peeth",
-      image: img.shakti_peeth_img,
-    },
-    {
       title: "Swayambhu Vishnu",
       path: "swayambhu-vishnu",
       image: img.swayambhu_vishnu_img,
+    },
+    {
+      title: "chakra Vaishnava temple",
+      path: "chakra-vaishnava",
+      image: img.chakra_vaishnava_img,
+    },
+    {
+      title: "Natchathara",
+      path: "natchathara",
+      image: img.natchathara_temple_img,
+    },
+    {
+      title: "Pancha Sabhi",
+      path: "pancha-sabhi",
+      image: img.pancha_sabhi_img,
     },
   ];
 
