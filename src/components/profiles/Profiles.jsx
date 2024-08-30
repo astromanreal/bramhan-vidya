@@ -125,6 +125,10 @@ export default function Profiles() {
           name="twitter:image"
           content="https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
         />
+        <meta
+          name="twitter:url"
+          content="https://bramhan-vidya.vercel.app/profile"
+        />
         <title>Characters in Hinduism</title>
       </Helmet>
       <header id="profile-img-header">
