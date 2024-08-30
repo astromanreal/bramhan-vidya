@@ -114,21 +114,6 @@ export default function Profiles() {
           property="og:image"
           content="https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
         />
-        {/*  */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Characters in Hinduism" />
-        <meta
-          name="twitter:description"
-          content="Explore the diverse and fascinating characters from Hindu mythology. This collection includes gods, demons, sages, and more, each with unique stories and attributes that enrich the tapestry of Hindu beliefs and traditions."
-        />
-        <meta
-          name="twitter:image"
-          content="https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-        />
-        <meta
-          name="twitter:url"
-          content="https://bramhan-vidya.vercel.app/profile"
-        />
         <title>Characters in Hinduism</title>
       </Helmet>
       <header id="profile-img-header">
