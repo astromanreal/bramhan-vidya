@@ -114,6 +114,17 @@ export default function Profiles() {
           property="og:image"
           content="https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
         />
+        {/*  */}
+        <meta
+          name="twitter:card"
+          content="Explore the diverse and fascinating characters from Hindu mythology. This collection includes gods, demons, sages, and more, each with unique stories and attributes that enrich the tapestry of Hindu beliefs and traditions."
+        />
+        <meta name="twitter:site" content="@Sathyamsarthak" />
+        <meta name="twitter:creator" content="@Sathyamsarthak" />
+        <meta
+          name="twitter:image"
+          content="https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
+        />
         <title>Characters in Hinduism</title>
       </Helmet>
       <header id="profile-img-header">
