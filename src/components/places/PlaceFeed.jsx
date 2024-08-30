@@ -1,19 +1,31 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import apiUrl from "../utils/GetApiUrl";
+import Slider from "react-slick";
+import axios from "axios";
 
 export default function PlaceFeed() {
   const navigate = useNavigate();
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [slideIndex, setSlideIndex] = useState(0);
+  const settings = {
+    infinite: true,
+    slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    speed: 1000,
+    pauseOnHover: true,
+    slidesToScroll: 1,
+    beforeChange: (prev, next) => setSlideIndex(next),
+  };
 
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/users/placefeed"
-        );
+        const { data } = await axios.get(`${apiUrl}/users/placefeed`);
         if (data?.success) {
           setPlaces(data.data);
         } else {
@@ -28,69 +40,45 @@ export default function PlaceFeed() {
 
     fetchPlaces();
   }, []);
-
-  const handleNextPlace = () => {
-    if (currentIndex < places.length - 1) {
-      setCurrentIndex((prevIndex) => prevIndex + 1);
-    }
-  };
-
-  const handlePrevPlace = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prevIndex) => prevIndex - 1);
-    }
-  };
-
-  const handleViewMore = () => {
-    const currentPlace = places[currentIndex];
-    if (currentPlace) {
-      const placeId = currentPlace._id;
-      const placePath = currentPlace.path;
-      navigate(`/place/${placePath}/${placeId}`);
-    }
-  };
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  const currentPlace = places[currentIndex] || {};
-
   return (
     <>
-      <div id="profile-feed">
-        <div className="profile-feed-card">
-          <img
-            src={
-              "https://images.pexels.com/photos/20035462/pexels-photo-20035462/free-photo-of-elderly-woman-meditating-in-front-of-a-statue-of-parvati-on-the-ganges.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            alt={currentPlace.name || "Place"}
-          />
-          <div className="profile-contents">
-            <h2>{currentPlace.name}</h2>
+      <section className="slider-section">
+        <div className="slider-container">
+          {loading ? (
+            <p>Loading Place feeds...</p>
+          ) : (
+            <Slider {...settings}>
+              {places.map((item, index) => (
+                <div className="slider-card" key={index}>
+                  <img
+                    src={
+                      item.image ||
+                      "https://i.postimg.cc/D00tczxn/places-alt-image.jpg"
+                    }
+                    alt={item.name}
+                  />
+                  <h2>{item.name}</h2>
+                  <p>{item.desciption || "Description not available!"}</p>
+                  <button
+                    onClick={() => {
+                      navigate(`/place/${item.path}/${item._id}`);
+                    }}
+                  >
+                    Know more..
+                  </button>
+                </div>
+              ))}
+            </Slider>
+          )}
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
             <p>
-              <strong>Type:</strong> {currentPlace.path || "N/A"}
+              Place {slideIndex + 1} of {places.length}
             </p>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita
-              maiores unde nostrum harum animi asperiores ab recusandae itaque
-              nam porro.
-            </p>
-          </div>
-          <div className="profile-buttons">
-            <button onClick={handlePrevPlace} disabled={currentIndex === 0}>
-              Previous
-            </button>{" "}
-            <button onClick={handleViewMore}>View More</button>
-            <button
-              onClick={handleNextPlace}
-              disabled={currentIndex === places.length - 1}
-            >
-              Next
-            </button>
-          </div>
-        </div>
-      </div>
+          )}
+        </div>{" "}
+      </section>
     </>
   );
 }

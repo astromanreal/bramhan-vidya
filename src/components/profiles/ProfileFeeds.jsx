@@ -1,19 +1,31 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import apiUrl from "./../utils/GetApiUrl";
+import Slider from "react-slick";
+import axios from "axios";
 
-export default function Feed() {
+export default function ProfileFeeds() {
   const navigate = useNavigate();
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [slideIndex, setSlideIndex] = useState(0);
+  const settings = {
+    infinite: true,
+    slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    speed: 1000,
+    pauseOnHover: true,
+    slidesToScroll: 1,
+    beforeChange: (prev, next) => setSlideIndex(next),
+  };
 
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
-        const { data } = await axios.get(
-          "https://bramhan-vidya-api.vercel.app/users/profilefeed"
-        );
+        const { data } = await axios.get(`${apiUrl}/users/profilefeed`);
         if (data?.success) {
           setProfiles(data.data);
         } else {
@@ -28,71 +40,45 @@ export default function Feed() {
 
     fetchProfiles();
   }, []);
-
-  const handleNextProfile = () => {
-    if (currentIndex < profiles.length - 1) {
-      setCurrentIndex((prevIndex) => prevIndex + 1);
-    }
-  };
-
-  const handlePrevProfile = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prevIndex) => prevIndex - 1);
-    }
-  };
-
-  const handleViewMore = () => {
-    const currentProfile = profiles[currentIndex];
-    if (currentProfile) {
-      const profileId = currentProfile._id;
-      const profilePath = currentProfile.path;
-      navigate(`/profile/${profilePath}/${profileId}`);
-    }
-  };
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  const currentProfile = profiles[currentIndex] || {};
-
   return (
     <>
-      <div id="profile-feed">
-        <div className="profile-feed-card">
-          <img
-            src={
-              currentProfile.images && currentProfile.images.length > 0
-                ? currentProfile.images[0]
-                : "https://img.freepik.com/free-photo/young-woman-walking-wooden-path-with-green-rice-field-vang-vieng-laos_335224-1258.jpg?size=626&ext=jpg&ga=GA1.1.557400312.1722491267&semt=ais_hybrid"
-            }
-            alt={currentProfile.name || "Profile"}
-          />
-          <div className="profile-contents">
-            <h2>{currentProfile.name}</h2>
+      <section className="slider-section">
+        <div className="slider-container">
+          {loading ? (
+            <p>Loading profile feeds...</p>
+          ) : (
+            <Slider {...settings}>
+              {profiles.map((item, index) => (
+                <div className="slider-card" key={index}>
+                  <img
+                    src={
+                      item.image ||
+                      "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
+                    }
+                    alt={item.title}
+                  />
+                  <h2>{item.title}</h2>
+                  <p>{item.desciption || "Description not available!"}</p>
+                  <button
+                    onClick={() => {
+                      navigate(`/profile/${item.path}/${item._id}`);
+                    }}
+                  >
+                    Know more..
+                  </button>
+                </div>
+              ))}
+            </Slider>
+          )}
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
             <p>
-              <strong>Title:</strong> {currentProfile.title || "N/A"}
+              Profile {slideIndex + 1} of {profiles.length}
             </p>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita
-              maiores unde nostrum harum animi asperiores ab recusandae itaque
-              nam porro.
-            </p>
-          </div>
-          <div className="profile-buttons">
-            <button onClick={handlePrevProfile} disabled={currentIndex === 0}>
-              Previous
-            </button>{" "}
-            <button onClick={handleViewMore}>View More</button>
-            <button
-              onClick={handleNextProfile}
-              disabled={currentIndex === profiles.length - 1}
-            >
-              Next
-            </button>
-          </div>
-        </div>
-      </div>
+          )}
+        </div>{" "}
+      </section>
     </>
   );
 }
