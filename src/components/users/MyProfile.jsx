@@ -96,7 +96,7 @@ export default function MyProfile() {
         )}
       </div>
 
-      <MyDocumentSlider />
+      {token && <MyDocumentSlider />}
     </>
   );
 }

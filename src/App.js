@@ -1,6 +1,6 @@
 import "./App.css";
 import { Toaster } from "react-hot-toast";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./components/home/Home";
 import Profiles from "./components/profiles/Profiles";
 import PlacesIndex from "./components/places/PlacesIndex";
@@ -15,11 +15,20 @@ import eventRoutes from "./routes/eventRoutes";
 import blogRoutes from "./routes/BlogRoutes";
 import ExplorePage from "./components/home/ExplorePage";
 import Navbar from "./components/home/Navbar";
+import { useEffect } from "react";
+import ScrollToTop from "./components/utils/ScrollToTop";
 
 function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <>
       <Navbar />
+      <ScrollToTop />
       <Toaster
         position="top-right"
         toastOptions={{

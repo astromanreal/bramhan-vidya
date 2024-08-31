@@ -13,6 +13,23 @@
 }
 /*  get redirect link compo */
 
+/* go to top in utils */
+.goToTopBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 100;
+  font-size: 36px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.goToTopBtn:hover {
+  transform: scale(1.4);
+}
+/* go to top in utils */
+
 /* profile and place index page slider */
 .slider-section {
   margin: 0 2rem;
