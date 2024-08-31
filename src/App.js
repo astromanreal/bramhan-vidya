@@ -14,10 +14,12 @@ import TechRoutes from "./routes/techRoutes";
 import eventRoutes from "./routes/eventRoutes";
 import blogRoutes from "./routes/BlogRoutes";
 import ExplorePage from "./components/home/ExplorePage";
+import Navbar from "./components/home/Navbar";
 
 function App() {
   return (
     <>
+      <Navbar />
       <Toaster
         position="top-right"
         toastOptions={{

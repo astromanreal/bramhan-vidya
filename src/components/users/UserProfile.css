@@ -16,3 +16,11 @@
   color: rgb(255, 255, 255);
   position: relative;
 }
+
+.my-document-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 40vh;
+  justify-content: center;
+  align-items: center;
+}
