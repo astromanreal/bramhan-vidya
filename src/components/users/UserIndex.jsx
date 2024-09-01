@@ -5,21 +5,72 @@ import apiUrl from "../utils/GetApiUrl";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function UserIndex() {
-  const navigate = useNavigate();
-  const token = localStorage.getItem("Token");
   return (
     <>
-      <div id="user-index">
-        <h1>User Index</h1>
-        <div className="button-container">
-          <button onClick={() => navigate("login")}>Login</button>
-          <button onClick={() => navigate("signup")}>Sign Up</button>
-        </div>
-      </div>
-      {token && (
-        <button onClick={() => navigate("/myprofile")}>My Profile</button>
-      )}
+      <UserGuide />
     </>
+  );
+}
+export function UserGuide() {
+  return (
+    <div className="user-guide">
+      <h1 className="title">Welcome to Sanatan Dharma!</h1>
+      <p className="description">
+        This platform is designed to provide a comprehensive resource for
+        Hinduism-related information. As an admin, you will be responsible for
+        adding and managing data on this platform to ensure its accuracy and
+        integrity.
+      </p>
+
+      <h2 className="section-title">Rules and Guidelines</h2>
+      <p className="section-description">
+        Please follow these rules and guidelines to maintain the platform's
+        integrity and accuracy:
+      </p>
+      <ul className="rules-list">
+        <li>Verify the accuracy of data before adding it to the platform.</li>
+        <li>Ensure that all added data has authentic sources.</li>
+        <li>
+          Avoid adding content that may be considered offensive or sensitive.
+        </li>
+        <li>
+          Take responsibility for spreading Dharma accurately and respectfully.
+        </li>
+      </ul>
+
+      <h2 className="section-title">Adding Data</h2>
+      <p className="section-description">
+        Login to your admin account, then follow these steps:
+      </p>
+      <ol className="steps-list">
+        <li>
+          Visit the <Link to="/explore">Explore Page</Link> and choose the type
+          of data to add.
+        </li>
+        <li>Click on the "Add Here" link at the bottom of the page.</li>
+        <li>
+          Conduct thorough research and utilize AI tools to verify information.
+        </li>
+        <li>Enter the data in the required fields accurately.</li>
+        <li>Click "Submit" to add the data to the platform.</li>
+      </ol>
+
+      <h2 className="section-title">Managing Data</h2>
+      <p className="section-description">
+        Login to your admin account, then follow these steps:
+      </p>
+      <ol className="steps-list">
+        <li>Visit "My Profile" to view all documents created by you.</li>
+        <li>
+          Click on the "Revise Content" button for the data you want to edit.
+        </li>
+        <li>Find the data you want to edit or delete.</li>
+        <li>Click "Submit" to modify the data.</li>
+      </ol>
+      <p className="go-back-to-profile">
+        <Link to="/myprofile">Return to Your Profile</Link>
+      </p>
+    </div>
   );
 }
 

@@ -25,7 +25,13 @@ export default function UserProfile() {
       <div id="user-profile-holder">
         <div id="user-basic-info">
           <h1>{user.username}</h1>
-          <img src={user.avatar} alt="User Avatar" className="user-avatar" />
+          <img
+            src={
+              user.avatar || "https://i.postimg.cc/3xPxN5WN/user-alt-image.png"
+            }
+            alt="User Avatar"
+            className="user-avatar"
+          />
           <p>Name: {user.name}</p>
           <p>Email: {user.email}</p>
         </div>

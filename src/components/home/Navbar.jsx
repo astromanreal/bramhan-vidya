@@ -52,11 +52,6 @@ export default function Navbar() {
                 </Link>
               </li>
             )}
-            <li>
-              <Link to="more" className="nav-link">
-                More
-              </Link>
-            </li>
           </ul>
           <div className="navbar-toggler">
             <input

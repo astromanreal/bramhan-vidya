@@ -38,6 +38,7 @@ export default function MyProfile() {
   };
 
   const handleBecomeAdmin = async () => {
+    navigate("/user");
     try {
       const decodedToken = jwtDecode(token);
       const userId = decodedToken.userId;
@@ -54,20 +55,18 @@ export default function MyProfile() {
   return (
     <>
       <div id="user-profile-container">
-        <h1>My Profile</h1>
         {token ? (
           userProfile ? (
             <div className="user-profile-info">
+              <h1>{userProfile.username}</h1>
               <img
                 src={
                   userProfile.avatar ||
                   "https://i.postimg.cc/3xPxN5WN/user-alt-image.png"
                 }
-                alt="User Avatar"
-                className="user-avatar"
+                alt={`${userProfile.name} not found`}
               />
-              <p>Email: {userProfile.email}</p>
-              <p>Username: {userProfile.username}</p>
+              <p>{userProfile.email}</p>
             </div>
           ) : (
             <p>Loading user information...</p>
@@ -83,7 +82,7 @@ export default function MyProfile() {
           </div>
         )}
         {token && (
-          <div>
+          <div className="user-profile-info">
             <button className="logout-btn" onClick={handleLogout}>
               Logout
             </button>

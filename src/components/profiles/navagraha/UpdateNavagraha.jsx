@@ -216,7 +216,7 @@ export default function UpdateNavagraha() {
           <label>Festival:</label>
           <input
             type="text"
-            name="festivals"
+            name="festival"
             placeholder="Main festival associated with"
             value={formData.festival}
             onChange={handleChange}
@@ -226,7 +226,7 @@ export default function UpdateNavagraha() {
           <label>Temple:</label>
           <input
             type="text"
-            name="temples"
+            name="temple"
             placeholder="Main or popular temple"
             value={formData.temple}
             onChange={handleChange}
