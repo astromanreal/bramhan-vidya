@@ -32,9 +32,8 @@
 .profile-card-holder {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1000px;
-  margin: 0 auto;
   gap: 20px;
+  align-items: center;
   justify-content: center;
   margin: 20px;
 }
@@ -213,7 +212,7 @@
 /* add profile data */
 #add-profile-form {
   max-width: 600px;
-  margin: 0 auto;
+  margin: 4rem auto;
   background-color: #8b8989;
   padding: 20px;
   border-radius: 5px;

@@ -72,9 +72,6 @@ export default function DetailsBook() {
             <strong>Category:</strong> {book.category}
           </p>
           <p>
-            <strong>Subcategory:</strong> {book.subcategory}
-          </p>
-          <p>
             <strong>Type: </strong>
             {book.type}
           </p>
@@ -100,12 +97,14 @@ export default function DetailsBook() {
         </div>
         <hr />
 
-        {book.googleBookSrc && (
+        {book.googleBookSrc ? (
           <iframe
             title="Google Books Preview"
             src={`${book.googleBookSrc}&pg=PA1`}
             className="google-books-iframe"
           />
+        ) : (
+          <p>Loading book...</p>
         )}
 
         {GetUserId() === (book && book.userId) && (

@@ -50,10 +50,7 @@ export function TechCard({ data }) {
       {data && (
         <div class="tech-card">
           <div class="tech-card-image">
-            <img
-              src="https://i.postimg.cc/D0bRyws5/puspak.jpg"
-              alt="Description"
-            />
+            <img src={data.image} alt="Description" />
           </div>
           <div class="tech-card-content">
             <div class="tech-meta">

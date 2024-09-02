@@ -15,8 +15,8 @@ export function HomeHeader() {
   return (
     <>
       <img
-        src="https://i.postimg.cc/fTKCFdTw/home-header.jpg"
-        alt="Lush Green Fields"
+        src="https://i.postimg.cc/Gmrg6MN3/home-hero.jpg"
+        alt="Sanatan dharma is great!"
         className="HomeHeader-hero-image"
       />
       <section className="HomeHeader-introduction">

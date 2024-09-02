@@ -27,7 +27,7 @@ export default function UserProfile() {
           <h1>{user.username}</h1>
           <img
             src={
-              user.avatar || "https://i.postimg.cc/3xPxN5WN/user-alt-image.png"
+              user.avatar || "https://i.postimg.cc/9QW1LDRr/user-alt-image.png"
             }
             alt="User Avatar"
             className="user-avatar"

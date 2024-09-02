@@ -11,6 +11,7 @@ export default function AddTopics() {
     name: "",
     userId: GetUserId(),
     description: "",
+    image: "",
     randomKeyDetails: [{ key: "", value: "" }],
     lists: [{ listName: "", items: [""] }],
   });
@@ -33,7 +34,6 @@ export default function AddTopics() {
             items: list.items.filter((item) => item),
           })),
       };
-
       try {
         await axios.post(`${apiUrl}/topics/addtopics`, filteredTopic);
         toast.success("Data added successfully!");
@@ -127,6 +127,13 @@ export default function AddTopics() {
         <textarea
           name="description"
           value={topic.description}
+          onChange={handleInputChange}
+        />
+        <label>Image: </label>
+        <input
+          type="url"
+          name="image"
+          value={topic.image}
           onChange={handleInputChange}
         />
         <div className="add-topic-container">

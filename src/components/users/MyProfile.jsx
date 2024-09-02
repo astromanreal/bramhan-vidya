@@ -62,7 +62,7 @@ export default function MyProfile() {
               <img
                 src={
                   userProfile.avatar ||
-                  "https://i.postimg.cc/3xPxN5WN/user-alt-image.png"
+                  "https://i.postimg.cc/9QW1LDRr/user-alt-image.png"
                 }
                 alt={`${userProfile.name} not found`}
               />
@@ -100,15 +100,90 @@ export default function MyProfile() {
   );
 }
 
-export function MyDocumentSlider() {
+const SingleDocumentCard = ({ document }) => {
   const navigate = useNavigate();
-  const [topicDocuments, setTopicDocuments] = useState([]);
-  const [blogDocuments, setBlogDocuments] = useState([]);
-  const [eventDocuments, setEventDocuments] = useState([]);
-  const [techDocuments, setTechDocuments] = useState([]);
-  const [bookDocuments, setBookDocuments] = useState([]);
-  const [profileDocuments, setProfileDocuments] = useState([]);
-  const [placeDocuments, setPlaceDocuments] = useState([]);
+  const redirectUrls = {
+    topic: `/topic/${document._id}`,
+    blog: `/blog/${document._id}`,
+    event: `/event/${document._id}`,
+    tech: `/tech/${document._id}`,
+    book: `/book/${document._id}`,
+    profile: `/profile/${document.path}/${document._id}`,
+    place: `/place/${document.path}/${document._id}`,
+  };
+  return (
+    <div className="doc-card">
+      <img
+        src={document.image || "https://i.postimg.cc/GpXfFkXL/topics.jpg"}
+        alt={document.title}
+        className="doc-image"
+      />
+      <div className="doc-content">
+        <h2>{document.title}</h2>
+        <h3>{document.name}</h3>
+        <p>
+          {document.description ||
+            document.subtitle ||
+            "Description not available!"}
+        </p>
+        <button
+          onClick={() => navigate(redirectUrls[document.type])}
+          className="doc-btn"
+        >
+          Revise Content
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const DocumentCard = ({ document }) => {
+  const navigate = useNavigate();
+  const redirectUrls = {
+    topic: `/topic/${document._id}`,
+    blog: `/blog/${document._id}`,
+    event: `/event/${document._id}`,
+    tech: `/tech/${document._id}`,
+    book: `/book/${document._id}`,
+    profile: `/profile/${document.path}/${document._id}`,
+    place: `/place/${document.path}/${document._id}`,
+  };
+  return (
+    <div className="doc-card">
+      <img
+        src={document.image || "https://i.postimg.cc/GpXfFkXL/topics.jpg"}
+        alt={document.title}
+        className="doc-image"
+      />
+      <div className="doc-content">
+        <h2>{document.title}</h2>
+        <h3>{document.name}</h3>
+        <p>
+          {document.description ||
+            document.subtitle ||
+            "Description not available!"}
+        </p>
+        <button
+          onClick={() => navigate(redirectUrls[document.type])}
+          className="doc-btn"
+        >
+          Revise Content
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export function MyDocumentSlider() {
+  const [documents, setDocuments] = useState({
+    topicDocuments: [],
+    blogDocuments: [],
+    eventDocuments: [],
+    techDocuments: [],
+    bookDocuments: [],
+    profileDocuments: [],
+    placeDocuments: [],
+  });
 
   const [loading, setLoading] = useState(true);
 
@@ -118,7 +193,7 @@ export function MyDocumentSlider() {
     infinite: true,
     slidesToShow: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 9000,
     speed: 1000,
     pauseOnHover: true,
     slidesToScroll: 1,
@@ -146,38 +221,47 @@ export function MyDocumentSlider() {
       },
     ],
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const topicResponse = await axios.get(
-          `${apiUrl}/users/alltopicdoc/${userId}`
-        );
-        const blogResponse = await axios.get(
-          `${apiUrl}/users/allblogdoc/${userId}`
-        );
-        const eventResponse = await axios.get(
-          `${apiUrl}/users/alleventdoc/${userId}`
-        );
-        const techResponse = await axios.get(
-          `${apiUrl}/users/alltechdoc/${userId}`
-        );
-        const bookResponse = await axios.get(
-          `${apiUrl}/users/allbookdoc/${userId}`
-        );
-        const profileResponse = await axios.get(
-          `${apiUrl}/users/allprofiledoc/${userId}`
-        );
-        const placeResponse = await axios.get(
-          `${apiUrl}/users/allplacedoc/${userId}`
-        );
+        const responses = await Promise.all([
+          axios.get(`${apiUrl}/users/alltopicdoc/${userId}`),
+          axios.get(`${apiUrl}/users/allblogdoc/${userId}`),
+          axios.get(`${apiUrl}/users/alleventdoc/${userId}`),
+          axios.get(`${apiUrl}/users/alltechdoc/${userId}`),
+          axios.get(`${apiUrl}/users/allbookdoc/${userId}`),
+          axios.get(`${apiUrl}/users/allprofiledoc/${userId}`),
+          axios.get(`${apiUrl}/users/allplacedoc/${userId}`),
+        ]);
 
-        setTopicDocuments(topicResponse.data.data);
-        setBlogDocuments(blogResponse.data.data);
-        setEventDocuments(eventResponse.data.data);
-        setTechDocuments(techResponse.data.data);
-        setBookDocuments(bookResponse.data.data);
-        setProfileDocuments(profileResponse.data.data);
-        setPlaceDocuments(placeResponse.data.data);
+        const data = responses.map((response, index) => {
+          const keys = Object.keys({
+            topicDocuments: [],
+            blogDocuments: [],
+            eventDocuments: [],
+            techDocuments: [],
+            bookDocuments: [],
+            profileDocuments: [],
+            placeDocuments: [],
+          });
+          return response.data.data.map((document) => {
+            return {
+              ...document,
+              type: keys[index].replace("Documents", "").toLowerCase(),
+            };
+          });
+        });
+
+        setDocuments({
+          topicDocuments: data[0],
+          blogDocuments: data[1],
+          eventDocuments: data[2],
+          techDocuments: data[3],
+          bookDocuments: data[4],
+          profileDocuments: data[5],
+          placeDocuments: data[6],
+        });
 
         setLoading(false);
       } catch (error) {
@@ -189,449 +273,32 @@ export function MyDocumentSlider() {
 
   return (
     <>
-      <section className="slider-section">
-        <div className="slider-container">
+      <section className="doc-slider-wrap">
+        <div className="doc-slider-inner">
           {loading ? (
-            <p>Loading your document feeds...</p>
+            <p className="loading-msg">Loading your document feeds...</p>
           ) : (
             <>
-              <div className="my-document-container">
-                <h2>Topic Documents</h2>
-                {topicDocuments.length > 0 ? (
-                  topicDocuments.length === 1 ? (
-                    <div className="slider-card">
-                      <img
-                        src={
-                          topicDocuments[0].image ||
-                          "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-                        }
-                        alt={topicDocuments[0].title}
-                      />
-                      <div className="slider-card-content">
-                        <h2>{topicDocuments[0].name}</h2>
-                        <p>
-                          {topicDocuments[0].description ||
-                            "Description not available!"}
-                        </p>
-                        <button
-                          onClick={() => {
-                            navigate(`/topic/${topicDocuments[0]._id}`);
-                          }}
-                        >
-                          Revise Content
-                        </button>
-                      </div>
-                    </div>
+              {Object.keys(documents).map((key) => (
+                <div key={key} className="doc-category">
+                  <h2 className="doc-category-title">
+                    {key.replace("Documents", " Documents")}
+                  </h2>
+                  {documents[key].length === 0 ? (
+                    <p className="no-docs-msg">
+                      No {key.replace("Documents", " documents")} available.
+                    </p>
+                  ) : documents[key].length === 1 ? (
+                    <SingleDocumentCard document={documents[key][0]} />
                   ) : (
                     <Slider {...settings}>
-                      {topicDocuments.map((document, index) => (
-                        <div className="slider-card" key={index}>
-                          <img
-                            src={
-                              document.image ||
-                              "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-                            }
-                            alt={document.title}
-                          />
-                          <div className="slider-card-content">
-                            <h2>{document.name}</h2>
-                            <p>
-                              {document.description ||
-                                "Description not available!"}
-                            </p>
-                            <button
-                              onClick={() => {
-                                navigate(`/topic/${document._id}`);
-                              }}
-                            >
-                              Revise Content
-                            </button>
-                          </div>
-                        </div>
+                      {documents[key].map((document, index) => (
+                        <DocumentCard key={index} document={document} />
                       ))}
                     </Slider>
-                  )
-                ) : (
-                  <p>No topic documents available.</p>
-                )}
-              </div>
-              {/* topic end */}
-              <div className="my-document-container">
-                <h2>Blog Documents</h2>
-                {blogDocuments.length > 0 ? (
-                  blogDocuments.length === 1 ? (
-                    <div className="slider-card">
-                      <img
-                        src={
-                          blogDocuments[0].image ||
-                          "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-                        }
-                        alt={blogDocuments[0].title}
-                      />
-                      <div className="slider-card-content">
-                        <h2>{blogDocuments[0].title}</h2>
-                        <h3>{blogDocuments[0].name}</h3>
-                        <p>
-                          {blogDocuments[0].subtitle ||
-                            "subtitle not available!"}
-                        </p>
-                        <button
-                          onClick={() => {
-                            navigate(`/blog/${blogDocuments[0]._id}`);
-                          }}
-                        >
-                          Revise Content
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <Slider {...settings}>
-                      {blogDocuments.map((document, index) => (
-                        <div className="slider-card" key={index}>
-                          <img
-                            src={
-                              document.image ||
-                              "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-                            }
-                            alt={document.title}
-                          />
-                          <div className="slider-card-content">
-                            <h2>{document.title}</h2>
-                            <h3>{document.name}</h3>
-                            <p>
-                              {document.subtitle || "subtitle not available!"}
-                            </p>
-                            <button
-                              onClick={() => {
-                                navigate(`/blog/${document._id}`);
-                              }}
-                            >
-                              Revise Content
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </Slider>
-                  )
-                ) : (
-                  <p>No blog documents available.</p>
-                )}
-              </div>
-              {/* blog end */}
-              <div className="my-document-container">
-                <h2>Event Documents</h2>
-                {eventDocuments.length > 0 ? (
-                  eventDocuments.length === 1 ? (
-                    <div className="slider-card">
-                      <img
-                        src={
-                          eventDocuments[0].image ||
-                          "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-                        }
-                        alt={eventDocuments[0].title}
-                      />
-                      <div className="slider-card-content">
-                        <h2>{eventDocuments[0].name}</h2>
-                        <p>
-                          {eventDocuments[0].description ||
-                            "Description not available!"}
-                        </p>
-                        <button
-                          onClick={() => {
-                            navigate(`/event/${eventDocuments[0]._id}`);
-                          }}
-                        >
-                          Revise Content
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <Slider {...settings}>
-                      {eventDocuments.map((document, index) => (
-                        <div className="slider-card" key={index}>
-                          <img
-                            src={
-                              document.image ||
-                              "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-                            }
-                            alt={document.title}
-                          />
-                          <div className="slider-card-content">
-                            <h2>{document.name}</h2>
-                            <p>
-                              {document.description ||
-                                "Description not available!"}
-                            </p>
-                            <button
-                              onClick={() => {
-                                navigate(`/event/${document._id}`);
-                              }}
-                            >
-                              Revise Content
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </Slider>
-                  )
-                ) : (
-                  <p>No event documents available.</p>
-                )}
-              </div>
-              {/* event end */}
-              <div className="my-document-container">
-                <h2>Tech Documents</h2>
-                {techDocuments.length > 0 ? (
-                  techDocuments.length === 1 ? (
-                    <div className="slider-card">
-                      <img
-                        src={
-                          techDocuments[0].image ||
-                          "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-                        }
-                        alt={techDocuments[0].title}
-                      />
-                      <div className="slider-card-content">
-                        <h2>{techDocuments[0].name}</h2>
-                        <p>
-                          {techDocuments[0].description ||
-                            "Description not available!"}
-                        </p>
-                        <button
-                          onClick={() => {
-                            navigate(`/tech/${techDocuments[0]._id}`);
-                          }}
-                        >
-                          Revise Content
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <Slider {...settings}>
-                      {techDocuments.map((document, index) => (
-                        <div className="slider-card" key={index}>
-                          <img
-                            src={
-                              document.image ||
-                              "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-                            }
-                            alt={document.title}
-                          />
-                          <div className="slider-card-content">
-                            <h2>{document.name}</h2>
-                            <p>
-                              {document.description ||
-                                "Description not available!"}
-                            </p>
-                            <button
-                              onClick={() => {
-                                navigate(`/tech/${document._id}`);
-                              }}
-                            >
-                              Revise Content
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </Slider>
-                  )
-                ) : (
-                  <p>No tech documents available.</p>
-                )}
-              </div>
-              {/* tech end */}
-
-              <h2>Book Documents</h2>
-              {bookDocuments.length > 0 ? (
-                bookDocuments.length === 1 ? (
-                  <div className="slider-card">
-                    <img
-                      src={
-                        bookDocuments[0].image ||
-                        "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-                      }
-                      alt={bookDocuments[0].title}
-                    />
-                    <div className="slider-card-content">
-                      <h2>{bookDocuments[0].title}</h2>
-                      <h3>{bookDocuments[0].language}</h3>
-                      <p>
-                        {bookDocuments[0].description ||
-                          "Description not available!"}
-                      </p>
-                      <button
-                        onClick={() => {
-                          navigate(`/book/${bookDocuments[0]._id}`);
-                        }}
-                      >
-                        Revise Content
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <Slider {...settings}>
-                    {bookDocuments.map((document, index) => (
-                      <div className="slider-card" key={index}>
-                        <img
-                          src={
-                            document.image ||
-                            "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-                          }
-                          alt={document.title}
-                        />
-                        <div className="slider-card-content">
-                          <h2>{document.title}</h2>
-                          <h3>{document.language}</h3>
-                          <p>
-                            {document.description ||
-                              "Description not available!"}
-                          </p>
-                          <button
-                            onClick={() => {
-                              navigate(`/book/${document._id}`);
-                            }}
-                          >
-                            Revise Content
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </Slider>
-                )
-              ) : (
-                <p>No book documents available.</p>
-              )}
-              {/* book end */}
-              <h2>Profile Documents</h2>
-              {profileDocuments.length > 0 ? (
-                profileDocuments.length === 1 ? (
-                  <div className="slider-card">
-                    <img
-                      src={
-                        profileDocuments[0].image ||
-                        "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-                      }
-                      alt={profileDocuments[0].title}
-                    />
-                    <div className="slider-card-content">
-                      <h2>{profileDocuments[0].title}</h2>
-                      <h3>{profileDocuments[0].name}</h3>
-                      <p>
-                        {profileDocuments[0].description ||
-                          "Description not available!"}
-                      </p>
-                      <button
-                        onClick={() => {
-                          navigate(
-                            `/profile/${profileDocuments[0].path}/${profileDocuments[0]._id}`
-                          );
-                        }}
-                      >
-                        Revise Content
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <Slider {...settings}>
-                    {profileDocuments.map((document, index) => (
-                      <div className="slider-card" key={index}>
-                        <img
-                          src={
-                            document.image ||
-                            "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-                          }
-                          alt={document.title}
-                        />
-                        <div className="slider-card-content">
-                          <h2>{document.title}</h2>
-                          <h3>{document.name}</h3>
-                          <p>
-                            {document.description ||
-                              "Description not available!"}
-                          </p>
-                          <button
-                            onClick={() => {
-                              navigate(
-                                `/profile/${document.path}/${document._id}`
-                              );
-                            }}
-                          >
-                            Revise Content
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </Slider>
-                )
-              ) : (
-                <p>No profile documents available.</p>
-              )}
-              {/* prifile end */}
-
-              <h2>Place Documents</h2>
-              {placeDocuments.length > 0 ? (
-                placeDocuments.length === 1 ? (
-                  <div className="slider-card">
-                    <img
-                      src={
-                        placeDocuments[0].image ||
-                        "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-                      }
-                      alt={placeDocuments[0].title}
-                    />
-                    <div className="slider-card-content">
-                      <h2>{placeDocuments[0].name}</h2>
-                      <h3>{placeDocuments[0].location.state}</h3>
-                      <p>
-                        {placeDocuments[0].description ||
-                          "Description not available!"}
-                      </p>
-                      <button
-                        onClick={() => {
-                          navigate(
-                            `/place/${placeDocuments[0].path}/${placeDocuments[0]._id}`
-                          );
-                        }}
-                      >
-                        Revise Content
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <Slider {...settings}>
-                    {placeDocuments.map((document, index) => (
-                      <div className="slider-card" key={index}>
-                        <img
-                          src={
-                            document.image ||
-                            "https://i.postimg.cc/x1vLt3JT/profiles-alt-image.jpg"
-                          }
-                          alt={document.title}
-                        />
-                        <div className="slider-card-content">
-                          <h2>{document.name}</h2>
-                          <h3>{document.location.state}</h3>
-                          <p>
-                            {document.description ||
-                              "Description not available!"}
-                          </p>
-                          <button
-                            onClick={() => {
-                              navigate(
-                                `/place/${document.path}/${document._id}`
-                              );
-                            }}
-                          >
-                            Revise Content
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </Slider>
-                )
-              ) : (
-                <p>No place documents available.</p>
-              )}
+                  )}
+                </div>
+              ))}
             </>
           )}
         </div>

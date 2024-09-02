@@ -53,19 +53,21 @@ export default function PlaceFeed() {
                   <img
                     src={
                       item.image ||
-                      "https://i.postimg.cc/D00tczxn/places-alt-image.jpg"
+                      "https://i.postimg.cc/8k20mkm6/places-alt-image.jpg"
                     }
                     alt={item.name}
                   />
-                  <h2>{item.name}</h2>
-                  <p>{item.desciption || "Description not available!"}</p>
-                  <button
-                    onClick={() => {
-                      navigate(`/place/${item.path}/${item._id}`);
-                    }}
-                  >
-                    Know more..
-                  </button>
+                  <div className="slider-card-content">
+                    <h2>{item.name}</h2>
+                    <p>{item.desciption || "Description not available!"}</p>
+                    <button
+                      onClick={() => {
+                        navigate(`/place/${item.path}/${item._id}`);
+                      }}
+                    >
+                      Know more..
+                    </button>
+                  </div>
                 </div>
               ))}
             </Slider>

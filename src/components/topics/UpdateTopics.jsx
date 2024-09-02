@@ -11,6 +11,7 @@ export default function UpdateTopics() {
   const [topic, setTopic] = useState({
     name: "",
     description: "",
+    image: "",
     randomKeyDetails: [{ key: "", value: "" }],
     lists: [{ listName: "", items: [""] }],
   });
@@ -143,6 +144,13 @@ export default function UpdateTopics() {
           value={topic.description}
           onChange={handleInputChange}
         />{" "}
+        <label>Image: </label>
+        <input
+          type="url"
+          name="image"
+          value={topic.image}
+          onChange={handleInputChange}
+        />
         <div className="add-topic-container">
           <h2>Random Key Details:</h2>
           {topic.randomKeyDetails.map((detail, index) => (

@@ -9,7 +9,7 @@ export default function ProfileCard({ data }) {
           <img
             src={
               data.image ||
-              "https://cdn.pixabay.com/photo/2015/12/26/08/14/rishikesh-1108399_640.jpg"
+              "https://i.postimg.cc/m276Xxm6/profiles-alt-image.jpg"
             }
             alt="Lord Shiva"
           />
