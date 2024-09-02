@@ -10,7 +10,7 @@ export default function IndexBlog() {
   return (
     <>
       <AllBlogs />
-      <GetRedirectLink text="Blog" path="add" />
+      <GetRedirectLink text="Articles" path="add" />
     </>
   );
 }
@@ -44,25 +44,32 @@ export function BlogCard({ data }) {
   return (
     <>
       <Link to={data._id}>
-        <div class="blog-card-container">
-          <div class="blog-card">
-            <img
-              src={data.image}
-              onError={(e) => {
-                e.target.src = "https://i.postimg.cc/3xrVB7TK/blog.jpg";
-              }}
-              alt={data.title}
-            />
-            <div class="blog-card-content">
-              <h2 class="card-title">
-                {data.title.split(" ").slice(0, 9).join(" ") +
-                  (data.title.split(" ").length > 9 ? "..." : "")}
-              </h2>
-              <p class="card-text">
-                {data.subtitle.substring(0, 100) +
-                  (data.subtitle.length > 100 ? "..." : "")}
-              </p>
-            </div>
+        <div class="blog-card">
+          <img
+            src={data.image}
+            onError={(e) => {
+              e.target.src = "https://i.postimg.cc/3xrVB7TK/blog.jpg";
+            }}
+            alt={data.title}
+          />
+          <div class="blog-card-content">
+            <h3 class="title">
+              {" "}
+              {data.title.split(" ").slice(0, 9).join(" ") +
+                (data.title.split(" ").length > 9 ? "..." : "")}
+            </h3>
+            <p class="date">
+              {" "}
+              {new Date(data.createdAt).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
+            <p class="description">
+              {data.subtitle.substring(0, 100) +
+                (data.subtitle.length > 100 ? "..." : "")}
+            </p>
           </div>
         </div>
       </Link>

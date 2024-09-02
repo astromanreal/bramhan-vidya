@@ -4,6 +4,7 @@
   align-items: center;
   background-color: #333;
   color: #fff;
+  font-family: Georgia, "Times New Roman", Times, serif;
   position: relative;
   padding: 1rem;
   z-index: 1000;
@@ -116,6 +117,14 @@
   .navbar-brand img {
     width: 120px;
     height: 30px;
+  }
+  .navbar-nav {
+    background-color: rgb(66, 71, 71);
+  }
+  .nav-link {
+    color: rgb(233, 234, 244);
+    font-size: 19px;
+    font-weight: 700;
   }
 }
 

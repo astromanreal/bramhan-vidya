@@ -1,5 +1,4 @@
 const isProduction = true;
-// Set to true for production, false for local
 
 const apiConfig = {
   production: "https://bramhan-vidya-api.vercel.app",

@@ -44,7 +44,6 @@ export default function GetRedirectLink({ path, text }) {
 
   return (
     <h3 className="missing-link">
-      {" "}
       <Link to="/user/signup">Create an account</Link> to get more freatures!
     </h3>
   );
