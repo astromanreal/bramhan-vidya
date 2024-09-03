@@ -1,4 +1,4 @@
-import GetRedirectLink from "../../utils/GetRedirectLink";
+// import GetRedirectLink from "../../utils/GetRedirectLink";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
 import { useEffect, useState } from "react";
@@ -13,7 +13,7 @@ export default function MahavidyaIndex() {
         desc="Explore the sacred and powerful Mahavidyas, a group of ten goddesses in Hinduism known for their profound spiritual significance and diverse attributes. Each Mahavidya embodies unique aspects of divine feminine power, wisdom, and protection, contributing to the rich tapestry of Hindu worship and philosophy."
       />
       <AllMahavidya />
-      <GetRedirectLink text="Mahavidyas" path="add-mahavidya" />
+      {/* <GetRedirectLink text="Mahavidyas" path="add-mahavidya" /> */}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import GetRedirectLink from "../../utils/GetRedirectLink";
+// import GetRedirectLink from "../../utils/GetRedirectLink";
 import { useEffect, useState } from "react";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
@@ -13,7 +13,7 @@ export default function DurgaIndex() {
         desc="Explore the divine manifestations of Durga, a powerful and revered goddess in Hinduism. Known for her strength, courage, and protection, Durga is worshipped in various forms across different regions. Her tales of victory over evil and her roles in festivals embody the essence of divine feminine power."
       />
       <AllDurga />
-      <GetRedirectLink text="Durga forms" path="add-durga" />
+      {/* <GetRedirectLink text="Durga forms" path="add-durga" /> */}
     </>
   );
 }

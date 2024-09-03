@@ -82,6 +82,18 @@ export default function DurgaDetails() {
             <strong>Day:</strong> {durga.day}
           </p>
           <p>
+            <strong>Mount: </strong>
+            {durga.mount}
+          </p>
+          <p>
+            <strong>Other names: </strong>
+            {durga.otherNames}
+          </p>
+          <p>
+            <strong>weapons: </strong>
+            {durga.weapons}
+          </p>
+          <p>
             <strong>Attribute:</strong> {durga.attribute}
           </p>
           <p>
@@ -93,20 +105,16 @@ export default function DurgaDetails() {
           <p>
             <strong>Associated Legend:</strong> {durga.associatedLegend}
           </p>
-          <p>
-            <strong>Mantra:</strong> {durga.mantra}
-          </p>
+
           <p>
             <strong>Worship Practice:</strong> {durga.worshipPractice}
           </p>
           <p>
             <strong>Benefit:</strong> {durga.benefit}
           </p>
+
           <p>
-            <strong>Festival:</strong> {durga.festival}
-          </p>
-          <p>
-            <strong>Region:</strong> {durga.region}
+            <strong>Mantra:</strong> {durga.mantra}
           </p>
         </div>
         <hr />

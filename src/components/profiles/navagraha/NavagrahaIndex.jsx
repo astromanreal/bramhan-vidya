@@ -1,4 +1,4 @@
-import GetRedirectLink from "../../utils/GetRedirectLink";
+// import GetRedirectLink from "../../utils/GetRedirectLink";
 import { useEffect, useState } from "react";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
@@ -13,7 +13,7 @@ export default function NavagrahaIndex() {
         desc="Explore the Navagrahas, the nine celestial deities in Hindu astrology. Each of these planets or deities is associated with specific aspects of life and has a significant impact on one's astrological chart. Learn about their attributes, symbolism, and influence on human affairs."
       />
       <AllNavagrahas />
-      <GetRedirectLink text="Navagraha" path="add-navagraha" />
+      {/* <GetRedirectLink text="Navagraha" path="add-navagraha" /> */}
     </>
   );
 }

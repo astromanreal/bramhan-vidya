@@ -10,16 +10,16 @@ export default function PlaceFeed() {
   const navigate = useNavigate();
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [slideIndex, setSlideIndex] = useState(0);
+  // const [slideIndex, setSlideIndex] = useState(0);
   const settings = {
     infinite: true,
     slidesToShow: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     speed: 1000,
     pauseOnHover: true,
     slidesToScroll: 1,
-    beforeChange: (prev, next) => setSlideIndex(next),
+    // beforeChange: (prev, next) => setSlideIndex(next),
   };
 
   useEffect(() => {
@@ -75,9 +75,7 @@ export default function PlaceFeed() {
           {loading ? (
             <p>Loading...</p>
           ) : (
-            <p>
-              Place {slideIndex + 1} of {places.length}
-            </p>
+            <p>{/* Place {slideIndex + 1} of {places.length} */}</p>
           )}
         </div>{" "}
       </section>

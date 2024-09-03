@@ -13,15 +13,16 @@ export default function Adddurga() {
     title: "",
     description: "",
     day: "",
+    otherNames: "",
     attribute: "",
+    weapons: "",
+    mount: "",
     iconography: "",
     symbolism: "",
     associatedLegend: "",
     mantra: "",
     worshipPractice: "",
     benefit: "",
-    festival: "",
-    region: "",
     notes: [{ key: "", value: "" }],
     userId: GetUserId(),
     path: "durga",
@@ -100,6 +101,25 @@ export default function Adddurga() {
           />
         </div>
         <div>
+          <label>Title:</label>
+          <input
+            type="text"
+            name="title"
+            placeholder="commonly known as"
+            value={formData.title}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Description:</label>
+          <textarea
+            name="description"
+            placeholder="Short introduction"
+            value={formData.description}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
           <label>Day:</label>
           <input
             type="number"
@@ -110,13 +130,43 @@ export default function Adddurga() {
           />
         </div>
         <div>
-          <label>Attributes:</label>
+          <label>Other Names:</label>
           <input
             type="text"
-            name="attributes"
+            name="otherNames"
+            placeholder="nick name"
+            value={formData.otherNames}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Attribute:</label>
+          <input
+            type="text"
+            name="attribute"
             value={formData.attribute}
             onChange={handleChange}
             placeholder="Key attribute or characteristic"
+          />
+        </div>
+        <div>
+          <label>weapons:</label>
+          <input
+            type="text"
+            name="weapons"
+            value={formData.weapons}
+            onChange={handleChange}
+            placeholder="weapons if any"
+          />
+        </div>
+        <div>
+          <label>Mount:</label>
+          <input
+            type="text"
+            name="mount"
+            value={formData.mount}
+            onChange={handleChange}
+            placeholder="mount if any"
           />
         </div>
         <div>
@@ -140,10 +190,10 @@ export default function Adddurga() {
           />
         </div>
         <div>
-          <label>Associated Legends:</label>
+          <label>Associated Legend:</label>
           <input
             type="text"
-            name="associatedLegends"
+            name="associatedLegend"
             value={formData.associatedLegend}
             onChange={handleChange}
             placeholder="Legend associated with the form"
@@ -153,7 +203,7 @@ export default function Adddurga() {
           <label>Mantra:</label>
           <input
             type="text"
-            name="mantras"
+            name="mantra"
             value={formData.mantra}
             onChange={handleChange}
             placeholder="Sacred mantra dedicated to the form"
@@ -177,26 +227,6 @@ export default function Adddurga() {
             value={formData.benefit}
             onChange={handleChange}
             placeholder="Spiritual or material benefit of worship"
-          />
-        </div>
-        <div>
-          <label>Festival:</label>
-          <input
-            type="text"
-            name="festival"
-            value={formData.festival}
-            onChange={handleChange}
-            placeholder="Main Festival associated with this form"
-          />
-        </div>
-        <div>
-          <label>Region:</label>
-          <input
-            type="text"
-            name="region"
-            value={formData.region}
-            onChange={handleChange}
-            placeholder="Regions where this form is prominently worshipped"
           />
         </div>
 
