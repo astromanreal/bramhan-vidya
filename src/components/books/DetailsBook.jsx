@@ -75,9 +75,6 @@ export default function DetailsBook() {
             <strong>Type: </strong>
             {book.type}
           </p>
-          <p>
-            <strong>Text:</strong> {book.text}
-          </p>
 
           <div>
             <h2>Key details:</h2>

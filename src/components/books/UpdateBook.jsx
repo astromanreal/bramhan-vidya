@@ -18,7 +18,6 @@ export default function UpdateBook() {
     category: "",
     subcategory: "",
     type: "",
-    text: "",
     keyDetails: [{ key: "", value: "" }],
   });
 
@@ -148,10 +147,6 @@ export default function UpdateBook() {
             value={book.type}
             onChange={handleChange}
           />
-        </div>
-        <div>
-          <label>Text:</label>
-          <textarea name="text" value={book.text} onChange={handleChange} />
         </div>
 
         <div id="profile-add-key-details">

@@ -18,7 +18,6 @@ export default function AddBook() {
     category: "",
     subcategory: "",
     type: "",
-    text: "",
     keyDetails: [{ key: "", value: "" }],
   });
 
@@ -149,10 +148,6 @@ export default function AddBook() {
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label>Text:</label>
-          <textarea name="text" value={formData.text} onChange={handleChange} />
-        </div>{" "}
         <div id="profile-add-key-details">
           <h2>Key Details:</h2>
           {formData.keyDetails.map((keyDetail, index) => (
