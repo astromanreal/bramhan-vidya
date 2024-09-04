@@ -10,6 +10,7 @@ import axios from "axios";
 
 export default function DetailsCommunity() {
   const navigate = useNavigate();
+  const [showCreatePost, setShowCreatePost] = useState(false);
   const [community, setCommunity] = useState({});
   const { id } = useParams();
   useEffect(() => {
@@ -40,7 +41,9 @@ export default function DetailsCommunity() {
     <>
       <div className="community-container">
         <div className="community-header">
-          <h1 className="community-name">{community.name}</h1>
+          <h1 className="community-name">
+            {community.name} <JoinCommunity />
+          </h1>
           <h3 className="community-description">{community.description}</h3>
           <div className="community-actions">
             {GetUserId() === community.createdBy && (
@@ -58,13 +61,19 @@ export default function DetailsCommunity() {
                 </button>
               </>
             )}
-            <JoinCommunity />
           </div>
         </div>
-        <div className="community-divider"></div>
+        {/* <div className="community-divider"></div> */}
         <PostsCommunity />
-        <div className="community-divider"></div>
-        <CreatePost />
+        {showCreatePost && <CreatePost />}
+        {!showCreatePost && (
+          <button
+            className="show-post-button"
+            onClick={() => setShowCreatePost(true)}
+          >
+            Create Post!
+          </button>
+        )}
       </div>
     </>
   );

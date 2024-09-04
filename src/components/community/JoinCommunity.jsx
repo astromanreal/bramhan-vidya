@@ -45,6 +45,14 @@ export default function JoinCommunity() {
     }
   };
   return (
-    <>{isMember ? "" : <button onClick={handleJoin}>Join Community</button>}</>
+    <>
+      {isMember ? (
+        ""
+      ) : (
+        <button className="join-community-btn" onClick={handleJoin}>
+          Join now!
+        </button>
+      )}
+    </>
   );
 }

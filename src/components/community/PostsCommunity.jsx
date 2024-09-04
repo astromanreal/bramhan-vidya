@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import apiUrl from "../utils/GetApiUrl";
+import moment from "moment";
 import axios from "axios";
 
 export default function PostsCommunity() {
@@ -20,7 +21,6 @@ export default function PostsCommunity() {
 
   return (
     <>
-      <h1>Posts</h1>
       {posts.length > 0 ? (
         posts.reverse().map((post) => <PostCard key={post._id} post={post} />)
       ) : (
@@ -35,15 +35,26 @@ export default function PostsCommunity() {
 
 export function PostCard({ post }) {
   return (
-    <div className="community-post-card">
-      <Link to={`/community/post/${post._id}`}>
-        <h2 className="community-post-title">{post.title}</h2>
-      </Link>
-      <p className="community-post-content">
-        {post.content.length > 200
-          ? `${post.content.substring(0, 200)}...`
-          : post.content}
-      </p>
-    </div>
+    <>
+      <div class="community-post-card">
+        <div class="text-wrap">
+          <h2>{post.title}</h2>
+          <p>
+            {post.content.length > 200
+              ? `${post.content.substring(0, 200)}...`
+              : post.content}
+          </p>
+          <small class="time">{moment(post.createdAt).fromNow()}</small>
+        </div>
+        <div class="button-wrap">
+          <Link class="primary-cta" to={`/community/post/${post._id}`}>
+            View
+          </Link>
+          <button class="secondary-cta">disscuss</button>
+          <button class="secondary-cta">{post.views} views</button>
+        </div>
+      </div>
+      <hr />
+    </>
   );
 }

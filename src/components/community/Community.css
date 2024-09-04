@@ -1,3 +1,37 @@
+/* join community btn */
+/* From Uiverse.io by xueyuantan */
+.join-community-btn {
+  width: 9em;
+  height: 3em;
+  border-radius: 30em;
+  font-size: 15px;
+  background-color: black;
+  color: white;
+  font-family: inherit;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  /* box-shadow: 6px 6px 12px #955555, -6px -6px 12px #c3656b; */
+}
+.join-community-btn::before {
+  content: "";
+  width: 0;
+  height: 3em;
+  border-radius: 30em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to right, #39d269 0%, #d4ce61 100%);
+  transition: 0.5s ease;
+  display: block;
+  z-index: -1;
+}
+.join-community-btn:hover::before {
+  width: 9em;
+}
+/* join community btn */
+
 /* index page list card all community */
 .community-list {
   display: flex;
@@ -6,30 +40,55 @@
   max-width: 63rem;
   gap: 20px;
 }
-
+/* From Uiverse.io by gharsh11032000 */
 .community-card {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
+  /* position: relative; */
   width: 300px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.community-image {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
+  height: 200px;
+  /* background-color: #f2f2f2; */
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1000px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
-.community-card h2 a {
-  margin-top: 10px;
-  color: rgb(0, 0, 0);
-  font-size: 2rem;
+.community-card img {
+  width: 100%;
 }
-
-.community-card p {
-  color: #000000;
+.community-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+.community-card-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: rgba(28, 27, 27, 0.8);
+  transform: rotateX(-90deg);
+  transform-origin: bottom;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.community-card:hover .community-card-content {
+  transform: rotateX(0deg);
+}
+.community-card-content h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: 700;
+}
+.community-card-content p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #a59f9f;
+  line-height: 1.4;
 }
 
 /* index page list card all community */
@@ -78,10 +137,7 @@
 .community-container {
   max-width: 800px;
   margin: 40px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 0 20px;
 }
 
 .community-header {
@@ -137,6 +193,56 @@
 /* detail community page */
 
 /* create community post */
+
+/* From Uiverse.io by adamgiebl */
+.show-post-button {
+  margin: 2rem;
+  align-items: center;
+  appearance: none;
+  background-color: #eef2ff;
+  border-radius: 8px;
+  border-width: 2px;
+  border-color: #536dfe;
+  box-shadow: rgba(83, 109, 254, 0.2) 0 2px 4px,
+    rgba(83, 109, 254, 0.15) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #536dfe;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono", monospace;
+  height: 56px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 24px;
+  padding-right: 24px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow 0.15s, transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 20px;
+}
+.show-post-button:focus {
+  outline: none;
+  box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(83, 109, 254, 0.4) 0 2px 4px,
+    rgba(83, 109, 254, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+}
+.show-post-button:hover {
+  box-shadow: rgba(83, 109, 254, 0.3) 0 4px 8px,
+    rgba(83, 109, 254, 0.2) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+.show-post-button:active {
+  box-shadow: #d6d6e7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
 .create-post-title {
   font-size: 24px;
   font-weight: bold;
@@ -181,30 +287,60 @@
 /* create community post */
 
 /* community post card  */
+
 .community-post-card {
-  /* background-color: ; */
-  padding: 20px;
-  border: 2px solid #7a9f93;
-  border-radius: 10px;
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  margin-bottom: 20px;
+  margin-top: 1.25em;
+  margin-bottom: 1.375em;
+  margin-left: 1.375em;
+  margin-right: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
 }
 
-.community-post-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: rgb(255, 255, 255);
-  text-transform: capitalize;
+.community-post-card .text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  color: #333;
 }
-.community-post-title:hover {
+.community-post-card .text-wrap h2,
+.community-post-card .text-wrap p {
+  color: whitesmoke;
+  padding: 4px 0;
+}
+
+.community-post-card .time {
+  font-size: 0.85em;
+  color: #777;
+}
+
+.community-post-card .button-wrap {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  align-items: center;
+}
+.community-post-card .button-wrap > *:hover {
   text-decoration: underline;
-  color: #a6a4a4;
+}
+.community-post-card .button-wrap .secondary-cta {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 400;
+  color: #b1a8a8;
+  cursor: pointer;
 }
 
-.community-post-content {
-  font-size: 16px;
-  color: #a6a4a4;
+.community-post-card .button-wrap .primary-cta {
+  font-size: 15px;
+  background-color: transparent;
+  font-weight: 600;
+  color: #1677ff;
+  border: none;
+  border-radius: 1.5em;
+  cursor: pointer;
 }
 /* community post card  */
 
@@ -267,8 +403,8 @@
 
 /* my community page */
 .my-communities-container {
-  max-width: 800px;
-  margin: 40px auto;
+  max-width: 900px;
+  margin: 20px auto;
   padding: 20px;
 }
 
@@ -280,37 +416,64 @@
 
 .community-list {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  /* min-height: 70vh; */
   flex-wrap: wrap;
+  padding: 2rem;
   gap: 20px;
 }
 
-.community-card {
-  /* background-color: #504e4e; */
-  padding: 20px;
-  border-radius: 10px;
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  width: calc(33.33% - 20px);
+.my-community-card {
+  width: 220px;
+  height: 254px;
+  border-radius: 20px;
+  background: #f5f5f5;
+  position: relative;
+  padding: 1rem;
+  border: 2px solid #c3c6ce;
+  transition: 0.5s ease-out;
+  overflow: visible;
 }
 
-.community-name {
-  font-size: 18px;
+.my-community-card .card-details {
+  color: black;
+  height: 100%;
+  gap: 0.5em;
+  display: grid;
+  overflow: hidden;
+  place-content: center;
+}
+.my-community-card .text-body {
+  color: rgb(134, 134, 134);
+}
+.my-community-card .text-title {
+  font-size: 1.5em;
   font-weight: bold;
-  margin-bottom: 10px;
-  text-transform: capitalize;
 }
 
-.community-description {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 20px;
-}
-
-.visit-btn {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
+.my-community-card .card-button {
+  transform: translate(-50%, 125%);
+  width: 60%;
+  border-radius: 1rem;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  background-color: #008bf8;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  opacity: 0;
+  transition: 0.3s ease-out;
 }
+.my-community-card:hover {
+  border-color: #008bf8;
+  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+.my-community-card:hover .card-button {
+  transform: translate(-50%, 50%);
+  opacity: 1;
+}
+
 /* my community page */

@@ -1,6 +1,8 @@
 import "./App.css";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import ScrollToTop from "./components/utils/ScrollToTop";
 import Footer from "./components/home/Footer";
@@ -32,6 +34,9 @@ function App() {
       <ScrollToTop />
       <Toaster
         position="top-right"
+        containerStyle={{
+          top: "60px",
+        }}
         toastOptions={{
           duration: 5000,
           style: {
@@ -59,6 +64,9 @@ function App() {
         {PlaceRoutes}
       </Routes>
       <Footer />
+
+      <Analytics />
+      <SpeedInsights />
     </>
   );
 }

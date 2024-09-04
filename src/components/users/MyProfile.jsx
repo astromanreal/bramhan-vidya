@@ -130,7 +130,7 @@ const SingleDocumentCard = ({ document }) => {
           onClick={() => navigate(redirectUrls[document.type])}
           className="doc-btn"
         >
-          Revise Content
+          Review
         </button>
       </div>
     </div>
@@ -167,7 +167,7 @@ const DocumentCard = ({ document }) => {
           onClick={() => navigate(redirectUrls[document.type])}
           className="doc-btn"
         >
-          Revise Content
+          Review
         </button>
       </div>
     </div>
@@ -276,7 +276,7 @@ export function MyDocumentSlider() {
       <section className="doc-slider-wrap">
         <div className="doc-slider-inner">
           {loading ? (
-            <p className="loading-msg">Loading your document feeds...</p>
+            <p>Loading your document feeds...</p>
           ) : (
             <>
               {Object.keys(documents).map((key) => (

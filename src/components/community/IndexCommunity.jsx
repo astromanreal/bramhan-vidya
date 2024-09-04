@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Community.css";
+import MyCommunity from "./MyCommunity";
 
 export default function IndexCommunity() {
   return (
     <>
-      <h1>Welcome to the Index page of community</h1>
+      {/* <h1>Welcome to the Index page of community</h1> */}
       <ListCommunity />
       <GetRedirectLink text="community" path="add" />
     </>
@@ -31,27 +32,40 @@ export function ListCommunity() {
   return (
     <>
       <div className="community-list">
-        {communities.map((community) => (
-          <div className="community-card" key={community._id}>
+        {communities &&
+          communities.map((community) => (
+            <CommunityCard community={community} />
+          ))}
+      </div>
+      <MyCommunity />
+    </>
+  );
+}
+
+export function CommunityCard({ community }) {
+  return (
+    <>
+      {community && (
+        <Link to={`/community/${community._id}`}>
+          <div class="community-card">
             <img
               src={
                 community.image ||
-                "https://images.pexels.com/photos/1707425/pexels-photo-1707425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                "https://i.postimg.cc/8k20mkm6/places-alt-image.jpg"
               }
-              alt={community.name}
-              className="community-image"
+              alt={`${community.title} not found`}
             />
-            <h2>
-              <Link to={`/community/${community._id}`}>{community.name}</Link>
-            </h2>
-            <p>
-              {community.description.length > 90
-                ? `${community.description.substring(0, 90)}...`
-                : community.description}
-            </p>
+            <div class="community-card-content">
+              <h2>{community.name}</h2>
+              <p>
+                {community.description.length > 200
+                  ? `${community.description.substring(0, 200)}...`
+                  : community.description}
+              </p>
+            </div>
           </div>
-        ))}
-      </div>
+        </Link>
+      )}
     </>
   );
 }
