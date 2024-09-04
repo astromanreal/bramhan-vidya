@@ -2,8 +2,8 @@
 .book-card-holder {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1000px;
-  margin: 0 auto;
+  /* max-width: 1000px; */
+  /* margin: 0 auto; */
   gap: 20px;
   justify-content: center;
   margin: 20px;

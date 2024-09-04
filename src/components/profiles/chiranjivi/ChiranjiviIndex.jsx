@@ -13,6 +13,12 @@ export default function ChiranjiviIndex() {
         title="Chiranjivis of Hinduism"
         desc="Discover the fascinating stories of Chiranjivis, the immortals of Hindu mythology. From the wise Ashwatthama to the devoted Vibhishana, each Chiranjivi has a unique tale of devotion, wisdom, and spiritual growth."
       />
+      <h3>
+        Ashwatthama, Bali, Vyasa, Hanuman, Vibhishana, Kripa, and Parashurama
+        are the seven chiranjivis, the death-defeating beings. By remembering
+        their names along with Markandeya, the eighth, one gains freedom from
+        sickness and can live up to a hundred years.
+      </h3>
       <AllChiranjivis />
       <GetRedirectLink text="Chiranjivi" path="add-chiranjivi" />
     </>
