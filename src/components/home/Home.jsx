@@ -36,7 +36,7 @@ export function HomeHeader() {
         <div className="HomeHeader-help-cards">
           <div className="HomeHeader-help-card">
             <img
-              src="https://i.postimg.cc/FRDXz8Fq/Personal-Growth.jpg"
+              src="https://i.postimg.cc/2jW77Q6z/personal-growth.jpg"
               alt="Personal Growth Icon"
               className="HomeHeader-help-icon"
             />
@@ -48,7 +48,7 @@ export function HomeHeader() {
           </div>
           <div className="HomeHeader-help-card">
             <img
-              src="https://i.postimg.cc/j21VQf74/Community-Support.jpg"
+              src="https://i.postimg.cc/gj3ycW5w/community-support.jpg"
               alt="Community Support Icon"
               className="HomeHeader-help-icon"
             />
@@ -61,7 +61,7 @@ export function HomeHeader() {
 
           <div className="HomeHeader-help-card">
             <img
-              src="https://i.postimg.cc/fLwhwDsm/Authentic-Resources.jpg"
+              src="https://i.postimg.cc/FRdgqcVV/authentic-source.jpg"
               alt="Spiritual Guidance Icon"
               className="HomeHeader-help-icon"
             />
@@ -73,7 +73,7 @@ export function HomeHeader() {
           </div>
           <div className="HomeHeader-help-card">
             <img
-              src="https://i.postimg.cc/PqnjR1F6/Cultural-Heritage.jpg"
+              src="https://i.postimg.cc/QxkgRj1w/cultural-heritage.jpg"
               alt="Cultural Heritage Icon"
               className="HomeHeader-help-icon"
             />
