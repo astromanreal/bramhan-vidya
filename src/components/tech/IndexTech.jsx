@@ -48,12 +48,12 @@ export function TechCard({ data }) {
   return (
     <>
       {data && (
-        <div class="tech-card">
-          <div class="tech-card-image">
+        <div className="tech-card">
+          <div className="tech-card-image">
             <img src={data.image} alt="Description" />
           </div>
-          <div class="tech-card-content">
-            <div class="tech-meta">
+          <div className="tech-card-content">
+            <div className="tech-meta">
               <span> 👁️ : {data.views}</span> ·
               <span>
                 📅 :{" "}
@@ -71,7 +71,7 @@ export function TechCard({ data }) {
                 : data.description}
             </p>
           </div>
-          <div class="tech-card-footer">
+          <div className="tech-card-footer">
             <Link to={`${data._id}`}>Read article</Link>
           </div>
         </div>

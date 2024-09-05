@@ -44,7 +44,7 @@ export function BlogCard({ data }) {
   return (
     <>
       <Link to={data._id}>
-        <div class="blog-card">
+        <div className="blog-card">
           <img
             src={data.image}
             onError={(e) => {
@@ -52,13 +52,13 @@ export function BlogCard({ data }) {
             }}
             alt={data.title}
           />
-          <div class="blog-card-content">
-            <h3 class="title">
+          <div className="blog-card-content">
+            <h3 className="title">
               {" "}
               {data.title.split(" ").slice(0, 9).join(" ") +
                 (data.title.split(" ").length > 9 ? "..." : "")}
             </h3>
-            <p class="date">
+            <p className="date">
               {" "}
               {new Date(data.createdAt).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -66,7 +66,7 @@ export function BlogCard({ data }) {
                 day: "numeric",
               })}
             </p>
-            <p class="description">
+            <p className="description">
               {data.subtitle.substring(0, 100) +
                 (data.subtitle.length > 100 ? "..." : "")}
             </p>

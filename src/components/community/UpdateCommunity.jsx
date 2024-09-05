@@ -8,6 +8,7 @@ export default function UpdateCommunity() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [name, setName] = useState("");
+  const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
 
   useEffect(() => {
@@ -15,6 +16,7 @@ export default function UpdateCommunity() {
       .get(`${apiUrl}/community/community/${id}`)
       .then((response) => {
         setName(response.data.name);
+        setImage(response.data.image);
         setDescription(response.data.description);
       })
       .catch((error) => {
@@ -27,6 +29,7 @@ export default function UpdateCommunity() {
     try {
       await axios.put(`${apiUrl}/community/community/${id}`, {
         name,
+        image,
         description,
       });
       navigate(`/community/${id}`);
@@ -47,6 +50,15 @@ export default function UpdateCommunity() {
               type="text"
               value={name}
               onChange={(event) => setName(event.target.value)}
+              className="community-form-input"
+            />
+          </div>
+          <div className="community-form-group">
+            <label className="community-form-label">Image:</label>
+            <input
+              type="url"
+              value={image}
+              onChange={(event) => setImage(event.target.value)}
               className="community-form-input"
             />
           </div>

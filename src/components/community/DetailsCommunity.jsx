@@ -63,17 +63,19 @@ export default function DetailsCommunity() {
             )}
           </div>
         </div>
-        {/* <div className="community-divider"></div> */}
-        <PostsCommunity />
-        {showCreatePost && <CreatePost />}
-        {!showCreatePost && (
-          <button
-            className="show-post-button"
-            onClick={() => setShowCreatePost(true)}
-          >
-            Create Post!
-          </button>
-        )}
+
+        <div className="community-post-and-btn">
+          <PostsCommunity />
+          {showCreatePost && <CreatePost />}
+          {!showCreatePost && (
+            <button
+              className="show-post-button"
+              onClick={() => setShowCreatePost(true)}
+            >
+              Create Post!
+            </button>
+          )}
+        </div>
       </div>
     </>
   );

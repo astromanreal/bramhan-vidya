@@ -53,15 +53,15 @@ export function AllBooks() {
 export function BookCard({ data }) {
   return (
     <>
-      <div class="book-card">
-        <div class="book-card-image">
+      <div className="book-card">
+        <div className="book-card-image">
           <img
             src={data.image || "https://wallpapercave.com/mwp/wp2036897.jpg"}
             alt={data.title}
           />
         </div>
-        <div class="book-card-content">
-          <div class="book-card-meta">
+        <div className="book-card-content">
+          <div className="book-card-meta">
             <span>👁️ : {data.views}</span>
             <span>{data.category}</span>
             <span>
@@ -78,7 +78,7 @@ export function BookCard({ data }) {
               ? `${data.description.substring(0, 150)}...`
               : data.description}
           </p>
-          <Link to={`${data._id}`} class="book-card-btn">
+          <Link to={`${data._id}`} className="book-card-btn">
             <span>Read this..</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"

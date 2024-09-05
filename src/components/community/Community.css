@@ -42,10 +42,8 @@
 }
 /* From Uiverse.io by gharsh11032000 */
 .community-card {
-  /* position: relative; */
   width: 300px;
-  height: 200px;
-  /* background-color: #f2f2f2; */
+  height: 240px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -163,11 +161,11 @@
   gap: 10px;
 }
 
-.community-divider {
+/* .community-divider {
   height: 1px;
   background-color: #ccc;
   margin: 20px 0;
-}
+} */
 
 .community-btn {
   padding: 10px 20px;
@@ -190,11 +188,17 @@
   background-color: #28a745;
   color: #fff;
 }
+
+.community-post-and-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
 /* detail community page */
 
 /* create community post */
-
-/* From Uiverse.io by adamgiebl */
 .show-post-button {
   margin: 2rem;
   align-items: center;
@@ -243,26 +247,17 @@
   transform: translateY(2px);
 }
 
-.create-post-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
 .create-post-form {
   max-width: 500px;
   margin: 0 auto;
 }
-
 .form-group {
   margin-bottom: 20px;
 }
-
 .form-label {
   display: block;
   margin-bottom: 10px;
 }
-
 .form-input,
 .form-textarea {
   width: 100%;
@@ -270,12 +265,10 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-
 .form-textarea {
   height: 150px;
   resize: vertical;
 }
-
 .submit-post-btn {
   background-color: #007bff;
   color: #fff;
@@ -297,7 +290,6 @@
   flex-direction: column;
   gap: 0.75em;
 }
-
 .community-post-card .text-wrap {
   display: flex;
   flex-direction: column;
@@ -314,7 +306,6 @@
   font-size: 0.85em;
   color: #777;
 }
-
 .community-post-card .button-wrap {
   display: flex;
   flex-direction: row;

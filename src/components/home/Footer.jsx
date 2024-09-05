@@ -5,8 +5,8 @@ export default function Footer() {
   return (
     <>
       <footer>
-        <div class="footer-container">
-          <div class="footer-intro">
+        <div className="footer-container">
+          <div className="footer-intro">
             <h2>Hinduism: A Journey of Discovery</h2>
             <p>
               Discover the amazing story of Hinduism and explore its rich and
@@ -16,7 +16,7 @@ export default function Footer() {
               meaning to millions of people's lives around the world.
             </p>
           </div>
-          <div class="footer-section">
+          <div className="footer-section">
             <h2>Explore</h2>
             <ul>
               <Link to="profile">Deities</Link>
@@ -26,7 +26,7 @@ export default function Footer() {
               <Link to="event">Events</Link>
             </ul>
           </div>
-          <div class="footer-section">
+          <div className="footer-section">
             <h2>Features</h2>
             <ul>
               <Link to="blog">Blogs</Link>
@@ -35,7 +35,7 @@ export default function Footer() {
               <Link to="user/signup">Join now!</Link>
             </ul>
           </div>
-          <div class="footer-section">
+          <div className="footer-section">
             <h2>Resources</h2>
             <ul>
               <Link to="myprofile">My Account</Link>
@@ -45,7 +45,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div class="footer-bottom">
+        <div className="footer-bottom">
           <ul>
             <Link to="">Home</Link>
             <Link to="about">About</Link>

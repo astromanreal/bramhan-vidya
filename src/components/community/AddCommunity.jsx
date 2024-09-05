@@ -8,6 +8,7 @@ import axios from "axios";
 export default function AddCommunity() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
+  const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = async (event) => {
@@ -15,6 +16,7 @@ export default function AddCommunity() {
     try {
       await axios.post(`${apiUrl}/community/Addcommunity`, {
         name,
+        image,
         description,
         createdBy: GetUserId(),
         userId: GetUserId(),
@@ -37,6 +39,15 @@ export default function AddCommunity() {
               type="text"
               value={name}
               onChange={(event) => setName(event.target.value)}
+              className="community-form-input"
+            />
+          </div>
+          <div className="community-form-group">
+            <label className="community-form-label">Image:</label>
+            <input
+              type="url"
+              value={image}
+              onChange={(event) => setImage(event.target.value)}
               className="community-form-input"
             />
           </div>

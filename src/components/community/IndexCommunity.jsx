@@ -4,12 +4,10 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Community.css";
-import MyCommunity from "./MyCommunity";
 
 export default function IndexCommunity() {
   return (
     <>
-      {/* <h1>Welcome to the Index page of community</h1> */}
       <ListCommunity />
       <GetRedirectLink text="community" path="add" />
     </>
@@ -37,7 +35,6 @@ export function ListCommunity() {
             <CommunityCard community={community} />
           ))}
       </div>
-      <MyCommunity />
     </>
   );
 }
@@ -47,7 +44,7 @@ export function CommunityCard({ community }) {
     <>
       {community && (
         <Link to={`/community/${community._id}`}>
-          <div class="community-card">
+          <div className="community-card">
             <img
               src={
                 community.image ||
@@ -55,7 +52,7 @@ export function CommunityCard({ community }) {
               }
               alt={`${community.title} not found`}
             />
-            <div class="community-card-content">
+            <div className="community-card-content">
               <h2>{community.name}</h2>
               <p>
                 {community.description.length > 200

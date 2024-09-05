@@ -60,14 +60,14 @@ export function AllTopics() {
 export function IndexTopicsCard({ data }) {
   return (
     <>
-      <div class="topic-card">
-        <div class="topic-card-image">
+      <div className="topic-card">
+        <div className="topic-card-image">
           <img
             src={data.image || "https://i.postimg.cc/GpXfFkXL/topics.jpg"}
             alt={data.name}
           />
         </div>
-        <div class="topic-card-content">
+        <div className="topic-card-content">
           <h3>{data.name}</h3>
           <p>
             {data.description.length > 150
@@ -75,12 +75,12 @@ export function IndexTopicsCard({ data }) {
               : data.description}
           </p>
         </div>
-        <div class="topic-card-footer">
-          <div class="topic-like-comment">
+        <div className="topic-card-footer">
+          <div className="topic-like-comment">
             <button>❤</button>
             <button>💬</button>
           </div>
-          <div class="topic-comments-count">
+          <div className="topic-comments-count">
             <p>{data.views} views</p>
           </div>
         </div>

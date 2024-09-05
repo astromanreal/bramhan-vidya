@@ -29,7 +29,7 @@ export default function CreatePost() {
 
   return (
     <>
-      <h1 className="create-post-title">Create Post</h1>
+      {/* <h1 className="create-post-title">Create Post</h1> */}
       <form onSubmit={handleSubmit} className="create-post-form">
         <div className="form-group">
           <label className="form-label" htmlFor="title">

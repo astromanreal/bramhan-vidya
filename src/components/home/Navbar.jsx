@@ -27,18 +27,9 @@ export default function Navbar() {
         </div>
         <div className="navbar-items">
           <ul className={`navbar-nav ${isOpen ? "nav-open" : ""}`}>
-            <li>
-              <Link to="community" className="nav-link">
-                Community
-              </Link>
-            </li>
+            {" "}
             {token ? (
               <>
-                <li>
-                  <Link to="mycommunity" className="nav-link">
-                    My Community
-                  </Link>
-                </li>
                 <li>
                   <Link to="myprofile" className="nav-link">
                     My profile
@@ -52,6 +43,26 @@ export default function Navbar() {
                 </Link>
               </li>
             )}
+            <li>
+              <Link to="profile/shakti" className="nav-link">
+                Adi shakti
+              </Link>
+            </li>
+            <li>
+              <Link to="profile/durga" className="nav-link">
+                Nav Durga
+              </Link>
+            </li>
+            <li>
+              <Link to="profile/mahavidya" className="nav-link">
+                Mahavidya
+              </Link>
+            </li>
+            <li>
+              <Link to="profile/navagraha" className="nav-link">
+                Navagraha
+              </Link>
+            </li>
           </ul>
           <div className="navbar-toggler">
             <input

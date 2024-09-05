@@ -24,10 +24,7 @@ export default function PostsCommunity() {
       {posts.length > 0 ? (
         posts.reverse().map((post) => <PostCard key={post._id} post={post} />)
       ) : (
-        <div className="no-posts-message">
-          <h2>No posts yet!</h2>
-          <p>Create your first post to get started!</p>
-        </div>
+        <h2>No posts yet!</h2>
       )}
     </>
   );
@@ -36,22 +33,22 @@ export default function PostsCommunity() {
 export function PostCard({ post }) {
   return (
     <>
-      <div class="community-post-card">
-        <div class="text-wrap">
+      <div className="community-post-card">
+        <div className="text-wrap">
           <h2>{post.title}</h2>
           <p>
             {post.content.length > 200
               ? `${post.content.substring(0, 200)}...`
               : post.content}
           </p>
-          <small class="time">{moment(post.createdAt).fromNow()}</small>
+          <small className="time">{moment(post.createdAt).fromNow()}</small>
         </div>
-        <div class="button-wrap">
-          <Link class="primary-cta" to={`/community/post/${post._id}`}>
+        <div className="button-wrap">
+          <Link className="primary-cta" to={`/community/post/${post._id}`}>
             View
           </Link>
-          <button class="secondary-cta">disscuss</button>
-          <button class="secondary-cta">{post.views} views</button>
+          <button className="secondary-cta">disscuss</button>
+          <button className="secondary-cta">{post.views} views</button>
         </div>
       </div>
       <hr />

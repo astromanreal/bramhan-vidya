@@ -65,9 +65,9 @@ export function Header({ data }) {
   };
   return (
     <>
-      <h2 class="blog-detail-title">{data.title}</h2>
+      <h2 className="blog-detail-title">{data.title}</h2>
 
-      <div class="blog-key-detail">
+      <div className="blog-key-detail">
         <h2>Key details</h2>
         <p>{data.subtitle}</p>
         <p>
