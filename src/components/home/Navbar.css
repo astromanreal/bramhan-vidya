@@ -44,7 +44,7 @@
 .nav-link {
   text-decoration: none;
   color: #fff;
-  padding: 1rem;
+  margin: 1rem;
   font-size: 17px;
   font-weight: 600;
   letter-spacing: 2px;
@@ -123,12 +123,15 @@
     height: 40px;
   }
   .navbar-nav {
-    background-color: rgb(66, 71, 71);
+    background-color: rgb(80, 86, 86);
   }
   .nav-link {
     color: rgb(233, 234, 244);
     font-size: 19px;
     font-weight: 700;
+  }
+  .navbar-nav li {
+    margin-top: 1rem;
   }
 }
 

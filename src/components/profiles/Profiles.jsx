@@ -3,6 +3,7 @@ import "./Profile.css";
 import * as img from "./img/exports";
 import ProfileFeeds from "./ProfileFeeds";
 import { Helmet } from "react-helmet";
+import { useEffect, useMemo, useState } from "react";
 
 export default function Profiles() {
   const profileList = [
@@ -116,7 +117,8 @@ export default function Profiles() {
         />
         <title>Characters in Hinduism</title>
       </Helmet>
-      <header id="profile-img-header">
+      <ProfilesCovers />
+      {/* <header id="profile-img-header">
         <div className="profile-overlay">
           <h1>Characters in Hinduism</h1>
           <p>
@@ -126,9 +128,8 @@ export default function Profiles() {
             beliefs and traditions.
           </p>
         </div>
-      </header>
+      </header> */}
       <ProfileFeeds />
-      {/* <h1>Explore all Charecters by Categories:</h1> */}
       <div className="profile-page-list">
         {profileList.map((p) => (
           <div key={p.path} id="profile-page-card">
@@ -137,6 +138,48 @@ export default function Profiles() {
               <h2>{p.title}</h2>
             </Link>
           </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+export function ProfilesCovers() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const images = useMemo(
+    () => [
+      "https://i.postimg.cc/fbk5Zbvv/creatures.jpg",
+      "https://i.postimg.cc/ydZPgrtg/lord-shiva.jpg",
+      "https://i.postimg.cc/W4K84PWc/demond.jpg",
+      "https://i.postimg.cc/g2g4fh3J/lord-vishnu.jpg",
+      "https://i.postimg.cc/wM5QFR69/shakti.jpg",
+    ],
+    []
+  );
+
+  const intervalFunction = useMemo(() => {
+    return () => {
+      setCurrentIndex((currentIndex + 1) % images.length);
+    };
+  }, [currentIndex, images]);
+
+  useEffect(() => {
+    const intervalId = setInterval(intervalFunction, 5000);
+    return () => clearInterval(intervalId);
+  }, [intervalFunction]);
+
+  return (
+    <>
+      <div className="cover-slider">
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            loading="lazy"
+            alt={`image${index + 1}.jpg`}
+            className={currentIndex === index ? "active" : ""}
+          />
         ))}
       </div>
     </>
