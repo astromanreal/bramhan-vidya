@@ -2,15 +2,15 @@ import GetRedirectLink from "../utils/GetRedirectLink";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import apiUrl from "../utils/GetApiUrl";
+import { Helmet } from "react-helmet";
 import axios from "axios";
 import "./Event.css";
-import { Helmet } from "react-helmet";
 
 export default function IndexEvent() {
   return (
     <>
       <Helmet>
-        <title>Events in Hinduism: A Comprehensive Guide</title>
+        <title>Events in Hinduism</title>
         <meta
           name="description"
           content="Explore the significance and dates of various Hindu events, festivals, and rituals. Learn about the cultural and spiritual importance of these occasions."
@@ -19,32 +19,18 @@ export default function IndexEvent() {
           name="keywords"
           content="Hindu events, Hindu festivals, Hindu rituals, Diwali, Holi, Navratri, Puja, Yajna, Samskara"
         />
+        <meta property="og:title" content="Events in Hinduism" />
         <meta
-          name="og:title"
-          content="Hindu Events, Festivals, and Rituals: A Comprehensive Guide"
+          property="og:description"
+          content="Explore the significance and dates of various Hindu events, festivals, and rituals. Learn about the cultural and spiritual importance of these occasions."
         />
         <meta
-          name="og:description"
-          content="Discover the richness of Hindu culture and spirituality through its various events, festivals, and rituals."
+          property="og:url"
+          content="https://bramhan-vidya.vercel.app/event"
         />
-        <meta name="og:url" content="https://bramhan-vidya.vercel.app/event" />
-
         <meta
           property="og:image"
           content="https://i.postimg.cc/8k20mkm6/places-alt-image.jpg"
-        />
-        <meta
-          name="twitter:image"
-          content="https://i.postimg.cc/8k20mkm6/places-alt-image.jpg"
-        />
-
-        <meta
-          name="twitter:title"
-          content="Hindu Events, Festivals, and Rituals: A Comprehensive Guide"
-        />
-        <meta
-          name="twitter:description"
-          content="Learn about the significance and dates of various Hindu events, festivals, and rituals."
         />
       </Helmet>
       <AllEvents />
