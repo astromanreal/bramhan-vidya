@@ -22,6 +22,8 @@ export default function IndexBook() {
 
 export function AllBooks() {
   const [books, setBooks] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -29,7 +31,11 @@ export function AllBooks() {
         const { data } = await axios.get(`${apiUrl}/books/allbooks`);
         if (data?.status === "success") {
           setBooks(data.data);
-          document.title = "All sanatan books";
+          const uniqueCategories = [
+            ...new Set(data.data.map((book) => book.category)),
+          ];
+          setCategories(["All", ...uniqueCategories]);
+          document.title = "All Sanatan Books";
         } else {
           throw new Error("Failed to fetch books data");
         }
@@ -39,12 +45,33 @@ export function AllBooks() {
     };
     fetchBooks();
   }, []);
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  const filteredBooks =
+    selectedCategory === "All"
+      ? books
+      : books?.filter((book) => book.category === selectedCategory);
+
   return (
     <>
+      <div className="filter-data-container">
+        <select value={selectedCategory} onChange={handleCategoryChange}>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="book-card-holder">
-        {books?.map((book) => (
-          <BookCard data={book} />
-        ))}
+        {filteredBooks?.length > 0 ? (
+          filteredBooks.map((book) => <BookCard key={book._id} data={book} />)
+        ) : (
+          <p>No books found in this category</p>
+        )}
       </div>
     </>
   );

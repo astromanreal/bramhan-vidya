@@ -16,6 +16,8 @@ export default function IndexTech() {
 
 export function AllTech() {
   const [technologies, setTechnologies] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchAllTech = async () => {
@@ -23,6 +25,10 @@ export function AllTech() {
         const response = await axios.get(`${apiUrl}/tech/alltech`);
         if (response.data.success) {
           setTechnologies(response.data.data);
+          const uniqueCategories = [
+            ...new Set(response.data.data.map((tech) => tech.category)),
+          ];
+          setCategories(["All", ...uniqueCategories]);
         } else {
           throw new Error("Failed to fetch Technology lists");
         }
@@ -33,12 +39,35 @@ export function AllTech() {
     fetchAllTech();
   }, []);
 
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  const filteredTechnologies =
+    selectedCategory === "All"
+      ? technologies
+      : technologies.filter((tech) => tech.category === selectedCategory);
+
   return (
     <>
+      <div className="filter-data-container">
+        <select value={selectedCategory} onChange={handleCategoryChange}>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div className="profile-card-holder">
-        {technologies.map((technology) => (
-          <TechCard data={technology} />
-        ))}{" "}
+        {filteredTechnologies.length > 0 ? (
+          filteredTechnologies.map((technology) => (
+            <TechCard key={technology._id} data={technology} />
+          ))
+        ) : (
+          <p>No technologies found in this category</p>
+        )}
       </div>
     </>
   );

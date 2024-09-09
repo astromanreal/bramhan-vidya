@@ -21,6 +21,8 @@ export default function RishiIndex() {
 export function Allrishi() {
   const [rishis, setRishis] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +30,10 @@ export function Allrishi() {
         const { data } = await axios.get(`${apiUrl}/profiles/allrishi`);
         if (data?.success) {
           setRishis(data.data);
+          const uniqueCategories = [
+            ...new Set(data.data.map((rishi) => rishi.class)),
+          ];
+          setCategories(["All", ...uniqueCategories]);
           document.title = "All Rishis";
         } else {
           throw new Error("Failed to fetch data");
@@ -42,19 +48,80 @@ export function Allrishi() {
     fetchData();
   }, []);
 
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  const filteredRishis =
+    selectedCategory === "All"
+      ? rishis
+      : rishis.filter((rishi) => rishi.class === selectedCategory);
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
   return (
     <>
+      <div className="filter-data-container">
+        <select value={selectedCategory} onChange={handleCategoryChange}>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="profile-card-holder">
-        {rishis.length > 0 ? (
-          rishis.map((rishi) => <ProfileCard key={rishi._id} data={rishi} />)
+        {filteredRishis.length > 0 ? (
+          filteredRishis.map((rishi) => (
+            <ProfileCard key={rishi._id} data={rishi} />
+          ))
         ) : (
-          <p>No Rishis found</p>
+          <p>No Rishis found in this category</p>
         )}
       </div>
     </>
   );
 }
+
+// export function Allrishi() {
+//   const [rishis, setRishis] = useState([]);
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const { data } = await axios.get(`${apiUrl}/profiles/allrishi`);
+//         if (data?.success) {
+//           setRishis(data.data);
+//           document.title = "All Rishis";
+//         } else {
+//           throw new Error("Failed to fetch data");
+//         }
+//       } catch (err) {
+//         alert(err.message || "Error while fetching the Data");
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchData();
+//   }, []);
+
+//   if (loading) {
+//     return <p>Loading...</p>;
+//   }
+
+//   return (
+//     <>
+//       <div className="profile-card-holder">
+//         {rishis.length > 0 ? (
+//           rishis.map((rishi) => <ProfileCard key={rishi._id} data={rishi} />)
+//         ) : (
+//           <p>No Rishis found</p>
+//         )}
+//       </div>
+//     </>
+//   );
+// }
