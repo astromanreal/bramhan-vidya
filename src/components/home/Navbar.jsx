@@ -44,23 +44,23 @@ export default function Navbar() {
               </li>
             )}
             <li>
-              <Link to="profile/shakti" className="nav-link">
-                Adi shakti
+              <Link to="event" className="nav-link">
+                Events
               </Link>
             </li>
             <li>
-              <Link to="profile/durga" className="nav-link">
-                Nav Durga
+              <Link to="topic" className="nav-link">
+                Topics
               </Link>
             </li>
             <li>
-              <Link to="profile/mahavidya" className="nav-link">
-                Mahavidya
+              <Link to="tech" className="nav-link">
+                Technology
               </Link>
             </li>
             <li>
-              <Link to="profile/navagraha" className="nav-link">
-                Navagraha
+              <Link to="place" className="nav-link">
+                Temples
               </Link>
             </li>
           </ul>

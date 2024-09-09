@@ -1,5 +1,4 @@
 import GetRedirectLink from "./../utils/GetRedirectLink";
-import ProfileHeader from "./../profiles/ProfileHeader";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -10,10 +9,11 @@ import "./Books.css";
 export default function IndexBook() {
   return (
     <>
-      <ProfileHeader
-        title="Explore Collection: Discover New Books"
-        desc="Browse through our vast collection of books, featuring a wide range of genres, authors, and topics. Discover new titles, explore different subjects, and find your next favorite book in our ever-growing library."
-      />
+      {/* <h2>
+        Browse through our vast collection of books, featuring a wide range of
+        genres, authors, and topics. Discover new titles, explore different
+        subjects, and find your next favorite book in our ever-growing library.
+      </h2> */}
       <AllBooks />
       <GetRedirectLink text="Books" path="add" />
     </>
