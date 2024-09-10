@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 export default function ProfileCard({ data }) {
@@ -17,7 +16,7 @@ export default function ProfileCard({ data }) {
         <div id="profile-contents">
           <h2>{data.name}</h2>
           <h4>{data.title || "No title given"}</h4>
-          <p>{data.mantra || "not available"}</p>
+          <p>{data.mantra || data.iconography}</p>
         </div>
       </div>
     </>

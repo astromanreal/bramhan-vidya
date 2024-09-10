@@ -83,15 +83,16 @@ export default function ChiranjiviDetails() {
           <p>
             <strong>Type:</strong> {chiranjivi.type}
           </p>
-
           <p>
-            <strong>Iconography:</strong> {chiranjivi.iconography}
+            <strong>Mother : </strong>
+            {chiranjivi.mother} | <strong>Father : </strong>
+            {chiranjivi.father}
           </p>
           <p>
-            <strong>Worshipped In:</strong> {chiranjivi.worshippedIn}
+            <strong>Ability :</strong> {chiranjivi.ability}
           </p>
           <p>
-            <strong>Festival:</strong> {chiranjivi.festival}
+            <strong>Iconography :</strong> {chiranjivi.iconography}
           </p>
         </div>
         <hr />

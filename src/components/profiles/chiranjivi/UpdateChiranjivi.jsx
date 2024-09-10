@@ -15,8 +15,8 @@ export default function UpdateChiranjivi() {
     image: "",
     ability: "",
     iconography: "",
-    worshippedIn: "",
-    festival: "",
+    mother: "",
+    father: "",
     notes: [{ key: "", value: "" }],
   });
 
@@ -173,22 +173,22 @@ export default function UpdateChiranjivi() {
           />
         </div>
         <div>
-          <label>Worshipped In:</label>
+          <label>Mother:</label>
           <input
             type="text"
-            name="worshippedIn"
-            placeholder="Regions or temples where worshipped"
-            value={formData.worshippedIn}
+            name="mother"
+            placeholder="Mother name"
+            value={formData.mother}
             onChange={handleChange}
           />
         </div>
         <div>
-          <label>Festival:</label>
+          <label>Father:</label>
           <input
             type="text"
-            name="festival"
-            placeholder="Major festivals associated with"
-            value={formData.festival}
+            name="father"
+            placeholder="father name"
+            value={formData.father}
             onChange={handleChange}
           />
         </div>
