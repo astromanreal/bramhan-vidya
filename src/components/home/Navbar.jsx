@@ -44,6 +44,11 @@ export default function Navbar() {
               </li>
             )}
             <li>
+              <Link to="profile" className="nav-link">
+                Charecters
+              </Link>
+            </li>
+            <li>
               <Link to="event" className="nav-link">
                 Events
               </Link>
@@ -54,13 +59,13 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <Link to="tech" className="nav-link">
-                Technology
+              <Link to="place" className="nav-link">
+                Temples
               </Link>
             </li>
             <li>
-              <Link to="place" className="nav-link">
-                Temples
+              <Link to="tech" className="nav-link">
+                Technology
               </Link>
             </li>
           </ul>
