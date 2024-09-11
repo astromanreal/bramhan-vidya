@@ -18,6 +18,13 @@ export default function Addvishnu() {
     festival: "",
     iconography: "",
     region: "",
+
+    purpose: "",
+    vehicle: "",
+    weapon: "",
+    mantra: "",
+    temple: "",
+    reference: "",
     notes: [{ key: "", value: "" }],
     userId: GetUserId(),
     path: "vishnu",
@@ -99,7 +106,7 @@ export default function Addvishnu() {
             type="text"
             name="title"
             placeholder="commonly known as"
-            value={formData.image}
+            value={formData.title}
             onChange={handleChange}
           />
         </div>
@@ -172,6 +179,69 @@ export default function Addvishnu() {
             onChange={handleChange}
           />
         </div>
+
+        <div>
+          <label>Purpose:</label>
+          <input
+            type="text"
+            name="purpose"
+            placeholder="The purpose or reason for the avatar's incarnation"
+            value={formData.purpose}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div>
+          <label>vehicle:</label>
+          <input
+            type="text"
+            name="vehicle"
+            placeholder="avatar's vehicle or mount "
+            value={formData.vehicle}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>weapon:</label>
+          <input
+            type="text"
+            name="weapon"
+            placeholder="avatar's weapon or symbol"
+            value={formData.weapon}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>mantra:</label>
+          <input
+            type="text"
+            name="mantra"
+            placeholder="sacred mantra associated with the avatar"
+            value={formData.mantra}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>temple:</label>
+          <input
+            type="text"
+            name="temple"
+            placeholder="notable temple dedicated to the avatar "
+            value={formData.temple}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Reference:</label>
+          <input
+            type="text"
+            name="reference"
+            placeholder="References where the avatar is mentioned"
+            value={formData.reference}
+            onChange={handleChange}
+          />
+        </div>
+
         <div id="profile-add-notes">
           <h2>Notes:</h2>
           {formData.notes.map((note, index) => (

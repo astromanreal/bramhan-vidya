@@ -169,24 +169,7 @@
   object-fit: cover;
   height: 400px;
 }
-.HomeHeader-introduction {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 340px;
-  text-align: center;
-}
-.HomeHeader-introduction p {
-  font-size: 1.24rem;
-  margin: 0 auto;
-  max-width: 800px;
-  margin-bottom: 2rem;
-  background: linear-gradient(to right, #92e549, #6ac6d6);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+
 .HomeHeader-how-we-help {
   color: white;
   padding: 50px 20px;

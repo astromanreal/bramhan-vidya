@@ -15,21 +15,10 @@ export function HomeHeader() {
   return (
     <>
       <img
-        src="https://i.postimg.cc/Gmrg6MN3/home-hero.jpg"
+        src="https://i.postimg.cc/3Rc8ZhBx/dharma.webp"
         alt="Sanatan dharma is great!"
         className="HomeHeader-hero-image"
       />
-      <section className="HomeHeader-introduction">
-        <p>
-          Explore the timeless wisdom and spiritual heritage of Hinduism, a
-          journey that will transform your understanding of the universe and
-          yourself.
-        </p>
-        <p>
-          Our application is a gateway to the ancient knowledge, sacred texts,
-          and spiritual practices that have shaped the lives of millions.
-        </p>
-      </section>
 
       <section className="HomeHeader-how-we-help">
         <h2>How we guide your spiritual journey</h2>

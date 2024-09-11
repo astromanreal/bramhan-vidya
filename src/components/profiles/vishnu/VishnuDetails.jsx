@@ -78,37 +78,79 @@ export default function VishnuDetails() {
         </p>
         <hr />
         <div>
-          <p>
-            <strong>Attribute:</strong> {vishnu.attribute}
-          </p>
-          <p>
-            <strong>Symbolism:</strong> {vishnu.symbolism}
-          </p>
-          <p>
-            <strong>Worship:</strong> {vishnu.worship}
-          </p>
-          <p>
-            <strong>Festival:</strong> {vishnu.festival}
-          </p>
-          <p>
-            <strong>Iconography:</strong> {vishnu.iconography}
-          </p>
-          <p>
-            <strong>Region:</strong> {vishnu.region}
-          </p>
+          {vishnu.mantra && (
+            <p>
+              <strong>Mantra:</strong> {vishnu.mantra}
+            </p>
+          )}
+          {vishnu.vehicle && (
+            <p>
+              <strong>Vehicle:</strong> {vishnu.vehicle}
+            </p>
+          )}
+          {vishnu.weapon && (
+            <p>
+              <strong>Weapon:</strong> {vishnu.weapon}
+            </p>
+          )}
+          {vishnu.attribute && (
+            <p>
+              <strong>Attribute:</strong> {vishnu.attribute}
+            </p>
+          )}
+          {vishnu.symbolism && (
+            <p>
+              <strong>Symbolism:</strong> {vishnu.symbolism}
+            </p>
+          )}
+          {vishnu.worship && (
+            <p>
+              <strong>Worship:</strong> {vishnu.worship}
+            </p>
+          )}
+          {vishnu.festival && (
+            <p>
+              <strong>Festival:</strong> {vishnu.festival}
+            </p>
+          )}
+          {vishnu.iconography && (
+            <p>
+              <strong>Iconography:</strong> {vishnu.iconography}
+            </p>
+          )}
+          {vishnu.region && (
+            <p>
+              <strong>Region:</strong> {vishnu.region}
+            </p>
+          )}
+          {vishnu.purpose && (
+            <p>
+              <strong>Purpose:</strong> {vishnu.purpose}
+            </p>
+          )}
+          {vishnu.reference && (
+            <p>
+              <strong>Reference:</strong> {vishnu.reference}
+            </p>
+          )}{" "}
+          {vishnu.temple && (
+            <p>
+              <strong>Temple:</strong> {vishnu.temple}
+            </p>
+          )}
         </div>
-        <hr />
         {GetUserId() === vishnu.userId && (
           <div>
             <Link to={`/profile/vishnu/update/${id}`}>
               <button>Update Data</button>
             </Link>
-            <button onClick={handleDelete}>Delete Data</button> <hr />
+            <button onClick={handleDelete}>Delete Data</button>
           </div>
         )}
+        <hr />
 
         <div id="profile-notes-container">
-          <h2>Notes:</h2>
+          <h2>Important key points:</h2>
           {vishnu.notes.length > 0 ? (
             vishnu.notes.map((note, index) => (
               <div key={index}>

@@ -20,6 +20,11 @@ export default function IndexTopics() {
           content="Sanatan Dharma, hindusim topics, spirituality, philosophy, culture"
         />
       </Helmet>
+      <img
+        src="https://i.postimg.cc/X7vKJkZK/home-header.jpg"
+        alt="Sanatan dharma is great!"
+        className="topic-hero-image"
+      />
 
       <div className="topic-card-holder">
         <AllTopics />

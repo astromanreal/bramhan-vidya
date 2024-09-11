@@ -50,6 +50,11 @@ export function AllTech() {
 
   return (
     <>
+      <img
+        src="https://i.postimg.cc/3RRrpN2q/Technology.jpg"
+        alt=""
+        className="tech-hero-image"
+      />
       <div className="filter-data-container">
         <select value={selectedCategory} onChange={handleCategoryChange}>
           {categories.map((category) => (

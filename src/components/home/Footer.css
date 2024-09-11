@@ -4,6 +4,7 @@ footer {
   background-color: #222;
   color: #fff;
   padding-top: 20px;
+  overflow-y: hidden;
   position: relative;
 }
 

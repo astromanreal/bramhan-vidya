@@ -1,3 +1,9 @@
+.topic-hero-image {
+  width: 100%;
+  object-fit: cover;
+  max-height: 90vh;
+}
+
 /* index page start */
 .topic-card-holder {
   display: flex;

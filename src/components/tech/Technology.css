@@ -1,3 +1,10 @@
+.tech-hero-image {
+  height: auto;
+  width: 100%;
+  max-height: 80vh;
+  object-fit: cover;
+}
+
 /* card */
 .tech-card {
   background-color: #272525;
