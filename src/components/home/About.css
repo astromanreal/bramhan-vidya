@@ -1,0 +1,50 @@
+.about-us {
+  margin: 1rem auto;
+  max-width: 900px;
+}
+.about-us p {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  margin: 1rem;
+}
+
+.HomeHeader-how-we-help {
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+}
+.HomeHeader-how-we-help h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+.HomeHeader-help-cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.HomeHeader-help-card {
+  flex: 1;
+  min-width: 220px;
+  max-width: 340px;
+  background-color: #1c1819;
+  color: #f0f0f0;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.HomeHeader-help-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.HomeHeader-help-card p {
+  margin: 1rem 0;
+}
+.HomeHeader-help-icon {
+  height: 280px;
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 20px;
+}

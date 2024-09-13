@@ -20,6 +20,7 @@ import bookRoutes from "./routes/BookRoutes";
 import TechRoutes from "./routes/techRoutes";
 import eventRoutes from "./routes/eventRoutes";
 import blogRoutes from "./routes/BlogRoutes";
+import About from "./components/home/About";
 
 function App() {
   const location = useLocation();
@@ -50,6 +51,7 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="explore" element={<ExplorePage />} />
         <Route path="profile" element={<Profiles />} />
         <Route path="place" element={<PlacesIndex />} />
