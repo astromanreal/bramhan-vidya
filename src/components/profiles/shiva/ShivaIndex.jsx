@@ -21,6 +21,8 @@ export default function ShivaIndex() {
 export function AllShiva() {
   const [shivas, setShivas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedType, setSelectedType] = useState("All");
+  const [types, setTypes] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +30,10 @@ export function AllShiva() {
         const { data } = await axios.get(`${apiUrl}/profiles/allshiva`);
         if (data?.success) {
           setShivas(data.data);
+          const uniqueTypes = [
+            ...new Set(data.data.map((shiva) => shiva.type)),
+          ];
+          setTypes(["All", ...uniqueTypes]);
           document.title = "All Shiva Profiles";
         } else {
           throw new Error("Failed to fetch data");
@@ -42,17 +48,37 @@ export function AllShiva() {
     fetchData();
   }, []);
 
+  const handleTypeChange = (event) => {
+    setSelectedType(event.target.value);
+  };
+
+  const filteredShivas =
+    selectedType === "All"
+      ? shivas
+      : shivas.filter((shiva) => shiva.type === selectedType);
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
   return (
     <>
+      <div className="filter-data-container">
+        <select value={selectedType} onChange={handleTypeChange}>
+          {types.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="profile-card-holder">
-        {shivas.length > 0 ? (
-          shivas.map((shiva) => <ProfileCard key={shiva._id} data={shiva} />)
+        {filteredShivas.length > 0 ? (
+          filteredShivas.map((shiva) => (
+            <ProfileCard key={shiva._id} data={shiva} />
+          ))
         ) : (
-          <p>No Shiva profiles found</p>
+          <p>No Shiva profiles found of this type</p>
         )}
       </div>
     </>

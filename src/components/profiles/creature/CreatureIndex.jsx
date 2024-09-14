@@ -21,6 +21,8 @@ export default function CreatureIndex() {
 export function Allcreature() {
   const [creatures, setCreatures] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedType, setSelectedType] = useState("All");
+  const [types, setTypes] = useState([]);
 
   useEffect(() => {
     const fetchCreatures = async () => {
@@ -28,6 +30,10 @@ export function Allcreature() {
         const { data } = await axios.get(`${apiUrl}/profiles/allcreatures`);
         if (data?.success) {
           setCreatures(data.data);
+          const uniqueTypes = [
+            ...new Set(data.data.map((creature) => creature.type)),
+          ];
+          setTypes(["All", ...uniqueTypes]);
         } else {
           throw new Error("Failed to fetch creatures");
         }
@@ -41,21 +47,37 @@ export function Allcreature() {
     fetchCreatures();
   }, []);
 
+  const handleTypeChange = (event) => {
+    setSelectedType(event.target.value);
+  };
+
+  const filteredCreatures =
+    selectedType === "All"
+      ? creatures
+      : creatures?.filter((creature) => creature.type === selectedType);
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
   return (
     <>
+      <div className="filter-data-container">
+        <select value={selectedType} onChange={handleTypeChange}>
+          {types.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="profile-card-holder">
-        {creatures.length === 0 ? (
-          <p>No creatures found</p>
+        {filteredCreatures.length === 0 ? (
+          <p>No creatures found of this type</p>
         ) : (
-          <>
-            {creatures.map((creature) => (
-              <ProfileCard key={creature._id} data={creature} />
-            ))}
-          </>
+          filteredCreatures.map((creature) => (
+            <ProfileCard key={creature._id} data={creature} />
+          ))
         )}
       </div>
     </>

@@ -10,6 +10,7 @@ export default function UpdateShiva() {
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
+    type: "",
     image: "",
     title: "",
     description: "",
@@ -114,6 +115,18 @@ export default function UpdateShiva() {
           />
         </div>
         <div>
+          <select
+            name="type"
+            value={formData.type}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Choose one</option>
+            <option value="Avatar">Avatars</option>
+            <option value="Forms">Forms</option>
+          </select>
+        </div>
+        <div>
           <label>Title:</label>
           <input
             type="text"
@@ -196,7 +209,7 @@ export default function UpdateShiva() {
           <label>Region:</label>
           <input
             type="text"
-            name="regions"
+            name="region"
             placeholder="Region where the avatar is prominently revered"
             value={formData.region}
             onChange={handleChange}

@@ -79,23 +79,26 @@ export default function ShivaDetails() {
         <hr />
         <div>
           <p>
-            <strong>Attribute:</strong> {shiva.attribute || "N/A"}
-          </p>
-          <p>
-            <strong>Symbolism:</strong> {shiva.symbolism || "N/A"}
-          </p>
-          <p>
-            <strong>Associated Deity:</strong> {shiva.associatedDeity || "N/A"}
+            <strong>Iconography:</strong> {shiva.iconography || "N/A"}
           </p>
           <p>
             <strong>Worship:</strong> {shiva.worship || "N/A"}
           </p>
+
+          <p>
+            <strong>Symbolism:</strong> {shiva.symbolism || "N/A"}
+          </p>
+          <p>
+            <strong>Attribute:</strong> {shiva.attribute || "N/A"}
+          </p>
+          <p>
+            <strong>Associated Deity:</strong> {shiva.associatedDeity || "N/A"}
+          </p>
+
           <p>
             <strong>Festival:</strong> {shiva.festival || "N/A"}
           </p>
-          <p>
-            <strong>Iconography:</strong> {shiva.iconography || "N/A"}
-          </p>
+
           <p>
             <strong>Region:</strong> {shiva.region || "N/A"}
           </p>

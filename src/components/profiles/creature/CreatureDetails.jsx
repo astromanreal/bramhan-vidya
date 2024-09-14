@@ -83,16 +83,10 @@ export default function CreatureDetails() {
         <hr />
         <div>
           <p>
-            <strong>Type:</strong> {creature.type}
-          </p>
-          <p>
             <strong>Associated Deity:</strong> {creature.associatedDeity}
           </p>
           <p>
-            <strong>Description:</strong> {creature.description}
-          </p>
-          <p>
-            <strong>Feature:</strong> {creature.feature}
+            <strong>Iconography:</strong> {creature.iconography}
           </p>
           <p>
             <strong>Symbolic Meaning:</strong> {creature.symbolicMeaning}

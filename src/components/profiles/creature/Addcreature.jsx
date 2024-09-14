@@ -15,7 +15,7 @@ export default function AddCreature() {
     title: "",
     description: "",
     associatedDeity: "",
-    feature: "",
+    iconography: "",
     symbolicMeaning: "",
     mythologyReferences: "",
     notes: [{ key: "", value: "" }],
@@ -146,12 +146,12 @@ export default function AddCreature() {
           />
         </div>
         <div>
-          <label>Feature:</label>
+          <label>Iconography:</label>
           <input
             type="text"
-            name="feature"
+            name="iconography"
             placeholder="Key features or attribute"
-            value={formData.feature}
+            value={formData.iconography}
             onChange={handleChange}
           />
         </div>

@@ -9,6 +9,7 @@ export default function Addshiva() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
+    type: "",
     image: "",
     title: "",
     description: "",
@@ -76,7 +77,6 @@ export default function Addshiva() {
   return (
     <>
       <form id="add-profile-form" onSubmit={handleSubmit}>
-        {" "}
         <h1>Add and Manage Shiva Profiles</h1>
         <div>
           <label>Name:</label>
@@ -97,6 +97,18 @@ export default function Addshiva() {
             value={formData.image}
             onChange={handleChange}
           />
+        </div>
+        <div>
+          <select
+            name="type"
+            value={formData.type}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Choose one</option>
+            <option value="Avatar">Avatars</option>
+            <option value="Forms">Forms</option>
+          </select>
         </div>
         <div>
           <label>Title:</label>
@@ -181,7 +193,7 @@ export default function Addshiva() {
           <label>Region:</label>
           <input
             type="text"
-            name="regions"
+            name="region"
             placeholder="Region where the avatar is prominently revered"
             value={formData.region}
             onChange={handleChange}
