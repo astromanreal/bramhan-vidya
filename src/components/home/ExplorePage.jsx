@@ -45,6 +45,27 @@ export default function ExplorePage() {
       image: "https://i.postimg.cc/qq3ZHW4q/places.jpg",
     },
     {
+      title: "Festivals",
+      path: "festival",
+      subtitle: "Celebrating Divine Moments",
+      desc: "Explore the vibrant festivals and sacred occasions that mark the Hindu spiritual calendar, each with its unique significance and traditions.",
+      image: "https://i.postimg.cc/4xG9QPVm/festivals.jpg",
+    },
+    {
+      title: "Temples",
+      path: "temple",
+      subtitle: "Sacred Abodes of the Divine",
+      desc: "Visit the ancient and revered temples that embody the spiritual essence of Hinduism, each with its unique architecture and historical significance.",
+      image: "https://i.postimg.cc/BZdDX4v5/temples.jpg",
+    },
+    {
+      title: "Organisations",
+      path: "organisation",
+      subtitle: "Institutions Preserving Hindu Heritage",
+      desc: "Discover the esteemed organisations and institutions dedicated to preserving and promoting Hindu culture, philosophy, and traditions.",
+      image: "https://i.postimg.cc/TYgbbFyz/organisations.jpg",
+    },
+    {
       title: "Blogs",
       path: "blog",
       subtitle: "Insights into Sanatan Dharma",
