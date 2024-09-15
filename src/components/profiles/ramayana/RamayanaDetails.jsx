@@ -81,10 +81,24 @@ export default function RamayanaDetails() {
         <hr />
         <div>
           <p>
-            <strong>Role:</strong> {ramayana.role}
+            <strong>Region:</strong> {ramayana.region}
+          </p>
+
+          <p>
+            <strong>Skill:</strong> {ramayana.skill}
           </p>
           <p>
-            <strong>Affiliation:</strong> {ramayana.affiliation}
+            <strong>Attribute:</strong> {ramayana.attribute}
+          </p>
+          <p>
+            <strong>Symbolism:</strong> {ramayana.symbolism}
+          </p>
+          <p>
+            <strong>Associated Character:</strong>{" "}
+            {ramayana.associatedCharacter}
+          </p>
+          <p>
+            <strong>Iconography:</strong> {ramayana.iconography}
           </p>
           <p>
             {ramayana.family && (
@@ -104,25 +118,6 @@ export default function RamayanaDetails() {
                 )}
               </>
             )}
-          </p>
-          <p>
-            <strong>Skill:</strong> {ramayana.skill}
-          </p>
-          <p>
-            <strong>Attribute:</strong> {ramayana.attribute}
-          </p>
-          <p>
-            <strong>Symbolism:</strong> {ramayana.symbolism}
-          </p>
-          <p>
-            <strong>Associated Character:</strong>{" "}
-            {ramayana.associatedCharacter}
-          </p>
-          <p>
-            <strong>Iconography:</strong> {ramayana.iconography}
-          </p>
-          <p>
-            <strong>Region:</strong> {ramayana.region}
           </p>
         </div>
         <hr />
