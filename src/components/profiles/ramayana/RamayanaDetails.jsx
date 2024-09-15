@@ -87,7 +87,23 @@ export default function RamayanaDetails() {
             <strong>Affiliation:</strong> {ramayana.affiliation}
           </p>
           <p>
-            <strong>Family:</strong> {ramayana.family}
+            {ramayana.family && (
+              <>
+                <strong>Family:</strong>
+                {ramayana.family.mother && (
+                  <p>Mother: {ramayana.family.mother}</p>
+                )}
+                {ramayana.family.father && (
+                  <p>Father: {ramayana.family.father}</p>
+                )}
+                {ramayana.family.spouse && (
+                  <p>Spouse: {ramayana.family.spouse}</p>
+                )}
+                {ramayana.family.children && (
+                  <p>Children: {ramayana.family.children}</p>
+                )}
+              </>
+            )}
           </p>
           <p>
             <strong>Skill:</strong> {ramayana.skill}
@@ -101,12 +117,6 @@ export default function RamayanaDetails() {
           <p>
             <strong>Associated Character:</strong>{" "}
             {ramayana.associatedCharacter}
-          </p>
-          <p>
-            <strong>Worship:</strong> {ramayana.worship}
-          </p>
-          <p>
-            <strong>Festival:</strong> {ramayana.festival}
           </p>
           <p>
             <strong>Iconography:</strong> {ramayana.iconography}

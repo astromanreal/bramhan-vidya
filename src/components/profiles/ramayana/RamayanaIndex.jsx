@@ -21,6 +21,8 @@ export default function RamayanaIndex() {
 export function AllRamayanaCharacters() {
   const [ramayanaCharacters, setRamayanaCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedRole, setSelectedRole] = useState("All");
+  const [roles, setRoles] = useState([]);
 
   useEffect(() => {
     const fetchRamayanaCharacters = async () => {
@@ -28,6 +30,10 @@ export function AllRamayanaCharacters() {
         const { data } = await axios.get(`${apiUrl}/profiles/allramayana`);
         if (data?.success) {
           setRamayanaCharacters(data.data);
+          const uniqueRoles = [
+            ...new Set(data.data.map((character) => character.role)),
+          ];
+          setRoles(["All", ...uniqueRoles]);
           document.title = "All Ramayana Characters";
         } else {
           throw new Error("Failed to fetch Ramayana characters data");
@@ -42,6 +48,17 @@ export function AllRamayanaCharacters() {
     fetchRamayanaCharacters();
   }, []);
 
+  const handleRoleChange = (event) => {
+    setSelectedRole(event.target.value);
+  };
+
+  const filteredCharacters =
+    selectedRole === "All"
+      ? ramayanaCharacters
+      : ramayanaCharacters.filter(
+          (character) => character.role === selectedRole
+        );
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -52,10 +69,23 @@ export function AllRamayanaCharacters() {
 
   return (
     <>
+      <div className="filter-data-container">
+        <select value={selectedRole} onChange={handleRoleChange}>
+          {roles.map((role) => (
+            <option key={role} value={role}>
+              {role}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="profile-card-holder">
-        {ramayanaCharacters.map((character) => (
-          <ProfileCard key={character._id} data={character} />
-        ))}
+        {filteredCharacters.length > 0 ? (
+          filteredCharacters.map((character) => (
+            <ProfileCard key={character._id} data={character} />
+          ))
+        ) : (
+          <p>No characters found in this role</p>
+        )}
       </div>
     </>
   );

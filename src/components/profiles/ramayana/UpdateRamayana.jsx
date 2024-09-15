@@ -10,15 +10,19 @@ export default function UpdateRamayana() {
   const [formData, setFormData] = useState({
     name: "",
     image: "",
+    title: "",
+    description: "",
     role: "",
-    affiliation: "",
-    family: "",
+    family: {
+      mother: "",
+      father: "",
+      spouse: "",
+      children: "",
+    },
     skill: "",
     attribute: "",
     symbolism: "",
     associatedCharacter: "",
-    worship: "",
-    festival: "",
     iconography: "",
     region: "",
     notes: [{ key: "", value: "" }],
@@ -53,6 +57,13 @@ export default function UpdateRamayana() {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
+    }));
+  };
+
+  const handleFamilyChange = (field, value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      family: { ...prevData.family, [field]: value },
     }));
   };
 
@@ -123,41 +134,84 @@ export default function UpdateRamayana() {
           />
         </div>
         <div>
+          <label>Title:</label>
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Description:</label>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
           <label>Role:</label>
           <select name="role" value={formData.role} onChange={handleChange}>
             <option value="">Select Role</option>
-            {["Prince", "King", "Sage", "Demon", "Vanara", "Others"].map(
-              (role) => (
-                <option value={role}>{role}</option>
-              )
-            )}
+            {[
+              "Prince",
+              "King",
+              "Sage",
+              "Demon",
+              "Vanara",
+              "Ram Family",
+              "Ravan Family",
+              "Others",
+            ].map((role) => (
+              <option value={role}>{role}</option>
+            ))}
           </select>
         </div>
         <div>
-          <label>Affiliation:</label>
-          <input
-            type="text"
-            name="affiliation"
-            placeholder="Ayodhya, Lanka, Vanaras, etc."
-            value={formData.affiliation}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
           <label>Family:</label>
-          <input
-            type="text"
-            name="family"
-            placeholder="Parents, spouse, children, etc."
-            value={formData.family}
-            onChange={handleChange}
-          />
+          <div>
+            <label>Mother:</label>
+            <input
+              type="text"
+              name="mother"
+              value={formData.family.mother}
+              onChange={(e) => handleFamilyChange("mother", e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Father:</label>
+            <input
+              type="text"
+              name="father"
+              value={formData.family.father}
+              onChange={(e) => handleFamilyChange("father", e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Spouse:</label>
+            <input
+              type="text"
+              name="spouse"
+              value={formData.family.spouse}
+              onChange={(e) => handleFamilyChange("spouse", e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Children:</label>
+            <input
+              type="text"
+              name="children"
+              value={formData.family.children}
+              onChange={(e) => handleFamilyChange("children", e.target.value)}
+            />
+          </div>
         </div>
         <div>
           <label>Skill:</label>
           <input
             type="text"
-            name="skills"
+            name="skill"
             placeholder="Special skill or ability"
             value={formData.skill}
             onChange={handleChange}
@@ -167,7 +221,7 @@ export default function UpdateRamayana() {
           <label>Attributes:</label>
           <input
             type="text"
-            name="attributes"
+            name="attribute"
             placeholder="Personality traits or characteristics"
             value={formData.attribute}
             onChange={handleChange}
@@ -190,26 +244,6 @@ export default function UpdateRamayana() {
             name="associatedCharacter"
             placeholder="Characters closely associated with this one"
             value={formData.associatedCharacter}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Worship:</label>
-          <input
-            type="text"
-            name="worship"
-            placeholder="How and where this character is revered"
-            value={formData.worship}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Festival:</label>
-          <input
-            type="text"
-            name="festival"
-            placeholder="Festival associated with the character"
-            value={formData.festival}
             onChange={handleChange}
           />
         </div>
