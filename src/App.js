@@ -21,6 +21,9 @@ import TechRoutes from "./routes/techRoutes";
 import eventRoutes from "./routes/eventRoutes";
 import blogRoutes from "./routes/BlogRoutes";
 import About from "./components/home/About";
+import organisationRoutes from "./routes/OrganisationRoutes";
+import festivalRoutes from "./routes/FestivalRoutes";
+import templeRoutes from "./routes/TempleRoutes";
 
 function App() {
   const location = useLocation();
@@ -64,6 +67,9 @@ function App() {
         {blogRoutes}
         {ProfileRoutes}
         {PlaceRoutes}
+        {organisationRoutes}
+        {festivalRoutes}
+        {templeRoutes}
       </Routes>
       <Footer />
 

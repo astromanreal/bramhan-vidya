@@ -19,9 +19,8 @@ export default function Footer() {
           <div className="footer-section">
             <h2>Explore</h2>
             <ul>
-              <Link to="profile">Deities</Link>
               <Link to="book">Scriptures</Link>
-              <Link to="place">Temples</Link>
+              <Link to="place">Sites</Link>
               <Link to="tech">Technology</Link>
               <Link to="event">Events</Link>
             </ul>

@@ -1,0 +1,89 @@
+/* index card */
+.org-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.org-name {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.org-type {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+.org-description {
+  font-size: 14px;
+  color: #999;
+}
+.org-card a button {
+  padding: 7px;
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+}
+/* index card */
+
+/* detail page */
+.organisation-details-container {
+  max-width: 1000px;
+  margin: 45px auto;
+  padding: 22px;
+}
+.organisation-description {
+  font-size: 18px;
+  color: #a3a8a7;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.organisation-like-dislike-btn-holder {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.organisation-like-dislike-btn-holder span:hover {
+  scale: 1.4;
+}
+.organisation-info {
+  font-size: 17px;
+  color: #767474;
+  margin: 20px 0;
+}
+.organisation-details {
+  margin: 30px 10px;
+}
+.organisation-details p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+.organisation-update-delete-btn {
+  padding: 20px;
+}
+.organisation-update-delete-btn button {
+  background-color: #2c8dd2;
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.organisation-notes {
+  margin: 20px 0;
+}
+.organisation-notes h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+.organisation-notes p {
+  font-size: 16px;
+  color: #c3bebe;
+  margin-bottom: 25px;
+}
+/* detail page */
