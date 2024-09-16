@@ -21,6 +21,27 @@
 }
 /* cover image of index page */
 
+/* search profile */
+.profile-search-container form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 30vh;
+}
+.profile-search-container form input {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 12px 0 0 12px;
+}
+.profile-search-container form button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #7fd784;
+  border-radius: 0 12px 12px 0;
+}
+/* search profile */
+
 /* profile index page card */
 .profile-page-list {
   display: flex;

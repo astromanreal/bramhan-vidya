@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import "./Profile.css";
 import * as img from "./img/exports";
-import ProfileFeeds from "./ProfileFeeds";
+// import ProfileFeeds from "./ProfileFeeds";
 import { Helmet } from "react-helmet";
 import { useEffect, useMemo, useState } from "react";
+import apiUrl from "../utils/GetApiUrl";
 
 export default function Profiles() {
   const profileList = [
@@ -118,18 +119,8 @@ export default function Profiles() {
         <title>Characters in Hinduism</title>
       </Helmet>
       <ProfilesCovers />
-      {/* <header id="profile-img-header">
-        <div className="profile-overlay">
-          <h1>Characters in Hinduism</h1>
-          <p>
-            Explore the diverse and fascinating characters from Hindu mythology.
-            This collection includes gods, demons, sages, and more, each with
-            unique stories and attributes that enrich the tapestry of Hindu
-            beliefs and traditions.
-          </p>
-        </div>
-      </header> */}
-      <ProfileFeeds />
+      <Search />
+      {/* <ProfileFeeds /> */}
       <div className="profile-page-list">
         {profileList.map((p) => (
           <div key={p.path} id="profile-page-card">
@@ -143,7 +134,58 @@ export default function Profiles() {
     </>
   );
 }
+const Search = () => {
+  const [query, setQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [searchPerformed, setSearchPerformed] = useState(false);
 
+  const handleSearch = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setSearchPerformed(true);
+    const response = await fetch(
+      `${apiUrl}/users/search-profiles?query=${query}`
+    );
+    const data = await response.json();
+    setSearchResults(data.data);
+    setLoading(false);
+  };
+
+  return (
+    <div className="profile-search-container">
+      <form onSubmit={handleSearch}>
+        <input
+          type="search"
+          value={query}
+          required
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Search for profiles..."
+        />
+        <button type="submit">{loading ? "Searching..." : "🔍"}</button>
+      </form>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div className="search-results">
+          {searchPerformed && searchResults.length === 0 ? (
+            <div>No profiles found</div>
+          ) : searchResults.length > 0 ? (
+            searchResults.map((result) => (
+              <div key={result._id}>
+                <h2>{result.name}</h2>
+                <p>{result.description}</p>
+                <Link to={`${result.path}/${result._id}`}>
+                  <button>View more</button>
+                </Link>
+              </div>
+            ))
+          ) : null}
+        </div>
+      )}
+    </div>
+  );
+};
 export function ProfilesCovers() {
   const [currentIndex, setCurrentIndex] = useState(0);
 

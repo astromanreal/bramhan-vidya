@@ -34,7 +34,7 @@ export function HomeHeader() {
         <Link to="explore">
           <button> ENTER THE PORTAL</button>
         </Link>
-        <div className="arrow"></div>
+        {/* <div className="arrow"></div> */}
       </section>
     </>
   );
