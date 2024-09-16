@@ -21,10 +21,10 @@ export default function GodIndex() {
     </>
   );
 }
-
 export function Allgods() {
   const [gods, setGods] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchGods = async () => {
@@ -46,20 +46,34 @@ export function Allgods() {
     fetchGods();
   }, []);
 
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const filteredGods = gods.filter((god) =>
+    god.name.toLowerCase().includes(searchTerm)
+  );
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
-  if (gods.length === 0) {
-    return <p>No gods found</p>;
-  }
-
   return (
     <>
+      <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
+      </div>
       <div className="profile-card-holder">
-        {gods.map((god) => (
-          <ProfileCard key={god._id} data={god} />
-        ))}
+        {filteredGods.length === 0 ? (
+          <p>No Gods found matching your search criteria.</p>
+        ) : (
+          filteredGods.map((god) => <ProfileCard key={god._id} data={god} />)
+        )}
       </div>
     </>
   );

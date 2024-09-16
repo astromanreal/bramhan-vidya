@@ -17,10 +17,10 @@ export default function ShaktiIndex() {
     </>
   );
 }
-
 export function AllShakti() {
   const [shaktis, setShaktis] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,14 +42,31 @@ export function AllShakti() {
     fetchData();
   }, []);
 
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const filteredShaktis = shaktis.filter((shakti) =>
+    shakti.name.toLowerCase().includes(searchTerm)
+  );
+
   if (loading) {
     return <p>Loading...</p>;
   }
+
   return (
     <>
+      <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
+      </div>
       <div className="profile-card-holder">
-        {shaktis.length > 0 ? (
-          shaktis.map((shakti) => (
+        {filteredShaktis.length > 0 ? (
+          filteredShaktis.map((shakti) => (
             <ProfileCard key={shakti._id} data={shakti} />
           ))
         ) : (

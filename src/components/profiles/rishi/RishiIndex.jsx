@@ -23,6 +23,7 @@ export function Allrishi() {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [categories, setCategories] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(""); // Add search term state
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,10 +53,18 @@ export function Allrishi() {
     setSelectedCategory(event.target.value);
   };
 
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
   const filteredRishis =
     selectedCategory === "All"
-      ? rishis
-      : rishis.filter((rishi) => rishi.class === selectedCategory);
+      ? rishis.filter((rishi) => rishi.name.toLowerCase().includes(searchTerm))
+      : rishis.filter(
+          (rishi) =>
+            rishi.class === selectedCategory &&
+            rishi.name.toLowerCase().includes(searchTerm)
+        );
 
   if (loading) {
     return <p>Loading...</p>;
@@ -64,6 +73,12 @@ export function Allrishi() {
   return (
     <>
       <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
         <select value={selectedCategory} onChange={handleCategoryChange}>
           {categories.map((category) => (
             <option key={category} value={category}>
@@ -78,7 +93,7 @@ export function Allrishi() {
             <ProfileCard key={rishi._id} data={rishi} />
           ))
         ) : (
-          <p>No Rishis found in this category</p>
+          <p>No Rishis found</p>
         )}
       </div>
     </>

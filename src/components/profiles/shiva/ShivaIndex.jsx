@@ -23,6 +23,7 @@ export function AllShiva() {
   const [loading, setLoading] = useState(true);
   const [selectedType, setSelectedType] = useState("All");
   const [types, setTypes] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,10 +53,18 @@ export function AllShiva() {
     setSelectedType(event.target.value);
   };
 
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
   const filteredShivas =
     selectedType === "All"
-      ? shivas
-      : shivas.filter((shiva) => shiva.type === selectedType);
+      ? shivas.filter((shiva) => shiva.name.toLowerCase().includes(searchTerm))
+      : shivas.filter(
+          (shiva) =>
+            shiva.type === selectedType &&
+            shiva.name.toLowerCase().includes(searchTerm)
+        );
 
   if (loading) {
     return <p>Loading...</p>;
@@ -64,6 +73,12 @@ export function AllShiva() {
   return (
     <>
       <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
         <select value={selectedType} onChange={handleTypeChange}>
           {types.map((type) => (
             <option key={type} value={type}>
@@ -78,7 +93,7 @@ export function AllShiva() {
             <ProfileCard key={shiva._id} data={shiva} />
           ))
         ) : (
-          <p>No Shiva profiles found of this type</p>
+          <p>No Shiva profiles found</p>
         )}
       </div>
     </>

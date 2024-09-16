@@ -1,17 +1,14 @@
 import GetRedirectLink from "../../utils/GetRedirectLink";
-import ProfileHeader from "../ProfileHeader";
+import { useState, useEffect } from "react";
 import ProfileCard from "../ProfileCard";
 import apiUrl from "../../utils/GetApiUrl";
-import { useState, useEffect } from "react";
+
 import axios from "axios";
 
 export default function RamayanaIndex() {
   return (
     <>
-      <ProfileHeader
-        title="Characters of Ramayana"
-        desc="Explore the legendary characters from the epic tale of Ramayana, a story of heroism, loyalty, and devotion."
-      />
+      <h1>Characters of Ramayana</h1>
       <AllRamayanaCharacters />
       <GetRedirectLink text="Ramayana Charecters" path="add-ramayana" />
     </>
@@ -23,6 +20,7 @@ export function AllRamayanaCharacters() {
   const [loading, setLoading] = useState(true);
   const [selectedRole, setSelectedRole] = useState("All");
   const [roles, setRoles] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(""); // Add search term state
 
   useEffect(() => {
     const fetchRamayanaCharacters = async () => {
@@ -52,24 +50,34 @@ export function AllRamayanaCharacters() {
     setSelectedRole(event.target.value);
   };
 
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
   const filteredCharacters =
     selectedRole === "All"
-      ? ramayanaCharacters
+      ? ramayanaCharacters.filter((character) =>
+          character.name.toLowerCase().includes(searchTerm)
+        )
       : ramayanaCharacters.filter(
-          (character) => character.role === selectedRole
+          (character) =>
+            character.role === selectedRole &&
+            character.name.toLowerCase().includes(searchTerm)
         );
 
   if (loading) {
     return <p>Loading...</p>;
   }
 
-  if (ramayanaCharacters.length === 0) {
-    return <p>No Ramayana characters found</p>;
-  }
-
   return (
     <>
       <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
         <select value={selectedRole} onChange={handleRoleChange}>
           {roles.map((role) => (
             <option key={role} value={role}>
@@ -78,13 +86,14 @@ export function AllRamayanaCharacters() {
           ))}
         </select>
       </div>
+
       <div className="profile-card-holder">
         {filteredCharacters.length > 0 ? (
           filteredCharacters.map((character) => (
             <ProfileCard key={character._id} data={character} />
           ))
         ) : (
-          <p>No characters found in this role</p>
+          <p>No characters found </p>
         )}
       </div>
     </>

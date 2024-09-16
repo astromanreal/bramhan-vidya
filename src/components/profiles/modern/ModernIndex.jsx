@@ -18,10 +18,10 @@ export default function ModernIndex() {
     </>
   );
 }
-
 export function Allmodern() {
   const [modernCharacters, setModernCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchModernCharacters = async () => {
@@ -44,16 +44,36 @@ export function Allmodern() {
     fetchModernCharacters();
   }, []);
 
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const filteredModernCharacters = modernCharacters.filter((modern) =>
+    modern.name.toLowerCase().includes(searchTerm)
+  );
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
   return (
     <>
+      <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
+      </div>
       <div className="profile-card-holder">
-        {modernCharacters.map((modern) => (
-          <ProfileCard key={modern._id} data={modern} />
-        ))}
+        {filteredModernCharacters.length > 0 ? (
+          filteredModernCharacters.map((modern) => (
+            <ProfileCard key={modern._id} data={modern} />
+          ))
+        ) : (
+          <p>No modern characters found</p>
+        )}
       </div>
     </>
   );

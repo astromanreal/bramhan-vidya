@@ -21,6 +21,7 @@ export default function GaneshaIndex() {
 export function AllGaneshaAvatars() {
   const [ganeshaAvatars, setGaneshaAvatars] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState(""); // Add search term state
 
   useEffect(() => {
     const fetchGaneshaAvatars = async () => {
@@ -42,20 +43,36 @@ export function AllGaneshaAvatars() {
     fetchGaneshaAvatars();
   }, []);
 
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const filteredGaneshaAvatars = ganeshaAvatars.filter((avatar) =>
+    avatar.name.toLowerCase().includes(searchTerm)
+  );
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
-  if (ganeshaAvatars.length === 0) {
-    return <p>No Ganesha avatars found</p>;
-  }
-
   return (
     <>
+      <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
+      </div>
       <div className="profile-card-holder">
-        {ganeshaAvatars.map((avatar) => (
-          <ProfileCard key={avatar._id} data={avatar} />
-        ))}
+        {filteredGaneshaAvatars.length === 0 ? (
+          <p>No Ganesha avatars found matching your search criteria.</p>
+        ) : (
+          filteredGaneshaAvatars.map((avatar) => (
+            <ProfileCard key={avatar._id} data={avatar} />
+          ))
+        )}
       </div>
     </>
   );

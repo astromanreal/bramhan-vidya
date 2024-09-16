@@ -21,6 +21,7 @@ export default function NagaIndex() {
 export function AllNagas() {
   const [naga, setNagas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchNagas = async () => {
@@ -41,16 +42,36 @@ export function AllNagas() {
     fetchNagas();
   }, []);
 
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const filteredNagas = naga.filter((naga) =>
+    naga.name.toLowerCase().includes(searchTerm)
+  );
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
   return (
     <>
+      <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
+      </div>
       <div className="profile-card-holder">
-        {naga.map((naga) => (
-          <ProfileCard key={naga._id} data={naga} />
-        ))}
+        {filteredNagas.length > 0 ? (
+          filteredNagas.map((naga) => (
+            <ProfileCard key={naga._id} data={naga} />
+          ))
+        ) : (
+          <p>No Nagas found</p>
+        )}
       </div>
     </>
   );

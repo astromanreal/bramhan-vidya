@@ -18,10 +18,10 @@ export default function GoddessIndex() {
     </>
   );
 }
-
 export function Allgoddess() {
   const [goddesses, setGoddesses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState(""); // Add search term state
 
   useEffect(() => {
     const fetchGoddesses = async () => {
@@ -42,20 +42,34 @@ export function Allgoddess() {
     fetchGoddesses();
   }, []);
 
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const filteredGoddesses = goddesses.filter((goddess) =>
+    goddess.name.toLowerCase().includes(searchTerm)
+  );
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
   return (
     <>
+      <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
+      </div>
       <div className="profile-card-holder">
-        {goddesses.length === 0 ? (
+        {filteredGoddesses.length === 0 ? (
           <p>No goddesses found</p>
         ) : (
-          goddesses.map((goddess) => (
-            <>
-              <ProfileCard key={goddess._id} data={goddess} />
-            </>
+          filteredGoddesses.map((goddess) => (
+            <ProfileCard key={goddess._id} data={goddess} />
           ))
         )}
       </div>

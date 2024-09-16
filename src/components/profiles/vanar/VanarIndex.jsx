@@ -24,6 +24,7 @@ export default function VanarIndex() {
 export function AllVanaras() {
   const [vanaras, setVanaras] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchVanaras = async () => {
@@ -45,20 +46,37 @@ export function AllVanaras() {
     fetchVanaras();
   }, []);
 
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const filteredVanaras = vanaras.filter((vanar) =>
+    vanar.name.toLowerCase().includes(searchTerm)
+  );
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
-  if (vanaras.length === 0) {
-    return <p>No vanaras found</p>;
-  }
-
   return (
     <>
+      <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
+      </div>
+
       <div className="profile-card-holder">
-        {vanaras.map((vanar) => (
-          <ProfileCard key={vanar._id} data={vanar} />
-        ))}
+        {filteredVanaras.length > 0 ? (
+          filteredVanaras.map((vanar) => (
+            <ProfileCard key={vanar._id} data={vanar} />
+          ))
+        ) : (
+          <p>No vanaras found</p>
+        )}
       </div>
     </>
   );

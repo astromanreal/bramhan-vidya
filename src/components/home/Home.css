@@ -171,32 +171,83 @@
 }
 
 .HomeHeader-redirect {
-  padding: 50px 0;
   text-align: center;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 2rem auto;
   padding: 20px;
 }
 .HomeHeader-redirect h2 {
-  font-size: 2.3rem;
+  font-size: 2.18rem;
   margin-bottom: 20px;
 }
 .HomeHeader-redirect p {
   font-size: 1.1rem;
+  color: #9ea5a9;
+  text-transform: lowercase;
   margin-bottom: 30px;
 }
-.HomeHeader-redirect a {
-  padding: 12px 25px;
-  background-color: #ffffff;
-  border-radius: 6px;
-  color: black;
+
+.HomeHeader-redirect a button {
+  padding: 15px 20px;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  position: relative;
+  color: #f0f0f0;
+  z-index: 1;
 }
+
+.HomeHeader-redirect a button::after,
+.HomeHeader-redirect a button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -99999;
+  transition: all 0.4s;
+}
+
+.HomeHeader-redirect a button::before {
+  transform: translate(0%, 0%);
+  width: 100%;
+  height: 100%;
+  background: #28282d;
+  border-radius: 10px;
+}
+
+.HomeHeader-redirect a button::after {
+  transform: translate(10px, 10px);
+  width: 35px;
+  height: 35px;
+  background: #ffffff15;
+  backdrop-filter: blur(5px);
+  border-radius: 50px;
+}
+
+.HomeHeader-redirect a button:hover::before {
+  transform: translate(5%, 20%);
+  width: 110%;
+  height: 110%;
+}
+
+.HomeHeader-redirect a button:hover::after {
+  border-radius: 10px;
+  transform: translate(0, 0);
+  width: 100%;
+  height: 100%;
+}
+
+.HomeHeader-redirect a button:active::after {
+  transition: 0s;
+  transform: translate(0, 5%);
+}
+
 .HomeHeader-redirect .arrow {
   width: 0;
   height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 15px solid #007bff;
-  margin: 20px auto;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 25px solid #4292e8;
+  margin: 30px auto;
 }
 /* home header end */

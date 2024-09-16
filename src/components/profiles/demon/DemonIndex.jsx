@@ -18,10 +18,12 @@ export default function DemonIndex() {
     </>
   );
 }
-
 export function AllDemons() {
   const [demons, setDemons] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedClass, setSelectedClass] = useState("All");
+  const [classes, setClasses] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchDemons = async () => {
@@ -29,6 +31,10 @@ export function AllDemons() {
         const { data } = await axios.get(`${apiUrl}/profiles/alldemons`);
         if (data?.success) {
           setDemons(data.data);
+          const uniqueClasses = [
+            ...new Set(data.data.map((demon) => demon.class)),
+          ];
+          setClasses(["All", ...uniqueClasses]);
         } else {
           throw new Error("Failed to fetch demons");
         }
@@ -42,21 +48,51 @@ export function AllDemons() {
     fetchDemons();
   }, []);
 
+  const handleClassChange = (event) => {
+    setSelectedClass(event.target.value);
+  };
+
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const filteredDemons =
+    selectedClass === "All"
+      ? demons.filter((demon) => demon.name.toLowerCase().includes(searchTerm))
+      : demons.filter(
+          (demon) =>
+            demon.class === selectedClass &&
+            demon.name.toLowerCase().includes(searchTerm)
+        );
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
   return (
     <>
+      <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
+        <select value={selectedClass} onChange={handleClassChange}>
+          {classes.map((classType) => (
+            <option key={classType} value={classType}>
+              {classType}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="profile-card-holder">
-        {demons.length === 0 ? (
+        {filteredDemons.length === 0 ? (
           <p>No demons found</p>
         ) : (
-          <>
-            {demons.map((demon) => (
-              <ProfileCard key={demon._id} data={demon} />
-            ))}
-          </>
+          filteredDemons.map((demon) => (
+            <ProfileCard key={demon._id} data={demon} />
+          ))
         )}
       </div>
     </>

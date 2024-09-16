@@ -23,6 +23,7 @@ export function Allcreature() {
   const [loading, setLoading] = useState(true);
   const [selectedType, setSelectedType] = useState("All");
   const [types, setTypes] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchCreatures = async () => {
@@ -51,10 +52,20 @@ export function Allcreature() {
     setSelectedType(event.target.value);
   };
 
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
   const filteredCreatures =
     selectedType === "All"
-      ? creatures
-      : creatures?.filter((creature) => creature.type === selectedType);
+      ? creatures.filter((creature) =>
+          creature.name.toLowerCase().includes(searchTerm)
+        )
+      : creatures.filter(
+          (creature) =>
+            creature.type === selectedType &&
+            creature.name.toLowerCase().includes(searchTerm)
+        );
 
   if (loading) {
     return <p>Loading...</p>;
@@ -63,6 +74,12 @@ export function Allcreature() {
   return (
     <>
       <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
         <select value={selectedType} onChange={handleTypeChange}>
           {types.map((type) => (
             <option key={type} value={type}>

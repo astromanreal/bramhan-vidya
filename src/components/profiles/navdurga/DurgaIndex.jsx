@@ -1,4 +1,3 @@
-// import GetRedirectLink from "../../utils/GetRedirectLink";
 import { useEffect, useState } from "react";
 import ProfileCard from "../ProfileCard";
 import ProfileHeader from "../ProfileHeader";
@@ -13,7 +12,6 @@ export default function DurgaIndex() {
         desc="Explore the divine manifestations of Durga, a powerful and revered goddess in Hinduism. Known for her strength, courage, and protection, Durga is worshipped in various forms across different regions. Her tales of victory over evil and her roles in festivals embody the essence of divine feminine power."
       />
       <AllDurga />
-      {/* <GetRedirectLink text="Durga forms" path="add-durga" /> */}
     </>
   );
 }
@@ -21,6 +19,7 @@ export default function DurgaIndex() {
 export function AllDurga() {
   const [durgas, setDurgas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,15 +41,33 @@ export function AllDurga() {
     fetchData();
   }, []);
 
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const filteredDurgas = durgas.filter((durga) =>
+    durga.name.toLowerCase().includes(searchTerm)
+  );
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
   return (
     <>
+      <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
+      </div>
       <div className="profile-card-holder">
-        {durgas.length > 0 ? (
-          durgas.map((durga) => <ProfileCard key={durga._id} data={durga} />)
+        {filteredDurgas.length > 0 ? (
+          filteredDurgas.map((durga) => (
+            <ProfileCard key={durga._id} data={durga} />
+          ))
         ) : (
           <p>No Durga forms found</p>
         )}

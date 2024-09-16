@@ -21,6 +21,7 @@ export default function VishnuIndex() {
 export function AllVishnu() {
   const [vishnus, setVishnus] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,15 +43,32 @@ export function AllVishnu() {
     fetchData();
   }, []);
 
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const filteredVishnus = vishnus.filter((vishnu) =>
+    vishnu.name.toLowerCase().includes(searchTerm)
+  );
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
   return (
     <>
+      <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
+      </div>
+
       <div className="profile-card-holder">
-        {vishnus.length > 0 ? (
-          vishnus.map((vishnu) => (
+        {filteredVishnus.length > 0 ? (
+          filteredVishnus.map((vishnu) => (
             <ProfileCard key={vishnu._id} data={vishnu} />
           ))
         ) : (

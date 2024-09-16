@@ -30,7 +30,10 @@ export function HomeHeader() {
           BROWSE OUR LIBRARY OF SACRED TEXTS, SPIRITUAL PRACTICES, AND CULTURAL
           HERITAGE
         </p>
-        <Link to="explore">ENTER THE PORTAL</Link>
+
+        <Link to="explore">
+          <button> ENTER THE PORTAL</button>
+        </Link>
         <div className="arrow"></div>
       </section>
     </>

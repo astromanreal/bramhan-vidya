@@ -18,10 +18,12 @@ export default function CelestialIndex() {
     </>
   );
 }
-
 export function AllCelestial() {
   const [celestials, setCelestials] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedType, setSelectedType] = useState("All");
+  const [types, setTypes] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchCelestials = async () => {
@@ -29,6 +31,10 @@ export function AllCelestial() {
         const { data } = await axios.get(`${apiUrl}/profiles/allcelestial`);
         if (data?.success) {
           setCelestials(data.data);
+          const uniqueTypes = [
+            ...new Set(data.data.map((celestial) => celestial.type)),
+          ];
+          setTypes(["All", ...uniqueTypes]);
         } else {
           throw new Error("Failed to fetch celestial beings");
         }
@@ -44,21 +50,53 @@ export function AllCelestial() {
     fetchCelestials();
   }, []);
 
+  const handleTypeChange = (event) => {
+    setSelectedType(event.target.value);
+  };
+
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const filteredCelestials =
+    selectedType === "All"
+      ? celestials.filter((celestial) =>
+          celestial.name.toLowerCase().includes(searchTerm)
+        )
+      : celestials.filter(
+          (celestial) =>
+            celestial.type === selectedType &&
+            celestial.name.toLowerCase().includes(searchTerm)
+        );
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
   return (
     <>
+      <div className="filter-data-container">
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+          placeholder="Search by name"
+        />
+        <select value={selectedType} onChange={handleTypeChange}>
+          {types.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="profile-card-holder">
-        {celestials.length === 0 ? (
+        {filteredCelestials.length === 0 ? (
           <p>No celestial beings found.</p>
         ) : (
-          <>
-            {celestials.map((celestial) => (
-              <ProfileCard key={celestial._id} data={celestial} />
-            ))}
-          </>
+          filteredCelestials.map((celestial) => (
+            <ProfileCard key={celestial._id} data={celestial} />
+          ))
         )}
       </div>
     </>
